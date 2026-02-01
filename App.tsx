@@ -1,37 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
-import { Search } from 'lucide-react';
-
-function OwlLogo({ size = 24, className = '' }: { size?: number; className?: string }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      {/* Head outline */}
-      <path d="M12 3C7 3 4 7 4 12c0 4 2.5 7 5 8.5L12 22l3-1.5c2.5-1.5 5-4.5 5-8.5 0-5-3-9-8-9z" />
-      {/* Ear tufts */}
-      <path d="M7.5 5.5L6 2" />
-      <path d="M16.5 5.5L18 2" />
-      {/* Left eye */}
-      <circle cx="9.5" cy="11" r="2" />
-      <circle cx="9.5" cy="11" r="0.75" fill="currentColor" stroke="none" />
-      {/* Right eye */}
-      <circle cx="14.5" cy="11" r="2" />
-      <circle cx="14.5" cy="11" r="0.75" fill="currentColor" stroke="none" />
-      {/* Beak */}
-      <path d="M12 13.5l-1 1.5h2z" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-import { Category, Prompt, MainTab } from './types';
+import { Search, X } from 'lucide-react';
+import { OwlLogo } from './components/OwlLogo';
+import { Category, Prompt, MainTab, Technique } from './types';
 import { usePrompts } from './hooks/usePrompts';
 import PromptCard from './components/PromptCard';
 import PromptModal from './components/PromptModal';
@@ -45,12 +16,27 @@ const CATEGORY_MAP: Record<MainTab, Category[]> = {
   'Skills': ['All', 'Engineering', 'Writing', 'Strategy', 'Design']
 };
 
+const ALL_TECHNIQUES: Technique[] = [
+  'Role Assignment', 'Structured Output', 'Constraint-Based',
+  'Chain-of-Thought', 'Few-Shot', 'Self-Verification',
+  'Socratic Method', 'Meta-Cognitive',
+];
+
 const App: React.FC = () => {
   const { prompts: PROMPTS, loading, error } = usePrompts();
   const [activeTab, setActiveTab] = useState<MainTab>('Prompts');
   const [activeCategory, setActiveCategory] = useState<Category>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null);
+  const [activeTechniques, setActiveTechniques] = useState<Technique[]>([]);
+
+  const toggleTechnique = (technique: Technique) => {
+    setActiveTechniques(prev =>
+      prev.includes(technique)
+        ? prev.filter(t => t !== technique)
+        : [...prev, technique]
+    );
+  };
 
   const filteredPrompts = useMemo(() => {
     return PROMPTS.filter(p => {
@@ -58,14 +44,17 @@ const App: React.FC = () => {
       const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
       const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           p.shortDescription.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesTab && matchesCategory && matchesSearch;
+      const matchesTechniques = activeTechniques.length === 0 ||
+                               activeTechniques.some(t => p.techniques.includes(t));
+      return matchesTab && matchesCategory && matchesSearch && matchesTechniques;
     });
-  }, [activeTab, activeCategory, searchQuery, PROMPTS]);
+  }, [activeTab, activeCategory, searchQuery, activeTechniques, PROMPTS]);
 
-  // Reset category when tab changes
+  // Reset category and techniques when tab changes
   const handleTabChange = (tab: MainTab) => {
     setActiveTab(tab);
     setActiveCategory('All');
+    setActiveTechniques([]);
   };
 
   return (
@@ -75,9 +64,8 @@ const App: React.FC = () => {
       {/* Navigation */}
       <nav className="sticky top-0 z-40 bg-[#fdfbf7]/80 backdrop-blur-md border-b border-stone-200/50 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div
-            className="serif text-2xl font-bold tracking-tight text-stone-900 cursor-pointer flex items-center gap-2"
-            style={{ animation: 'fadeIn 0.5s ease' }}
+          <button
+            className="serif text-2xl font-bold tracking-tight text-stone-900 cursor-pointer flex items-center gap-2 appearance-none bg-transparent border-none p-0 animate-fade-in"
             onClick={() => {
               handleTabChange('Prompts');
               setSearchQuery('');
@@ -85,7 +73,7 @@ const App: React.FC = () => {
           >
             <OwlLogo size={24} className="text-stone-400" />
             Ask Wisely<span className="text-stone-400 font-light">.</span>
-          </div>
+          </button>
 
           <div className="hidden md:flex items-center bg-stone-100 p-1 rounded-full border border-stone-200">
             {MAIN_TABS.map(tab => (
@@ -103,9 +91,7 @@ const App: React.FC = () => {
             ))}
           </div>
 
-          <button className="hidden md:block px-5 py-2 rounded-full bg-stone-900 text-white text-xs font-bold uppercase tracking-widest hover:bg-stone-800 transition-colors shadow-lg shadow-stone-200">
-            Contribute
-          </button>
+          <div className="hidden md:block w-[120px]" />
         </div>
       </nav>
 
@@ -114,17 +100,13 @@ const App: React.FC = () => {
         <header className="max-w-3xl mb-16">
           <h1
             key={activeTab}
-            className="serif text-6xl md:text-7xl font-medium text-stone-900 leading-tight mb-6"
-            style={{ animation: 'fadeInUp 0.6s ease' }}
+            className="serif text-6xl md:text-7xl font-medium text-stone-900 leading-tight mb-6 animate-fade-in-up"
           >
             {activeTab === 'Prompts' && <>The Art of <span className="italic text-stone-500">Inquiry</span></>}
             {activeTab === 'Image Prompts' && <>The Art of <span className="italic text-stone-500">Vision</span></>}
             {activeTab === 'Skills' && <>The Art of <span className="italic text-stone-500">Mastery</span></>}
           </h1>
-          <p
-            className="text-stone-500 text-lg md:text-xl leading-relaxed font-light"
-            style={{ animation: 'fadeIn 0.8s ease' }}
-          >
+          <p className="text-stone-500 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow">
             {activeTab === 'Prompts' && "A collection of sophisticated text prompts for complex reasoning and creative storytelling."}
             {activeTab === 'Image Prompts' && "Precision visual parameters for high-end generative art and cinematic world-building."}
             {activeTab === 'Skills' && "Foundational blueprints and methodologies for becoming a power user of digital intelligence."}
@@ -161,18 +143,44 @@ const App: React.FC = () => {
               />
             </div>
           </div>
+
+          {/* Technique Filter Pills */}
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pb-1">
+            {ALL_TECHNIQUES.map((technique) => (
+              <button
+                key={technique}
+                onClick={() => toggleTechnique(technique)}
+                className={`shrink-0 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] transition-all duration-300 border ${
+                  activeTechniques.includes(technique)
+                    ? 'bg-stone-800 text-white border-stone-800 shadow-sm'
+                    : 'bg-white text-stone-400 border-stone-200 hover:border-stone-400'
+                }`}
+              >
+                {technique}
+              </button>
+            ))}
+            {activeTechniques.length > 0 && (
+              <button
+                onClick={() => setActiveTechniques([])}
+                className="shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] text-stone-500 hover:text-stone-900 transition-colors"
+              >
+                <X size={12} />
+                Clear
+              </button>
+            )}
+          </div>
         </section>
 
         {/* Loading State */}
         {loading && (
-          <div className="py-32 text-center" style={{ animation: 'fadeIn 0.3s ease' }}>
+          <div className="py-32 text-center animate-fade-in-fast">
             <div className="serif text-3xl text-stone-300 mb-2">Loading prompts...</div>
           </div>
         )}
 
         {/* Error State */}
         {error && (
-          <div className="py-32 text-center" style={{ animation: 'fadeIn 0.3s ease' }}>
+          <div className="py-32 text-center animate-fade-in-fast">
             <div className="serif text-3xl text-stone-300 mb-2">Failed to load prompts</div>
             <p className="text-stone-400">{error}</p>
           </div>
@@ -193,10 +201,7 @@ const App: React.FC = () => {
 
         {/* Empty State */}
         {!loading && !error && filteredPrompts.length === 0 && (
-          <div
-            className="py-32 text-center"
-            style={{ animation: 'fadeIn 0.3s ease' }}
-          >
+          <div className="py-32 text-center animate-fade-in-fast">
             <div className="serif text-3xl text-stone-300 mb-2">No {activeTab.toLowerCase()} found</div>
             <p className="text-stone-400">Try adjusting your filters or search terms.</p>
           </div>

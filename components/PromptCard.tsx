@@ -1,7 +1,8 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Copy, Check, ArrowUpRight } from 'lucide-react';
 import { Prompt } from '../types';
+import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
 
 interface PromptCardProps {
   prompt: Prompt;
@@ -9,19 +10,11 @@ interface PromptCardProps {
 }
 
 const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview }) => {
-  const [copied, setCopied] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
-
-  useEffect(() => {
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, []);
+  const [copied, copy] = useCopyToClipboard(prompt.fullPrompt);
 
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(prompt.fullPrompt);
-    setCopied(true);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setCopied(false), 2000);
+    copy();
   };
 
   return (
@@ -56,9 +49,28 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview }) => {
           <h3 className="serif text-2xl font-medium text-stone-800 mb-3 group-hover:text-stone-900 transition-colors">
             {prompt.title}
           </h3>
-          <p className="text-stone-600 text-sm leading-relaxed mb-6">
+          <p className="text-stone-600 text-sm leading-relaxed mb-4">
             {prompt.shortDescription}
           </p>
+
+          {/* Technique badges */}
+          {prompt.techniques.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {prompt.techniques.slice(0, 2).map((tech) => (
+                <span
+                  key={tech}
+                  className="text-[9px] uppercase tracking-wider font-semibold text-stone-500 bg-stone-100 px-2 py-0.5 rounded"
+                >
+                  {tech}
+                </span>
+              ))}
+              {prompt.techniques.length > 2 && (
+                <span className="text-[9px] uppercase tracking-wider font-semibold text-stone-400 px-1 py-0.5">
+                  +{prompt.techniques.length - 2}
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="flex justify-between items-center mt-auto pt-4 border-t border-stone-200/50">
@@ -81,4 +93,4 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview }) => {
   );
 };
 
-export default PromptCard;
+export default React.memo(PromptCard);

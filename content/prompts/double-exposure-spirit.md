@@ -10,4 +10,4 @@ skills:
   - Analog Technique
 ---
 
-In-camera double exposure portrait, a woman's profile silhouette filled with a dense misty forest, trees growing where her mind would be, birds flying from the top of her head into negative space, roots extending down from her neck, clean white background, the portrait outline sharp while the forest interior is dreamy and soft, analog film aesthetic on Kodak Portra 400, muted greens and warm skin tones bleeding together, 35mm grain, f/2.0.
+In-camera double exposure portrait, a [subject]'s profile silhouette filled with [your scene/environment], trees growing where her mind would be, birds flying from the top of her head into negative space, roots extending down from her neck, clean white background, the portrait outline sharp while the forest interior is dreamy and soft, analog film aesthetic on Kodak Portra 400, muted greens and warm skin tones bleeding together, 35mm grain, f/2.0.

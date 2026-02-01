@@ -11,4 +11,4 @@ skills:
   - Materiality
 ---
 
-Architectural photography of a brutalist concrete villa in a jungle, large floor-to-ceiling windows, sunlight dappled through leaves, hyper-realistic, minimal furniture, overcast soft lighting.
+Architectural photography of a brutalist concrete [building type] in [your setting], large floor-to-ceiling windows, sunlight dappled through leaves, hyper-realistic, minimal furniture, overcast soft lighting.

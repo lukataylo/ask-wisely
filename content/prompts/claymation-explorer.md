@@ -10,4 +10,4 @@ skills:
   - Textures
 ---
 
-Macro 3D render of a tiny claymation astronaut on a mushroom planet, stop-motion aesthetic, fingerprint textures visible, soft studio lighting, tilt-shift, vibrant pastel colors.
+Macro 3D render of a tiny claymation [character] on a [setting], stop-motion aesthetic, fingerprint textures visible, soft studio lighting, tilt-shift, vibrant pastel colors.

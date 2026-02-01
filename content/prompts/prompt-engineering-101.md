@@ -11,4 +11,4 @@ skills:
   - Precision
 ---
 
-Master the art of prompting. 1. Use Delimiters to clearly separate parts of the input. 2. Ask for structured output (JSON/Markdown). 3. Provide examples (Few-Shot). 4. Use Chain-of-Thought ("Let's think step by step").
+Master the art of prompting. 1. Use Delimiters to clearly separate parts of [your input/prompt]. 2. Ask for structured output (JSON/Markdown). 3. Provide examples (Few-Shot). 4. Use Chain-of-Thought ("Let's think step by step").

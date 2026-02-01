@@ -11,4 +11,4 @@ skills:
   - Market Research
 ---
 
-Assume the role of a McKinsey Consultant. I have a startup in the green tech space. Analyze my market entry strategy for Southeast Asia, focusing on regulatory hurdles and competitive advantages.
+Assume the role of a McKinsey Consultant. I have a startup in the [your industry] space. Analyze my market entry strategy for [your target market/region], focusing on regulatory hurdles and competitive advantages.

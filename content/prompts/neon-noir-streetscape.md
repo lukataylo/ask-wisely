@@ -11,4 +11,4 @@ skills:
   - Color Theory
 ---
 
-Cinematic wide shot of a rain-slicked Cyberpunk alleyway, neon signs flickering in Japanese kanji, deep contrast, volumetric lighting, 8k resolution, shot on 35mm film, f/1.8, teal and orange color grading.
+Cinematic wide shot of a rain-slicked [your urban setting], neon signs flickering in Japanese kanji, deep contrast, volumetric lighting, 8k resolution, shot on 35mm film, f/1.8, [your color palette] color grading.

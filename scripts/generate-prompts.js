@@ -6,6 +6,72 @@ const OUTPUT_FILE = path.resolve('public/prompts.json');
 const SEO_HTML_FILE = path.resolve('public/seo-content.html');
 const LD_PROMPTS_FILE = path.resolve('public/ld-prompts.json');
 
+const TECHNIQUE_PATTERNS = {
+  'Role Assignment':   /\b(Act as|You are|Assume the role|Imagine you're|Play the role)\b/i,
+  'Structured Output': /\b(format|JSON|markdown|table|numbered|schema|diagram|specification)\b/i,
+  'Constraint-Based':  /\b(don't|do not|never|avoid|must not|exactly|only|no more than|limit)\b/i,
+  'Chain-of-Thought':  /\b(step.by.step|think through|break down|walk through|before moving)\b/i,
+  'Few-Shot':          /\b(example|for instance|e\.g\.|sample|like this)\b/i,
+  'Self-Verification': /\b(verify|validate|check.*assumption|reconsider|steelman|counter-?argument)\b/i,
+  'Socratic Method':   /\b(Socratic|guide.*question|don't give.*answers|inquiry)\b/i,
+  'Meta-Cognitive':    /\b(before responding|consider first|reflect|think about.*before|pause and)\b/i,
+};
+
+function detectTechniques(text) {
+  const techniques = [];
+  for (const [name, pattern] of Object.entries(TECHNIQUE_PATTERNS)) {
+    if (pattern.test(text)) {
+      techniques.push(name);
+    }
+  }
+  return techniques;
+}
+
+function extractVariables(text) {
+  const regex = /\[([^\]]+)\]/g;
+  const seen = new Set();
+  const variables = [];
+  let m;
+  while ((m = regex.exec(text)) !== null) {
+    const name = m[1];
+    // Filter out purely numeric matches like [1], [2]
+    if (/^\d+$/.test(name.trim())) continue;
+    const key = name.toLowerCase();
+    if (!seen.has(key)) {
+      seen.add(key);
+      variables.push({ name, placeholder: m[0] });
+    }
+  }
+  return variables;
+}
+
+function parseLLMVariants(body) {
+  const variantPattern = /<!--\s*variant:(claude|chatgpt|gemini)\s*-->/gi;
+  const markers = [];
+  let m;
+  while ((m = variantPattern.exec(body)) !== null) {
+    markers.push({ provider: m[1].toLowerCase(), index: m.index, length: m[0].length });
+  }
+
+  if (markers.length === 0) {
+    return { basePrompt: body.trim(), variants: {} };
+  }
+
+  const basePrompt = body.substring(0, markers[0].index).trim();
+  const variants = {};
+
+  for (let i = 0; i < markers.length; i++) {
+    const start = markers[i].index + markers[i].length;
+    const end = i + 1 < markers.length ? markers[i + 1].index : body.length;
+    const text = body.substring(start, end).trim();
+    if (text) {
+      variants[markers[i].provider] = text;
+    }
+  }
+
+  return { basePrompt, variants };
+}
+
 function parseMarkdown(filePath) {
   const raw = fs.readFileSync(filePath, 'utf-8');
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -38,7 +104,6 @@ function parseMarkdown(filePath) {
       if (value === '' || value === '>-') {
         inList = value !== '>-';
         if (value === '>-') {
-          // multiline string - read ahead handled below
           fields[currentKey] = '';
         } else {
           inList = true;
@@ -47,7 +112,6 @@ function parseMarkdown(filePath) {
         fields[currentKey] = value.replace(/^['"]|['"]$/g, '');
       }
     } else if (currentKey && !inList && line.startsWith('  ')) {
-      // continuation of multiline string
       fields[currentKey] = ((fields[currentKey] || '') + ' ' + line.trim()).trim();
     }
   }
@@ -58,14 +122,33 @@ function parseMarkdown(filePath) {
 
   const filename = path.basename(filePath, '.md');
 
+  // Parse LLM variants from body
+  const { basePrompt, variants } = parseLLMVariants(body);
+
+  // Detect techniques from the base prompt text
+  let techniques = detectTechniques(basePrompt);
+
+  // Frontmatter techniques override/supplement
+  if (Array.isArray(fields.techniques)) {
+    const fromFrontmatter = fields.techniques;
+    const merged = new Set([...techniques, ...fromFrontmatter]);
+    techniques = [...merged];
+  }
+
+  // Extract template variables
+  const variables = extractVariables(basePrompt);
+
   return {
     id: filename,
     title: fields.title || filename,
     type: fields.type || 'Prompts',
     category: fields.category || 'Creative',
     shortDescription: fields.shortDescription || '',
-    fullPrompt: body,
+    fullPrompt: basePrompt,
     skills: Array.isArray(fields.skills) ? fields.skills : [],
+    techniques,
+    variables,
+    llmVariants: variants,
   };
 }
 
@@ -130,7 +213,15 @@ function generateJsonLd(prompts) {
 }
 
 const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
-const prompts = files.map(f => parseMarkdown(path.join(CONTENT_DIR, f))).filter(Boolean);
+const parsed = files.map(f => parseMarkdown(path.join(CONTENT_DIR, f)));
+
+for (let i = 0; i < files.length; i++) {
+  if (parsed[i] === null) {
+    console.warn(`Warning: skipped ${files[i]} (failed to parse frontmatter)`);
+  }
+}
+
+const prompts = parsed.filter(Boolean);
 
 fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
 

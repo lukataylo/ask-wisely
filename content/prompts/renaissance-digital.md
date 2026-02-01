@@ -11,4 +11,4 @@ skills:
   - Lighting
 ---
 
-Portrait of a young software engineer wearing a hoodie, painted in the style of a Flemish Renaissance oil painting by Jan van Eyck, meticulous detail on fabric folds and skin texture, dark background with subtle green drapery, three-quarter view, soft diffused northern light from the left, visible brushstroke texture, gold leaf accents on the frame edge, oil on wood panel aesthetic, 8k resolution, hyperrealistic classical technique.
+Portrait of a [your subject description], painted in the style of a Flemish Renaissance oil painting by [Renaissance artist], meticulous detail on fabric folds and skin texture, dark background with subtle green drapery, three-quarter view, soft diffused northern light from the left, visible brushstroke texture, gold leaf accents on the frame edge, oil on wood panel aesthetic, 8k resolution, hyperrealistic classical technique.

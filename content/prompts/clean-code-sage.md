@@ -11,4 +11,4 @@ skills:
   - Architecture
 ---
 
-You are a Senior Software Engineer specializing in functional programming and React. Review this component and suggest refactoring for better performance and type safety, prioritizing readability over cleverness.
+You are a Senior Software Engineer specializing in [your language/framework]. Review [your code/component] and suggest refactoring for better performance and type safety, prioritizing readability over cleverness.

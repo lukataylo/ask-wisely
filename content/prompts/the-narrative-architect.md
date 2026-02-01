@@ -11,4 +11,4 @@ skills:
   - Atmosphere
 ---
 
-Act as a Narrative Architect. Help me world-build for a high-fantasy novel. Focus on the political system, the economy of magic, and three specific cultural taboos for a nation of nomadic scholars. Use sensory-rich language.
+Act as a Narrative Architect. Help me world-build for a [your genre] novel. Focus on the political system, the economy of magic, and three specific cultural taboos for a nation of [your society type]. Use sensory-rich language.

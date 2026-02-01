@@ -11,4 +11,4 @@ skills:
   - Psychology
 ---
 
-To develop a strong narrative voice: Identify the target audience emotion, choose a primary metaphor style (mechanical, organic, cosmic), and regulate sentence length to control reader attention span.
+To develop a strong narrative voice: Identify the target audience emotion for [your story/project], choose a primary metaphor style (mechanical, organic, cosmic), and regulate sentence length to control reader attention span.
