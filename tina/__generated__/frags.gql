@@ -1,9 +1,0 @@
-fragment PromptParts on Prompt {
-  __typename
-  title
-  type
-  category
-  shortDescription
-  skills
-  body
-}

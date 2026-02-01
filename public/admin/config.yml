@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: lukataylo/ask-wisely
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "prompt"
+    label: "Prompts"
+    folder: "content/prompts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Type", name: "type", widget: "select", required: true, options: ["Prompts", "Image Prompts", "Skills"] }
+      - { label: "Category", name: "category", widget: "select", required: true, options: ["Creative", "Technical", "Business", "Academic", "Persona", "Cinematic", "Portrait", "Stylized", "Architecture", "Engineering", "Writing", "Strategy", "Design"] }
+      - { label: "Short Description", name: "shortDescription", widget: "text", required: true }
+      - { label: "Skills", name: "skills", widget: "list", required: false, field: { label: "Skill", name: "skill", widget: "string" } }
+      - { label: "Full Prompt", name: "body", widget: "markdown" }

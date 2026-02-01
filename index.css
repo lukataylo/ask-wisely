@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fdfbf7;
+  color: #1a1a1a;
+}
+
+.serif {
+  font-family: 'EB Garamond', serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fdfbf7;
+}
+::-webkit-scrollbar-thumb {
+  background: #e5e0d8;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4cfc5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes float1 {
+  0%, 100% { transform: scale(1) rotate(0deg) translate(-50px, -50px); }
+  50% { transform: scale(1.2) rotate(45deg) translate(50px, 50px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: scale(1.2) rotate(45deg) translate(50px, 50px); }
+  50% { transform: scale(1) rotate(0deg) translate(-50px, -50px); }
+}
+
+/* Card hover */
+.prompt-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.prompt-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+.prompt-card-bg {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  border-radius: 24px;
+  transition: clip-path 0.3s ease, box-shadow 0.3s ease;
+}
+.prompt-card:hover .prompt-card-bg {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+/* Arrow nudge on card hover */
+.prompt-card .arrow-icon {
+  transition: transform 0.2s ease;
+}
+.prompt-card:hover .arrow-icon {
+  transform: translateX(4px);
+}

@@ -1,6 +1,5 @@
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
 import { Copy, Check, ArrowUpRight } from 'lucide-react';
 import { Prompt } from '../types';
 
@@ -11,32 +10,28 @@ interface PromptCardProps {
 
 const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview }) => {
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+  useEffect(() => {
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, []);
 
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
     navigator.clipboard.writeText(prompt.fullPrompt);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <motion.div
-      layoutId={`card-${prompt.id}`}
-      whileHover={{ scale: 1.01, y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 25 }}
-      className="group relative cursor-pointer"
+    <div
+      className="prompt-card group relative cursor-pointer"
       onClick={() => onPreview(prompt)}
     >
       {/* The Shape-Shifting Background Layer */}
-      <motion.div
-        className="absolute inset-0 bg-[#f9f7f2] border border-[#e5e0d8] shadow-sm z-0"
-        initial={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', borderRadius: '24px' }}
-        whileHover={{ 
-          clipPath: 'polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%)',
-          borderRadius: '24px',
-          boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05)'
-        }}
-        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+      <div
+        className="prompt-card-bg absolute inset-0 bg-[#f9f7f2] border border-[#e5e0d8] shadow-sm z-0"
       />
 
       <div className="relative z-10 p-8 h-full flex flex-col justify-between">
@@ -50,27 +45,11 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview }) => {
               className="p-2 rounded-full hover:bg-stone-200 transition-colors text-stone-600"
               aria-label="Copy prompt"
             >
-              <AnimatePresence mode="wait">
-                {copied ? (
-                  <motion.div
-                    key="check"
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.5, opacity: 0 }}
-                  >
-                    <Check size={16} className="text-green-600" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="copy"
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.5, opacity: 0 }}
-                  >
-                    <Copy size={16} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {copied ? (
+                <Check size={16} className="text-green-600" />
+              ) : (
+                <Copy size={16} />
+              )}
             </button>
           </div>
 
@@ -92,17 +71,13 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview }) => {
           </div>
           <div className="flex items-center text-xs font-medium text-stone-500 group-hover:text-stone-900 transition-colors">
             Preview
-            <motion.div
-              animate={{ x: 0 }}
-              whileHover={{ x: 4 }}
-              className="ml-1"
-            >
+            <span className="arrow-icon ml-1">
               <ArrowUpRight size={14} />
-            </motion.div>
+            </span>
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
