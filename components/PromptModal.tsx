@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Copy, Check, Sparkles, Wand2 } from 'lucide-react';
+import { X, Copy, Check } from 'lucide-react';
 import { Prompt } from '../types';
-import { refinePrompt } from '../services/geminiService';
 
 interface PromptModalProps {
   prompt: Prompt | null;
@@ -12,27 +11,13 @@ interface PromptModalProps {
 
 const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose }) => {
   const [copied, setCopied] = useState(false);
-  const [refining, setRefining] = useState(false);
-  const [refinedText, setRefinedText] = useState<string | null>(null);
 
   if (!prompt) return null;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(refinedText || prompt.fullPrompt);
+    navigator.clipboard.writeText(prompt.fullPrompt);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleRefine = async () => {
-    setRefining(true);
-    try {
-      const refined = await refinePrompt(prompt.fullPrompt);
-      setRefinedText(refined);
-    } catch (error) {
-      console.error("Refinement failed", error);
-    } finally {
-      setRefining(false);
-    }
   };
 
   return (
@@ -73,7 +58,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose }) => {
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-stone-200 to-stone-100 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                   <div className="relative bg-white border border-stone-100 p-6 rounded-2xl text-stone-800 leading-relaxed font-mono text-sm whitespace-pre-wrap">
-                    {refinedText || prompt.fullPrompt}
+                    {prompt.fullPrompt}
                   </div>
                 </div>
               </section>
@@ -88,20 +73,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose }) => {
             </div>
           </div>
 
-          <div className="p-6 md:px-12 md:pb-12 bg-stone-50 border-t border-stone-100 flex flex-col sm:flex-row gap-4 items-center justify-between">
-            <button
-              onClick={handleRefine}
-              disabled={refining}
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-stone-900 text-white font-medium hover:bg-stone-800 transition-all disabled:opacity-50 w-full sm:w-auto justify-center"
-            >
-              {refining ? (
-                <Sparkles size={18} className="animate-pulse" />
-              ) : (
-                <Wand2 size={18} />
-              )}
-              {refining ? "Refining with AI..." : "Enhance with Gemini"}
-            </button>
-
+          <div className="p-6 md:px-12 md:pb-12 bg-stone-50 border-t border-stone-100 flex items-center justify-end">
             <button
               onClick={handleCopy}
               className="flex items-center gap-2 px-8 py-3 rounded-full border-2 border-stone-200 font-medium hover:border-stone-900 hover:text-stone-900 text-stone-600 transition-all w-full sm:w-auto justify-center"
