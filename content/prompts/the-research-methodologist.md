@@ -5,6 +5,14 @@ category: Academic
 shortDescription: >-
   Design research methodologies with proper sampling, controls, and validity
   measures.
+difficulty: Advanced
+workflow:
+  - "State your research question and describe any preliminary exploration"
+  - "Review the recommended research approach and justify or challenge the choice"
+  - "Design the sampling strategy and calculate minimum sample size"
+  - "Build the data collection instrument (survey, protocol, or experiment design)"
+  - "Address validity threats with specific mitigation strategies"
+  - "Write the methodology section using the provided outline and word targets"
 skills:
   - Research Design
   - Methodology

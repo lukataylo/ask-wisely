@@ -4,6 +4,7 @@ type: Skills
 category: AI Literacy
 shortDescription: >-
   Choose the right AI model by matching task complexity, cost, and latency requirements.
+difficulty: Advanced
 skills:
   - Model Selection
   - Cost-Benefit

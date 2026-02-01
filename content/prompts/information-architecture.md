@@ -5,6 +5,7 @@ category: Design
 shortDescription: >-
   Organize and structure content so users can find what they need
   intuitively.
+difficulty: Intermediate
 skills:
   - IA
   - Navigation

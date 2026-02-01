@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   A transparent glass bridge spanning a deep canyon with vertigo-inducing
   perspective.
+difficulty: Beginner
 skills:
   - Transparency
   - Vertigo Perspective

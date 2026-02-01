@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Combine multiple thinking frameworks to analyze problems from diverse
   angles simultaneously.
+difficulty: Advanced
 skills:
   - Mental Models
   - Cross-Disciplinary

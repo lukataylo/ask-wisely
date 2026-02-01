@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Construct believable fictional worlds with consistent rules and lived-in
   texture.
+difficulty: Intermediate
 skills:
   - World Building
   - Consistency

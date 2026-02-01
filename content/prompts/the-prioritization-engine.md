@@ -4,6 +4,7 @@ type: Prompts
 category: Product
 shortDescription: >-
   Apply RICE, Value/Effort, and Kano frameworks to rank your product backlog.
+difficulty: Intermediate
 skills:
   - Prioritization
   - RICE

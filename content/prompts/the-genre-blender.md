@@ -4,6 +4,7 @@ type: Prompts
 category: Creative
 shortDescription: >-
   Fuse two incompatible genres into a cohesive narrative with original voice.
+difficulty: Intermediate
 skills:
   - Genre Fiction
   - Creative Fusion

@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Sample multiple reasoning paths and take the majority answer for improved reliability.
+difficulty: Advanced
 skills:
   - Self-Consistency
   - Reliability

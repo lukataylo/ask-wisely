@@ -4,6 +4,7 @@ type: Prompts
 category: Persona
 shortDescription: >-
   Find clarity through koans, mindfulness, and the art of non-attachment.
+difficulty: Beginner
 skills:
   - Mindfulness
   - Philosophy

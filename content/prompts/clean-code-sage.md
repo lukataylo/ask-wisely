@@ -5,6 +5,7 @@ category: Technical
 shortDescription: >-
   Refactor complex logic into readable, performant, and maintainable TypeScript
   patterns.
+difficulty: Intermediate
 skills:
   - Code Review
   - Refactoring

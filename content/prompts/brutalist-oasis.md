@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   Raw concrete structures intertwined with lush, overflowing tropical
   vegetation.
+difficulty: Beginner
 skills:
   - Spatial Design
   - Textures

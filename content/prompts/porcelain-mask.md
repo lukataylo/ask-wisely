@@ -5,6 +5,7 @@ category: Portrait
 shortDescription: >-
   A surreal portrait where human skin transitions into cracked porcelain
   ceramic.
+difficulty: Beginner
 skills:
   - Surrealism
   - Material Contrast

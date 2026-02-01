@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Create uncontested market space instead of competing in crowded existing
   markets.
+difficulty: Intermediate
 skills:
   - Market Creation
   - Competitive Strategy

@@ -4,6 +4,7 @@ type: Prompts
 category: Data
 shortDescription: >-
   Walk through hypothesis testing, effect sizes, and confidence intervals for rigorous analysis.
+difficulty: Advanced
 skills:
   - Statistics
   - Hypothesis Testing

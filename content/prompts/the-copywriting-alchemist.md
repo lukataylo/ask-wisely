@@ -4,6 +4,7 @@ type: Prompts
 category: Marketing
 shortDescription: >-
   Write high-converting copy with headlines, objection handling, and A/B test plans.
+difficulty: Beginner
 skills:
   - Copywriting
   - Persuasion

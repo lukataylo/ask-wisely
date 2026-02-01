@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Teach AI new tasks by providing carefully structured examples in the prompt.
+difficulty: Beginner
 skills:
   - Few-Shot
   - Pattern Teaching

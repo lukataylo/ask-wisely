@@ -4,6 +4,7 @@ type: Prompts
 category: Personal
 shortDescription: >-
   Run a thorough weekly review covering wins, misses, energy audits, and next priorities.
+difficulty: Beginner
 skills:
   - Productivity
   - Weekly Review

@@ -4,6 +4,7 @@ type: Image Prompts
 category: Stylized
 shortDescription: >-
   A cozy isometric room with impossible geometry and warm inviting detail.
+difficulty: Beginner
 skills:
   - Isometric Design
   - Cozy Aesthetic

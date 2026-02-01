@@ -4,6 +4,7 @@ type: Prompts
 category: Education
 shortDescription: >-
   Design adaptive quiz sequences with branching logic and targeted remediation paths.
+difficulty: Beginner
 skills:
   - Quiz Design
   - Adaptive Learning

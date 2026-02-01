@@ -5,6 +5,7 @@ category: Stylized
 shortDescription: >-
   A galaxy rendered in medieval stained glass with lead lines and jewel
   tones.
+difficulty: Beginner
 skills:
   - Stained Glass
   - Sacred Art

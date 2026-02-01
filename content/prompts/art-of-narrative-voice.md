@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Developing a unique brand voice through diction, rhythm, and intentional
   pacing.
+difficulty: Intermediate
 skills:
   - Voice
   - Pacing

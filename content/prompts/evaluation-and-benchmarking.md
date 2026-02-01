@@ -5,6 +5,7 @@ category: Engineering
 shortDescription: >-
   Measure prompt effectiveness with systematic testing and comparison
   frameworks.
+difficulty: Advanced
 skills:
   - Evaluation
   - Benchmarking

@@ -5,6 +5,7 @@ category: Engineering
 shortDescription: >-
   Handle AI errors, hallucinations, and unexpected outputs with resilient
   prompt design.
+difficulty: Intermediate
 skills:
   - Error Handling
   - Hallucination Detection

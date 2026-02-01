@@ -4,6 +4,7 @@ type: Prompts
 category: Education
 shortDescription: >-
   Build comprehensive grading rubrics with observable descriptors and self-assessment versions.
+difficulty: Intermediate
 skills:
   - Assessment
   - Rubrics

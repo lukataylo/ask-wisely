@@ -4,6 +4,7 @@ type: Image Prompts
 category: Interface
 shortDescription: >-
   A full SaaS landing page design with hero section, features, testimonials, and pricing.
+difficulty: Beginner
 skills:
   - Web Design
   - Landing Page

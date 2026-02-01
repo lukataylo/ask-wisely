@@ -4,6 +4,7 @@ type: Image Prompts
 category: Stylized
 shortDescription: >-
   A dramatic ocean storm in the style of Japanese ukiyo-e woodblock prints.
+difficulty: Beginner
 skills:
   - Ukiyo-e
   - Traditional Japanese Art

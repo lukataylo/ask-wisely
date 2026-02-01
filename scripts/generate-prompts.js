@@ -47,6 +47,25 @@ function extractVariables(text) {
   return variables;
 }
 
+function parseExamples(body) {
+  const inputPattern = /<!--\s*example-input\s*-->/i;
+  const outputPattern = /<!--\s*example-output\s*-->/i;
+
+  const inputMatch = inputPattern.exec(body);
+  if (!inputMatch) return { cleanBody: body, exampleInput: undefined, exampleOutput: undefined };
+
+  const beforeExamples = body.substring(0, inputMatch.index).trim();
+  const afterInputMarker = body.substring(inputMatch.index + inputMatch[0].length);
+
+  const outputMatch = outputPattern.exec(afterInputMarker);
+  if (!outputMatch) return { cleanBody: body, exampleInput: undefined, exampleOutput: undefined };
+
+  const exampleInput = afterInputMarker.substring(0, outputMatch.index).trim();
+  const exampleOutput = afterInputMarker.substring(outputMatch.index + outputMatch[0].length).trim();
+
+  return { cleanBody: beforeExamples, exampleInput, exampleOutput };
+}
+
 function parseLLMVariants(body) {
   const variantPattern = /<!--\s*variant:(claude|chatgpt|gemini)\s*-->/gi;
   const markers = [];
@@ -89,7 +108,7 @@ function parseMarkdown(filePath) {
 
   for (const line of frontmatter.split('\n')) {
     if (line.match(/^\s*- /)) {
-      listItems.push(line.replace(/^\s*- /, '').trim());
+      listItems.push(line.replace(/^\s*- /, '').trim().replace(/^['"]|['"]$/g, ''));
       continue;
     }
 
@@ -124,8 +143,11 @@ function parseMarkdown(filePath) {
 
   const filename = path.basename(filePath, '.md');
 
-  // Parse LLM variants from body
-  const { basePrompt, variants } = parseLLMVariants(body);
+  // Parse examples from body (before LLM variants)
+  const { cleanBody, exampleInput, exampleOutput } = parseExamples(body);
+
+  // Parse LLM variants from body (after removing examples)
+  const { basePrompt, variants } = parseLLMVariants(cleanBody);
 
   // Detect techniques from the base prompt text
   let techniques = detectTechniques(basePrompt);
@@ -140,7 +162,13 @@ function parseMarkdown(filePath) {
   // Extract template variables
   const variables = extractVariables(basePrompt);
 
-  return {
+  // Parse workflow from frontmatter (list field)
+  const workflow = Array.isArray(fields.workflow) ? fields.workflow : undefined;
+
+  // Parse difficulty from frontmatter
+  const difficulty = fields.difficulty || undefined;
+
+  const result = {
     id: filename,
     title: fields.title || filename,
     type: fields.type || 'Prompts',
@@ -153,6 +181,13 @@ function parseMarkdown(filePath) {
     llmVariants: variants,
     _isNewFlag: fields.isNew === 'true',
   };
+
+  if (difficulty) result.difficulty = difficulty;
+  if (workflow) result.workflow = workflow;
+  if (exampleInput) result.exampleInput = exampleInput;
+  if (exampleOutput) result.exampleOutput = exampleOutput;
+
+  return result;
 }
 
 function getGitAddedDate(filePath) {

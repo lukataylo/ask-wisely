@@ -5,6 +5,7 @@ category: Technical
 shortDescription: >-
   Design clean, versioned RESTful APIs with proper resource modeling and error
   handling.
+difficulty: Intermediate
 skills:
   - API Design
   - REST Principles

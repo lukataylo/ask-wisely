@@ -42,6 +42,17 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, 
               <span className="text-[10px] uppercase tracking-widest text-stone-500 dark:text-stone-400 font-semibold px-2 py-1 bg-[var(--bg-badge)] rounded-full">
                 {prompt.category}
               </span>
+              {prompt.difficulty && (
+                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${
+                  prompt.difficulty === 'Beginner'
+                    ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'
+                    : prompt.difficulty === 'Intermediate'
+                    ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
+                    : 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400'
+                }`}>
+                  {prompt.difficulty}
+                </span>
+              )}
               {prompt.isNew && (
                 <span className="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 rounded-full">
                   New

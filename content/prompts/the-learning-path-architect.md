@@ -4,6 +4,7 @@ type: Prompts
 category: Education
 shortDescription: >-
   Build personalized self-directed learning paths with milestones and plateau prevention.
+difficulty: Intermediate
 skills:
   - Learning Design
   - Self-Directed

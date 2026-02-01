@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Write dialogue that reveals character, advances plot, and sounds natural
   simultaneously.
+difficulty: Intermediate
 skills:
   - Dialogue
   - Character Voice

@@ -5,6 +5,7 @@ category: Stylized
 shortDescription: >-
   A vast 16-bit landscape with nostalgic pixel aesthetics and modern
   complexity.
+difficulty: Beginner
 skills:
   - Pixel Art
   - Retro Aesthetic

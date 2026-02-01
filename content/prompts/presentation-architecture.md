@@ -4,6 +4,7 @@ type: Skills
 category: Communication
 shortDescription: >-
   Structure presentations using narrative frameworks that hold attention and drive action.
+difficulty: Intermediate
 skills:
   - Presentations
   - Structure

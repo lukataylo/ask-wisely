@@ -4,6 +4,7 @@ type: Prompts
 category: Legal
 shortDescription: >-
   Analyze regulatory environments with classification, precedent analysis, and engagement strategies.
+difficulty: Advanced
 skills:
   - Regulatory Analysis
   - Policy Impact

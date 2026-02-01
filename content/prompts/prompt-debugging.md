@@ -4,6 +4,7 @@ type: Skills
 category: AI Literacy
 shortDescription: >-
   Debug failing prompts systematically by classifying failures and isolating variables.
+difficulty: Advanced
 skills:
   - Debugging
   - Iteration

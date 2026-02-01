@@ -5,6 +5,7 @@ category: Design
 shortDescription: >-
   Design fluid layouts that adapt gracefully across all screen sizes and
   devices.
+difficulty: Intermediate
 skills:
   - Responsive Design
   - Mobile First

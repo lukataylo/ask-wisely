@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { X, Copy, Check, Heart, FileText, Link } from 'lucide-react';
+import { X, Copy, Check, Heart, FileText, Link, ExternalLink, ChevronDown, ArrowRight } from 'lucide-react';
 import { Prompt, LLMProvider, TEXT_LLM_TABS, IMAGE_LLM_TABS } from '../types';
 import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
 import { useCopyCount } from '../hooks/useCopyCount';
@@ -39,6 +39,21 @@ function highlightVariables(text: string): React.ReactNode[] {
   return parts;
 }
 
+const LLM_OPTIONS = [
+  { name: 'Claude', url: 'https://claude.ai/new' },
+  { name: 'ChatGPT', url: 'https://chatgpt.com/' },
+  { name: 'Gemini', url: 'https://gemini.google.com/app' },
+  { name: 'Perplexity', url: 'https://www.perplexity.ai/' },
+  { name: 'Copilot', url: 'https://copilot.microsoft.com/' },
+  { name: 'Mistral', url: 'https://chat.mistral.ai/chat' },
+];
+
+const DIFFICULTY_STYLES: Record<string, string> = {
+  Beginner: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400',
+  Intermediate: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400',
+  Advanced: 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400',
+};
+
 const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPrompts, onSelectPrompt, isFavorite, onToggleFavorite }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const [activeLLM, setActiveLLM] = useState<LLMProvider>('claude');
@@ -46,6 +61,11 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
   const [linkCopied, setLinkCopied] = useState(false);
   const { getCount, increment } = useCopyCount();
   const [copyCount, setCopyCount] = useState(0);
+  const [openInDropdown, setOpenInDropdown] = useState(false);
+  const [openInToast, setOpenInToast] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [workflowOpen, setWorkflowOpen] = useState(false);
+  const [exampleOpen, setExampleOpen] = useState(false);
 
   // Reset state when prompt changes
   useEffect(() => {
@@ -55,6 +75,10 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
       setVariableValues({});
       setLinkCopied(false);
       setCopyCount(getCount(prompt.id));
+      setOpenInDropdown(false);
+      setOpenInToast('');
+      setWorkflowOpen(false);
+      setExampleOpen(false);
     }
   }, [prompt, getCount]);
 
@@ -68,6 +92,18 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
     return () => document.removeEventListener('keydown', handleKey);
   }, [prompt, onClose]);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    if (!openInDropdown) return;
+    const handleClick = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpenInDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [openInDropdown]);
+
   const allTabs = prompt?.type === 'Image Prompts' ? IMAGE_LLM_TABS : TEXT_LLM_TABS;
   const hasAnyVariant = prompt ? Object.values(prompt.llmVariants).some(v => !!v) : false;
 
@@ -79,7 +115,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
 
   const substitutedPrompt = useMemo(() => {
     let text = activePromptText;
-    for (const [placeholder, value] of Object.entries(variableValues)) {
+    for (const [placeholder, value] of Object.entries(variableValues) as [string, string][]) {
       if (value.trim()) {
         text = text.split(placeholder).join(value);
       }
@@ -124,6 +160,14 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
     setTimeout(() => setLinkCopied(false), 2000);
   };
 
+  const handleOpenIn = async (llm: typeof LLM_OPTIONS[number]) => {
+    await navigator.clipboard.writeText(substitutedPrompt);
+    window.open(llm.url, '_blank', 'noopener,noreferrer');
+    setOpenInDropdown(false);
+    setOpenInToast(llm.name);
+    setTimeout(() => setOpenInToast(''), 3000);
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
       <div
@@ -139,13 +183,18 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
         className="relative w-full max-w-2xl bg-[var(--bg-page)] rounded-[32px] shadow-2xl overflow-hidden border border-[var(--bg-card-border)] flex flex-col max-h-[90vh] focus:outline-none animate-slide-up"
       >
         <div className="p-8 md:p-12 overflow-y-auto">
-          {/* 1. Category badge + title + actions */}
+          {/* 1. Category badge + difficulty + title + actions */}
           <div className="flex justify-between items-start mb-6">
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400 font-bold bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-full">
                   {prompt.category}
                 </span>
+                {prompt.difficulty && (
+                  <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[prompt.difficulty]}`}>
+                    {prompt.difficulty}
+                  </span>
+                )}
                 {prompt.isNew && (
                   <span className="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 rounded-full">
                     New
@@ -213,6 +262,67 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
                 </div>
               </div>
             </section>
+
+            {/* Workflow Accordion */}
+            {prompt.workflow && prompt.workflow.length > 0 && (
+              <section>
+                <button
+                  onClick={() => setWorkflowOpen(!workflowOpen)}
+                  className="w-full flex items-center justify-between group/acc cursor-pointer"
+                >
+                  <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest">Workflow</h3>
+                  <ChevronDown
+                    size={16}
+                    className={`text-stone-400 transition-transform duration-300 ${workflowOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                <div className={`accordion-content ${workflowOpen ? 'open' : ''}`}>
+                  <div className="pt-4">
+                    <ol className="relative ml-4 border-l-2 border-stone-200 dark:border-stone-700">
+                      {prompt.workflow.map((step, i) => (
+                        <li key={i} className="mb-4 last:mb-0 pl-6 relative">
+                          <span className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-stone-100 dark:bg-stone-800 border-2 border-stone-300 dark:border-stone-600 flex items-center justify-center text-[10px] font-bold text-stone-500 dark:text-stone-400">
+                            {i + 1}
+                          </span>
+                          <p className="text-sm text-stone-700 dark:text-stone-300 leading-relaxed">{step}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Example Accordion */}
+            {prompt.exampleInput && prompt.exampleOutput && (
+              <section>
+                <button
+                  onClick={() => setExampleOpen(!exampleOpen)}
+                  className="w-full flex items-center justify-between group/acc cursor-pointer"
+                >
+                  <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest">Example</h3>
+                  <ChevronDown
+                    size={16}
+                    className={`text-stone-400 transition-transform duration-300 ${exampleOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                <div className={`accordion-content ${exampleOpen ? 'open' : ''}`}>
+                  <div className="pt-4 space-y-3">
+                    <div className="bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 rounded-xl p-4">
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">Input</div>
+                      <p className="text-sm text-stone-700 dark:text-stone-300 leading-relaxed whitespace-pre-wrap">{prompt.exampleInput}</p>
+                    </div>
+                    <div className="flex justify-center">
+                      <ArrowRight size={16} className="text-stone-300 dark:text-stone-600 rotate-90" />
+                    </div>
+                    <div className="bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 rounded-xl p-4">
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">Output</div>
+                      <p className="text-sm text-stone-700 dark:text-stone-300 leading-relaxed whitespace-pre-wrap">{prompt.exampleOutput}</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
 
             {/* 4. Customize — variable input fields */}
             {prompt.variables.length > 0 && (
@@ -296,6 +406,31 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
         {/* 8. Footer with actions */}
         <div className="shrink-0 p-6 md:px-12 md:pb-12 bg-stone-50 dark:bg-stone-900 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2">
+            {/* Open in LLM dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setOpenInDropdown(!openInDropdown)}
+                className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
+                aria-label="Open in LLM"
+              >
+                <ExternalLink size={16} />
+                Open in...
+              </button>
+              {openInDropdown && (
+                <div className="absolute bottom-full left-0 mb-2 w-48 bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl shadow-xl overflow-hidden z-10 animate-fade-in-fast">
+                  {LLM_OPTIONS.map((llm) => (
+                    <button
+                      key={llm.name}
+                      onClick={() => handleOpenIn(llm)}
+                      className="w-full text-left px-4 py-2.5 text-sm text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors flex items-center justify-between"
+                    >
+                      {llm.name}
+                      <ExternalLink size={12} className="text-stone-400" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <button
               onClick={handleShareTwitter}
               className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
@@ -339,6 +474,13 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
             </button>
           </div>
         </div>
+
+        {/* "Copied! Paste in chat" toast */}
+        {openInToast && (
+          <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-fade-in-fast z-20">
+            Copied! Paste in {openInToast}
+          </div>
+        )}
       </div>
     </div>
   );

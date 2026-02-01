@@ -4,6 +4,7 @@ type: Prompts
 category: Product
 shortDescription: >-
   Generate complete user stories with acceptance criteria and implementation order.
+difficulty: Intermediate
 skills:
   - User Stories
   - Acceptance Criteria

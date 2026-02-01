@@ -5,6 +5,14 @@ category: Business
 shortDescription: >-
   Design measurable objectives and key results that drive alignment and
   accountability.
+difficulty: Intermediate
+workflow:
+  - "Describe your team, its mission, and the high-level goals for the quarter"
+  - "Review the three drafted Objectives and adjust ambition levels"
+  - "Refine Key Results until each is specific, measurable, and time-bound"
+  - "Map dependencies between OKRs and resolve any conflicts"
+  - "Set up the weekly check-in cadence with your team"
+  - "At midpoint, use the red/yellow/green scoring to trigger course corrections"
 skills:
   - Goal Setting
   - OKRs

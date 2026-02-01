@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Replace abstract statements with concrete sensory details that let readers
   experience meaning.
+difficulty: Beginner
 skills:
   - Descriptive Writing
   - Sensory Detail

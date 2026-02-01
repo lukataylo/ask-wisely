@@ -4,6 +4,7 @@ type: Prompts
 category: Legal
 shortDescription: >-
   Assess regulatory compliance readiness with gap analysis and audit preparation.
+difficulty: Advanced
 skills:
   - Compliance
   - Regulation

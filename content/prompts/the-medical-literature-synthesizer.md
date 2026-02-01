@@ -4,6 +4,7 @@ type: Prompts
 category: Healthcare
 shortDescription: >-
   Synthesize medical evidence using PICO, GRADE criteria, and clinical bottom lines.
+difficulty: Advanced
 skills:
   - Literature Synthesis
   - Evidence Review

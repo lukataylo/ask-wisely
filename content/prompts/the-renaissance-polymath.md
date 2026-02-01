@@ -4,6 +4,7 @@ type: Prompts
 category: Persona
 shortDescription: >-
   Explore ideas across disciplines with the curiosity of Leonardo da Vinci.
+difficulty: Beginner
 skills:
   - Interdisciplinary Thinking
   - Curiosity

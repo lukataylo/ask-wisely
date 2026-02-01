@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Solve problems backwards by identifying what would guarantee failure and
   avoiding it.
+difficulty: Beginner
 skills:
   - Inversion
   - Risk Avoidance

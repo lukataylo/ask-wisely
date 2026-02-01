@@ -4,6 +4,7 @@ type: Prompts
 category: Product
 shortDescription: >-
   Conduct thorough competitive analysis with feature matrices and strategic responses.
+difficulty: Intermediate
 skills:
   - Competitive Analysis
   - Market Intel

@@ -4,6 +4,7 @@ type: Skills
 category: Communication
 shortDescription: >-
   Navigate difficult conversations by separating impact from intent and using the AND stance.
+difficulty: Intermediate
 skills:
   - Conflict Resolution
   - Feedback

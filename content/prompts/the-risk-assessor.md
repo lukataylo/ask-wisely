@@ -4,6 +4,7 @@ type: Prompts
 category: Business
 shortDescription: >-
   Identify, quantify, and mitigate business risks using structured frameworks.
+difficulty: Intermediate
 skills:
   - Risk Analysis
   - Scenario Planning

@@ -1,8 +1,8 @@
 
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
-import { Search, X, Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw } from 'lucide-react';
+import { Search, X, Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw, Mail } from 'lucide-react';
 import { OwlLogo } from './components/OwlLogo';
-import { Category, Prompt, MainTab, Technique } from './types';
+import { Category, Prompt, MainTab, Technique, Difficulty } from './types';
 import { usePrompts } from './hooks/usePrompts';
 import { useFavorites } from './hooks/useFavorites';
 import { useDarkMode } from './hooks/useDarkMode';
@@ -23,6 +23,23 @@ const ALL_TECHNIQUES: Technique[] = [
   'Chain-of-Thought', 'Few-Shot', 'Self-Verification',
   'Socratic Method', 'Meta-Cognitive',
 ];
+
+const ALL_DIFFICULTIES: Difficulty[] = ['Beginner', 'Intermediate', 'Advanced'];
+
+const DIFFICULTY_COLORS: Record<Difficulty, { active: string; inactive: string }> = {
+  Beginner: {
+    active: 'bg-emerald-700 dark:bg-emerald-400 text-white dark:text-stone-900 border-emerald-700 dark:border-emerald-400',
+    inactive: 'bg-white dark:bg-stone-800 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-600',
+  },
+  Intermediate: {
+    active: 'bg-amber-700 dark:bg-amber-400 text-white dark:text-stone-900 border-amber-700 dark:border-amber-400',
+    inactive: 'bg-white dark:bg-stone-800 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800 hover:border-amber-400 dark:hover:border-amber-600',
+  },
+  Advanced: {
+    active: 'bg-rose-700 dark:bg-rose-400 text-white dark:text-stone-900 border-rose-700 dark:border-rose-400',
+    inactive: 'bg-white dark:bg-stone-800 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800 hover:border-rose-400 dark:hover:border-rose-600',
+  },
+};
 
 // --- URL Routing helpers ---
 const TAB_SLUGS: Record<string, MainTab> = {
@@ -94,6 +111,7 @@ const App: React.FC = () => {
   const [pendingPromptId, setPendingPromptId] = useState<string | null>(initial.promptId);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [focusedCardIndex, setFocusedCardIndex] = useState<number | null>(null);
+  const [activeDifficulties, setActiveDifficulties] = useState<Difficulty[]>([]);
 
   // Once prompts load, resolve pending prompt ID from URL
   useEffect(() => {
@@ -135,6 +153,7 @@ const App: React.FC = () => {
       setActiveTab(tab);
       setActiveCategory(cat);
       setActiveTechniques([]);
+      setActiveDifficulties([]);
       if (promptId && PROMPTS.length > 0) {
         const found = PROMPTS.find(p => p.id === promptId);
         setSelectedPrompt(found || null);
@@ -154,6 +173,12 @@ const App: React.FC = () => {
     );
   };
 
+  const toggleDifficulty = (d: Difficulty) => {
+    setActiveDifficulties(prev =>
+      prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]
+    );
+  };
+
   const filteredPrompts = useMemo(() => {
     return PROMPTS.filter(p => {
       const matchesTab = p.type === activeTab;
@@ -163,9 +188,11 @@ const App: React.FC = () => {
       const matchesTechniques = activeTechniques.length === 0 ||
                                activeTechniques.some(t => p.techniques.includes(t));
       const matchesFavorites = !showFavoritesOnly || isFavorite(p.id);
-      return matchesTab && matchesCategory && matchesSearch && matchesTechniques && matchesFavorites;
+      const matchesDifficulty = activeDifficulties.length === 0 ||
+                                (p.difficulty && activeDifficulties.includes(p.difficulty));
+      return matchesTab && matchesCategory && matchesSearch && matchesTechniques && matchesFavorites && matchesDifficulty;
     });
-  }, [activeTab, activeCategory, searchQuery, activeTechniques, PROMPTS, showFavoritesOnly, isFavorite]);
+  }, [activeTab, activeCategory, searchQuery, activeTechniques, PROMPTS, showFavoritesOnly, isFavorite, activeDifficulties]);
 
   const tabPromptCount = useMemo(() =>
     PROMPTS.filter(p => p.type === activeTab).length
@@ -199,6 +226,7 @@ const App: React.FC = () => {
     setActiveTab(tab);
     setActiveCategory('All');
     setActiveTechniques([]);
+    setActiveDifficulties([]);
     setFocusedCardIndex(null);
     updateURL(tab, 'All', null);
   };
@@ -286,7 +314,7 @@ const App: React.FC = () => {
   // Reset focused card when filters change
   useEffect(() => {
     setFocusedCardIndex(null);
-  }, [activeTab, activeCategory, searchQuery, activeTechniques]);
+  }, [activeTab, activeCategory, searchQuery, activeTechniques, activeDifficulties]);
 
   return (
     <div className="min-h-screen selection:bg-stone-200 dark:selection:bg-stone-700 selection:text-stone-900 dark:selection:text-stone-100">
@@ -468,6 +496,33 @@ const App: React.FC = () => {
               </button>
             )}
           </div>
+
+          {/* Difficulty Filter Pills */}
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pb-1">
+            <span className="shrink-0 text-[10px] font-bold uppercase tracking-widest text-stone-400">Level</span>
+            {ALL_DIFFICULTIES.map((d) => (
+              <button
+                key={d}
+                onClick={() => toggleDifficulty(d)}
+                className={`shrink-0 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] transition-all duration-300 border shadow-sm ${
+                  activeDifficulties.includes(d)
+                    ? DIFFICULTY_COLORS[d].active
+                    : DIFFICULTY_COLORS[d].inactive
+                }`}
+              >
+                {d}
+              </button>
+            ))}
+            {activeDifficulties.length > 0 && (
+              <button
+                onClick={() => setActiveDifficulties([])}
+                className="shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] text-stone-500 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+              >
+                <X size={12} />
+                Clear
+              </button>
+            )}
+          </div>
         </section>
 
         {/* Loading State */}
@@ -528,6 +583,7 @@ const App: React.FC = () => {
                   setSearchQuery('');
                   setActiveCategory('All');
                   setActiveTechniques([]);
+                  setActiveDifficulties([]);
                 }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
               >
@@ -549,6 +605,34 @@ const App: React.FC = () => {
           if (selectedPrompt) toggleFavorite(selectedPrompt.id);
         }}
       />
+
+      {/* Subscribe Section */}
+      <section className="relative overflow-hidden border-t border-stone-200 dark:border-stone-800">
+        <div className="subscribe-glow absolute inset-0 pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center">
+          <div className="subscribe-icon-ring w-16 h-16 rounded-full flex items-center justify-center mb-8">
+            <Mail size={24} className="text-stone-600 dark:text-stone-300" />
+          </div>
+          <h2 className="serif text-4xl md:text-5xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-4">
+            Stay <span className="italic text-stone-500 dark:text-stone-400">Curious</span>
+          </h2>
+          <p className="text-stone-500 dark:text-stone-400 text-lg font-light max-w-md mb-10 leading-relaxed">
+            New prompts, techniques, and ideas delivered to your inbox. No noise, just signal.
+          </p>
+          <a
+            href="https://askwisely.substack.com/subscribe"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group subscribe-btn relative inline-flex items-center gap-3 px-10 py-4 rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all duration-500"
+          >
+            <span className="relative z-10 flex items-center gap-3">
+              <Mail size={16} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
+              Subscribe
+            </span>
+          </a>
+          <p className="mt-6 text-[11px] text-stone-400 dark:text-stone-600 tracking-wide">Free forever. Unsubscribe anytime.</p>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="border-t border-stone-200 dark:border-stone-800 py-16 px-6 bg-stone-50/50 dark:bg-stone-950/50">

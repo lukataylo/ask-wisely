@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Communicate more by writing less through deliberate compression and
   precision.
+difficulty: Beginner
 skills:
   - Concision
   - Clarity

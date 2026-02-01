@@ -4,6 +4,7 @@ type: Image Prompts
 category: Interface
 shortDescription: >-
   An information dashboard with multiple chart types arranged in a bento grid layout.
+difficulty: Beginner
 skills:
   - Data Viz
   - Charts

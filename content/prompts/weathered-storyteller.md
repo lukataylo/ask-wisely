@@ -5,6 +5,7 @@ category: Portrait
 shortDescription: >-
   An elderly face mapped with deep lines, each wrinkle telling a story of
   lived experience.
+difficulty: Beginner
 skills:
   - Texture Detail
   - Emotion

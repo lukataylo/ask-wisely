@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   An entire city built into the canopy of ancient giant trees connected by
   bridges.
+difficulty: Beginner
 skills:
   - Fantasy Architecture
   - Canopy Living

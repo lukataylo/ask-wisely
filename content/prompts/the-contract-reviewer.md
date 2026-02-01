@@ -4,6 +4,7 @@ type: Prompts
 category: Legal
 shortDescription: >-
   Analyze contracts for red flags, hidden obligations, and negotiation priorities.
+difficulty: Intermediate
 skills:
   - Contract Analysis
   - Risk

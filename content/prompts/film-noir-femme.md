@@ -5,6 +5,7 @@ category: Portrait
 shortDescription: >-
   A high-contrast black and white portrait channeling 1940s Hollywood
   glamour.
+difficulty: Beginner
 skills:
   - Black and White
   - Glamour Lighting

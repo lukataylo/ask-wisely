@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   An abandoned industrial space reclaimed by nature with Renaissance painting
   composition.
+difficulty: Beginner
 skills:
   - Juxtaposition
   - Classical Composition

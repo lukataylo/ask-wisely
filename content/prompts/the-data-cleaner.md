@@ -4,6 +4,7 @@ type: Prompts
 category: Data
 shortDescription: >-
   Design comprehensive data cleaning pipelines with validation and monitoring strategies.
+difficulty: Intermediate
 skills:
   - Data Cleaning
   - ETL

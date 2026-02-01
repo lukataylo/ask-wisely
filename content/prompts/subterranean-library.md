@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   A vast underground library carved into natural rock with dramatic light
   wells.
+difficulty: Beginner
 skills:
   - Underground Spaces
   - Light Wells

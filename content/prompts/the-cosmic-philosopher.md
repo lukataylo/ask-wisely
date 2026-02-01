@@ -5,6 +5,7 @@ category: Persona
 shortDescription: >-
   Explore existential questions with the wonder of Carl Sagan and the rigor
   of philosophy.
+difficulty: Beginner
 skills:
   - Philosophy
   - Science Communication

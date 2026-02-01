@@ -4,6 +4,7 @@ type: Prompts
 category: Marketing
 shortDescription: >-
   Design a 30-day content strategy with platform-specific posts and engagement plans.
+difficulty: Intermediate
 skills:
   - Social Media
   - Content Calendar

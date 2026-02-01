@@ -5,6 +5,7 @@ category: Portrait
 shortDescription: >-
   A Tibetan monk portrait with extraordinary detail and meditative
   serenity.
+difficulty: Beginner
 skills:
   - Serenity
   - Detail

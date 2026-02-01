@@ -5,6 +5,7 @@ category: Engineering
 shortDescription: >-
   Design robust system prompts that establish consistent AI behavior and
   constraints.
+difficulty: Advanced
 skills:
   - System Prompts
   - Behavioral Control

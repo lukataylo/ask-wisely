@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Transform rough drafts into polished prose through systematic self-editing
   passes.
+difficulty: Intermediate
 skills:
   - Self-Editing
   - Revision

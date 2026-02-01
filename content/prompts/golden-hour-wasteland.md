@@ -4,6 +4,7 @@ type: Image Prompts
 category: Cinematic
 shortDescription: >-
   A post-apocalyptic desert bathed in warm amber light with lone silhouette.
+difficulty: Beginner
 skills:
   - Lighting
   - Mood

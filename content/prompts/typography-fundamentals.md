@@ -4,6 +4,7 @@ type: Skills
 category: Design
 shortDescription: >-
   Master type hierarchy, pairing, and readability to elevate any design.
+difficulty: Intermediate
 skills:
   - Typography
   - Readability

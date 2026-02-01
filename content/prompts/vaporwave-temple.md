@@ -5,6 +5,7 @@ category: Stylized
 shortDescription: >-
   A retro-digital Greek temple floating in a neon grid void with glitch
   effects.
+difficulty: Beginner
 skills:
   - Vaporwave
   - Digital Glitch

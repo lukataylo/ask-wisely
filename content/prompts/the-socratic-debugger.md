@@ -4,6 +4,7 @@ type: Prompts
 category: Technical
 shortDescription: >-
   Debug code through guided questions that teach problem isolation without giving direct answers.
+difficulty: Advanced
 skills:
   - Debugging
   - Socratic Method

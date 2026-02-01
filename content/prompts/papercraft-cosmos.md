@@ -5,6 +5,7 @@ category: Stylized
 shortDescription: >-
   A layered paper-cut solar system with visible layers, shadows, and craft
   textures.
+difficulty: Beginner
 skills:
   - Paper Art
   - Layering

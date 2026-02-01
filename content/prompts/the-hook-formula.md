@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Craft irresistible opening lines that compel readers to continue using
   proven structures.
+difficulty: Beginner
 skills:
   - Opening Lines
   - Reader Engagement

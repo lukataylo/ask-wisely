@@ -5,6 +5,7 @@ category: Stylized
 shortDescription: >-
   A 1920s-inspired cityscape with geometric patterns and metallic gold
   accents.
+difficulty: Beginner
 skills:
   - Art Deco
   - Geometric Design

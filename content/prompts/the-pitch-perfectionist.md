@@ -5,6 +5,14 @@ category: Business
 shortDescription: >-
   Craft compelling elevator pitches and investor decks using narrative
   frameworks.
+difficulty: Intermediate
+workflow:
+  - "Describe your startup, the problem you solve, and any traction to date"
+  - "Refine the one-sentence value proposition until it passes the clarity test"
+  - "Practice the 60-second elevator pitch and mark where attention drops"
+  - "Build the 10-slide investor deck using the suggested outline"
+  - "Prepare rebuttals for the three predicted investor objections"
+  - "Rehearse the closing ask with specific numbers until it feels natural"
 skills:
   - Pitching
   - Storytelling

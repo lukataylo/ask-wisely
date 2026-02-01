@@ -5,6 +5,7 @@ category: Academic
 shortDescription: >-
   Write concise, structured abstracts that capture research significance in
   250 words.
+difficulty: Beginner
 skills:
   - Academic Writing
   - Summarization

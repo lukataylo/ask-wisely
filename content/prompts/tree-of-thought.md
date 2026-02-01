@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Explore multiple reasoning paths before committing to improve planning and creative tasks.
+difficulty: Advanced
 skills:
   - Tree-of-Thought
   - Exploration

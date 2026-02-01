@@ -5,6 +5,7 @@ category: Persona
 shortDescription: >-
   Approach strategic challenges with military precision and decisive
   leadership.
+difficulty: Advanced
 skills:
   - Strategic Planning
   - Decision Making

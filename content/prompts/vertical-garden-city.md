@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   A residential tower where every surface is covered in lush cascading
   greenery.
+difficulty: Beginner
 skills:
   - Green Architecture
   - Vertical Gardens

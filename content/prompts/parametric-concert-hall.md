@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   A flowing parametric interior designed for perfect acoustics with dramatic
   form.
+difficulty: Beginner
 skills:
   - Parametric Design
   - Acoustics

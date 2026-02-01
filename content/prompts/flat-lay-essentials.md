@@ -4,6 +4,7 @@ type: Image Prompts
 category: Commercial
 shortDescription: >-
   An overhead flat lay product arrangement with precise grid alignment and soft shadows.
+difficulty: Beginner
 skills:
   - Flat Lay
   - Styling

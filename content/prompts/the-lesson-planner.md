@@ -4,6 +4,7 @@ type: Prompts
 category: Education
 shortDescription: >-
   Design detailed lesson plans with hooks, guided practice, and formative assessments.
+difficulty: Intermediate
 skills:
   - Lesson Planning
   - Engagement

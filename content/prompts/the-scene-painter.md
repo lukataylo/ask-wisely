@@ -5,6 +5,7 @@ category: Creative
 shortDescription: >-
   Write immersive descriptions that engage all five senses in a specific
   emotional key.
+difficulty: Beginner
 skills:
   - Descriptive Writing
   - Sensory Detail

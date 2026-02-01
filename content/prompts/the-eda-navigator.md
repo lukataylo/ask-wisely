@@ -4,6 +4,7 @@ type: Prompts
 category: Data
 shortDescription: >-
   Guide thorough exploratory data analysis from first questions to executive headlines.
+difficulty: Intermediate
 skills:
   - Exploratory Analysis
   - Statistics

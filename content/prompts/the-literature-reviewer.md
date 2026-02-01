@@ -5,6 +5,7 @@ category: Academic
 shortDescription: >-
   Synthesize research papers into structured literature reviews with gap
   analysis.
+difficulty: Intermediate
 skills:
   - Literature Review
   - Synthesis

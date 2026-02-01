@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A surreal heat-shimmer distortion revealing an impossible lush oasis in
   cracked earth.
+difficulty: Beginner
 skills:
   - Surrealism
   - Heat Distortion

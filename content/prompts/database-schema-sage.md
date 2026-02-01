@@ -5,6 +5,7 @@ category: Technical
 shortDescription: >-
   Design normalized database schemas with optimal indexing and query
   performance.
+difficulty: Intermediate
 skills:
   - Database Design
   - SQL

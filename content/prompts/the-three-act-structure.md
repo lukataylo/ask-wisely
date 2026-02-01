@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Build compelling narratives using the universal story architecture of setup,
   confrontation, and resolution.
+difficulty: Intermediate
 skills:
   - Story Structure
   - Plot Design

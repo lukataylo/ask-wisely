@@ -4,6 +4,7 @@ type: Skills
 category: Communication
 shortDescription: >-
   Write executive summaries that lead with the recommendation and respect the reader's time.
+difficulty: Intermediate
 skills:
   - Executive Communication
   - Brevity

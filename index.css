@@ -127,6 +127,58 @@ body {
   transform: translateX(4px);
 }
 
+/* Accordion transitions */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+}
+.accordion-content.open {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+/* Subscribe section */
+.subscribe-glow {
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168, 162, 158, 0.08) 0%, transparent 70%);
+}
+.dark .subscribe-glow {
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168, 162, 158, 0.04) 0%, transparent 70%);
+}
+
+.subscribe-icon-ring {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-page) 100%);
+  border: 2px solid var(--bg-card-border);
+  animation: subscribePulse 3s ease-in-out infinite;
+}
+
+@keyframes subscribePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168, 162, 158, 0.2); }
+  50% { box-shadow: 0 0 0 12px rgba(168, 162, 158, 0); }
+}
+
+.subscribe-btn {
+  background: linear-gradient(135deg, #1c1917 0%, #44403c 100%);
+  color: #fafaf9;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 24px -4px rgba(28, 25, 23, 0.25);
+}
+.subscribe-btn:hover {
+  box-shadow: 0 8px 32px -4px rgba(28, 25, 23, 0.35);
+  transform: translateY(-2px);
+}
+
+.dark .subscribe-btn {
+  background: linear-gradient(135deg, #f5f5f4 0%, #d6d3d1 100%);
+  color: #1c1917;
+  box-shadow: 0 4px 24px -4px rgba(245, 245, 244, 0.15);
+}
+.dark .subscribe-btn:hover {
+  box-shadow: 0 8px 32px -4px rgba(245, 245, 244, 0.25);
+  transform: translateY(-2px);
+}
+
 /* Scrollbar hide utility */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

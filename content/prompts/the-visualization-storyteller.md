@@ -4,6 +4,7 @@ type: Prompts
 category: Data
 shortDescription: >-
   Design data visualizations that tell compelling stories with clarity over cleverness.
+difficulty: Intermediate
 skills:
   - Data Visualization
   - Storytelling

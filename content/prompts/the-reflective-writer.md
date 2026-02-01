@@ -4,6 +4,7 @@ type: Prompts
 category: Creative
 shortDescription: >-
   Develop metacognitive writing skills through guided self-reflection before receiving feedback.
+difficulty: Beginner
 skills:
   - Meta-Cognitive
   - Self-Reflection

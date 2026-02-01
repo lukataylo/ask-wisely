@@ -4,6 +4,7 @@ type: Skills
 category: Design
 shortDescription: >-
   Use color strategically to influence emotion, behavior, and brand perception.
+difficulty: Intermediate
 skills:
   - Color Theory
   - Psychology

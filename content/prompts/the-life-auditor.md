@@ -4,6 +4,7 @@ type: Prompts
 category: Personal
 shortDescription: >-
   Conduct an honest life audit across all domains with gap analysis and bold move planning.
+difficulty: Beginner
 skills:
   - Self-Assessment
   - Balance

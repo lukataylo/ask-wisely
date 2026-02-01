@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Anticipate the consequences of consequences to make decisions that compound
   positively.
+difficulty: Advanced
 skills:
   - Consequential Thinking
   - Long-Term Strategy

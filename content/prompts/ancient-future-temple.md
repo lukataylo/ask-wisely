@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   A temple blending ancient stone construction with holographic technology
   elements.
+difficulty: Beginner
 skills:
   - Temporal Fusion
   - Sacred Architecture

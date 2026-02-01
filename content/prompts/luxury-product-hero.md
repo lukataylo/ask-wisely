@@ -4,6 +4,7 @@ type: Image Prompts
 category: Commercial
 shortDescription: >-
   A dramatic studio hero shot with editorial lighting and luxury material backdrop.
+difficulty: Beginner
 skills:
   - Product Photography
   - Lighting

@@ -5,6 +5,7 @@ category: Portrait
 shortDescription: >-
   A regal portrait blending traditional African adornment with contemporary
   fashion.
+difficulty: Beginner
 skills:
   - Cultural Fusion
   - Adornment

@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Craft precise instructions that produce accurate results without any examples.
+difficulty: Beginner
 skills:
   - Zero-Shot
   - Instruction Design

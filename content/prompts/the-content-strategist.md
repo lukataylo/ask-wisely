@@ -4,6 +4,7 @@ type: Prompts
 category: Marketing
 shortDescription: >-
   Build a content strategy from audience personas to distribution and ROI models.
+difficulty: Intermediate
 skills:
   - Content Strategy
   - Audience

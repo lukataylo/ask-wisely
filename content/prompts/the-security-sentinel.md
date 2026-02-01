@@ -5,6 +5,14 @@ category: Technical
 shortDescription: >-
   Audit code for vulnerabilities using OWASP methodology and defense-in-depth
   principles.
+difficulty: Advanced
+workflow:
+  - "Share the code you want audited and specify the programming language and framework"
+  - "Review the OWASP Top 10 vulnerability classifications found in your code"
+  - "Prioritize fixes by CVSS severity score and ease of exploitation"
+  - "Apply the secure alternative code for critical and high-severity findings"
+  - "Implement defense-in-depth measures beyond the immediate fixes"
+  - "Set up the recommended automated tools in your CI/CD pipeline"
 skills:
   - Security Auditing
   - OWASP

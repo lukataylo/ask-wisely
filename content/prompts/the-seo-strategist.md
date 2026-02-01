@@ -4,6 +4,7 @@ type: Prompts
 category: Marketing
 shortDescription: >-
   Build a complete SEO content strategy with keyword clusters and pillar-cluster models.
+difficulty: Intermediate
 skills:
   - SEO
   - Content Strategy

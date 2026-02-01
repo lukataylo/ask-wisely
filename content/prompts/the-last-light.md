@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A lighthouse beam cutting through a violent storm at twilight with epic
   scale.
+difficulty: Beginner
 skills:
   - Drama
   - Weather

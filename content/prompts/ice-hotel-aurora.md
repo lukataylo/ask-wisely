@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   An ice architecture interior with carved walls reflecting the northern
   lights.
+difficulty: Beginner
 skills:
   - Ice Architecture
   - Light Transmission

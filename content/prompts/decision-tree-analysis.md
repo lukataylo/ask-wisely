@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Map complex decisions with branching outcomes, probabilities, and expected
   values.
+difficulty: Advanced
 skills:
   - Decision Analysis
   - Probability

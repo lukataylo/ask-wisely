@@ -4,6 +4,7 @@ type: Image Prompts
 category: Commercial
 shortDescription: >-
   A macro beauty product shot with texture as the hero and clinical-meets-artistic precision.
+difficulty: Beginner
 skills:
   - Beauty
   - Product

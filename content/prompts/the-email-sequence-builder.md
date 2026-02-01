@@ -4,6 +4,7 @@ type: Prompts
 category: Marketing
 shortDescription: >-
   Design high-converting email sequences with segmentation and A/B testing strategies.
+difficulty: Beginner
 skills:
   - Email Marketing
   - Copywriting

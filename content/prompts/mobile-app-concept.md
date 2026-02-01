@@ -4,6 +4,7 @@ type: Image Prompts
 category: Interface
 shortDescription: >-
   Three-screen mobile app flow showing onboarding through main experience in iOS style.
+difficulty: Beginner
 skills:
   - Mobile Design
   - UX

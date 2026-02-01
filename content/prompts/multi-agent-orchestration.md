@@ -5,6 +5,7 @@ category: Engineering
 shortDescription: >-
   Design systems where multiple AI agents collaborate with defined roles and
   handoffs.
+difficulty: Advanced
 skills:
   - Multi-Agent Systems
   - Orchestration

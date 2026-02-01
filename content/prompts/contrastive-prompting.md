@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Show both good and bad examples to sharpen output quality and define clear boundaries.
+difficulty: Advanced
 skills:
   - Contrastive Learning
   - Boundaries

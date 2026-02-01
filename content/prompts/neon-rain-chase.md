@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A high-speed motorcycle chase through rain-soaked neon streets of a future
   city.
+difficulty: Beginner
 skills:
   - Action
   - Neon Lighting

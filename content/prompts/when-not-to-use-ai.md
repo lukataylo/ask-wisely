@@ -4,6 +4,7 @@ type: Skills
 category: AI Literacy
 shortDescription: >-
   Know the boundaries — when AI should assist vs. when human judgment is irreplaceable.
+difficulty: Beginner
 skills:
   - AI Limitations
   - Critical Thinking

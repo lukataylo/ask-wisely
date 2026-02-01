@@ -4,6 +4,7 @@ type: Image Prompts
 category: Portrait
 shortDescription: >-
   A contemplative astronaut with Earth reflected in the helmet visor.
+difficulty: Beginner
 skills:
   - Reflection
   - Symbolism

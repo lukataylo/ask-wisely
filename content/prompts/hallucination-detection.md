@@ -4,6 +4,7 @@ type: Skills
 category: AI Literacy
 shortDescription: >-
   Identify and prevent AI fabrications with specificity tests and grounding techniques.
+difficulty: Advanced
 skills:
   - Hallucination
   - Verification

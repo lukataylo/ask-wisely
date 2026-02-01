@@ -4,6 +4,7 @@ type: Prompts
 category: Legal
 shortDescription: >-
   Draft clear, enforceable policy documents with definitions, provisions, and review cadence.
+difficulty: Intermediate
 skills:
   - Policy Writing
   - Terms of Service

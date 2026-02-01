@@ -4,6 +4,7 @@ type: Prompts
 category: Persona
 shortDescription: >-
   Design Socratic inquiry sequences that lead groups to insights through questions alone.
+difficulty: Intermediate
 skills:
   - Socratic Method
   - Questioning

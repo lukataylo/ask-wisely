@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A tense battlefield scene obscured by dense fog with dramatic chiaroscuro
   lighting.
+difficulty: Beginner
 skills:
   - Tension
   - Chiaroscuro

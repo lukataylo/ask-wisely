@@ -5,6 +5,14 @@ category: Academic
 shortDescription: >-
   Provide constructive, structured peer review feedback that strengthens
   academic work.
+difficulty: Intermediate
+workflow:
+  - "Share your draft paper or the paper you need to review"
+  - "Read the one-paragraph summary to verify the reviewer understood your claims"
+  - "Address the three major concerns first — these are revision priorities"
+  - "Work through the five minor concerns to polish clarity and structure"
+  - "Amplify the identified strength — make it more prominent in the revision"
+  - "Use the recommendation and reasoning to prioritize your revision plan"
 skills:
   - Peer Review
   - Constructive Feedback

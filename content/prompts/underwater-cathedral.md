@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A submerged gothic cathedral with light filtering through stained glass and
   water.
+difficulty: Beginner
 skills:
   - Depth
   - Atmosphere

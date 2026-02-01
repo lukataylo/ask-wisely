@@ -5,6 +5,7 @@ category: Design
 shortDescription: >-
   Structure layouts with mathematical grids for consistency and visual
   harmony.
+difficulty: Intermediate
 skills:
   - Layout
   - Grid Design

@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Identify the vital few inputs that drive the majority of results in any
   system.
+difficulty: Intermediate
 skills:
   - Pareto Principle
   - Leverage

@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Derive general principles before solving specific problems to reduce errors by 36%.
+difficulty: Advanced
 skills:
   - Abstraction
   - Step-Back

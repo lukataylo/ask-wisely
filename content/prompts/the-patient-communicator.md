@@ -4,6 +4,7 @@ type: Prompts
 category: Healthcare
 shortDescription: >-
   Explain medical topics at a 6th-grade reading level with analogies and action steps.
+difficulty: Intermediate
 skills:
   - Patient Communication
   - Health Literacy

@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Build self-reinforcing systems where each success makes the next one easier
   and faster.
+difficulty: Intermediate
 skills:
   - Compound Growth
   - Systems Design

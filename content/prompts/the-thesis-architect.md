@@ -5,6 +5,14 @@ category: Academic
 shortDescription: >-
   Develop rigorous thesis statements and argument structures for academic
   writing.
+difficulty: Intermediate
+workflow:
+  - "Share your research topic and any initial thoughts or hypotheses"
+  - "Review the three candidate thesis statements and pick the strongest angle"
+  - "Test your chosen thesis against the "so what?" criterion — refine until compelling"
+  - "Build out the argument skeleton with evidence, counterarguments, and rebuttals"
+  - "Draft the introductory paragraph and get feedback on logical flow"
+  - "Check for logical fallacies and strengthen weak links before full drafting"
 skills:
   - Argumentation
   - Thesis Development

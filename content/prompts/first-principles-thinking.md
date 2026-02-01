@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Break problems down to fundamental truths and reason up from the ground
   floor.
+difficulty: Advanced
 skills:
   - First Principles
   - Analytical Reasoning

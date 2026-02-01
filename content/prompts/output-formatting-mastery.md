@@ -5,6 +5,7 @@ category: Engineering
 shortDescription: >-
   Control AI output structure using format specifications and parsing
   techniques.
+difficulty: Advanced
 skills:
   - Output Control
   - Structured Data

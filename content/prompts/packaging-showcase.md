@@ -4,6 +4,7 @@ type: Image Prompts
 category: Commercial
 shortDescription: >-
   A dynamic 3D product packaging visualization with unboxing elements and brand identity.
+difficulty: Beginner
 skills:
   - Packaging
   - 3D Render

@@ -5,6 +5,7 @@ category: Stylized
 shortDescription: >-
   An ethereal landscape where watercolor bleeds and blooms create surreal
   nature scenes.
+difficulty: Beginner
 skills:
   - Watercolor
   - Organic Flow

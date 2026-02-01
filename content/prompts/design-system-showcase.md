@@ -4,6 +4,7 @@ type: Image Prompts
 category: Interface
 shortDescription: >-
   A component library showcase with buttons, inputs, cards, and modals on a clean canvas.
+difficulty: Beginner
 skills:
   - Design Systems
   - Components

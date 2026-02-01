@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Prepare for multiple futures by building strategic narratives around key
   uncertainties.
+difficulty: Advanced
 skills:
   - Future Planning
   - Uncertainty

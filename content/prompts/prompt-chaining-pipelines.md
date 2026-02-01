@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Connect multiple prompts into pipelines where each step feeds the next for complex workflows.
+difficulty: Advanced
 skills:
   - Chaining
   - Pipelines

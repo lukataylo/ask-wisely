@@ -5,6 +5,7 @@ category: Portrait
 shortDescription: >-
   A mystical portrait of a figure surrounded by glowing elements and arcane
   symbols.
+difficulty: Beginner
 skills:
   - Fantasy Realism
   - Practical Effects

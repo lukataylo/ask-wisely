@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A vintage luxury train speeding through moonlit mountains with warm interior
   glow.
+difficulty: Beginner
 skills:
   - Motion
   - Contrast

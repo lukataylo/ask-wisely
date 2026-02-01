@@ -5,6 +5,7 @@ category: Engineering
 shortDescription: >-
   The foundational principles of Chain-of-Thought and Few-Shot prompting
   techniques.
+difficulty: Beginner
 skills:
   - LLM Logic
   - Structure

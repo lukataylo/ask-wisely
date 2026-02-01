@@ -5,6 +5,7 @@ category: Stylized
 shortDescription: >-
   A faceted geometric wilderness with dramatic lighting on triangulated
   surfaces.
+difficulty: Beginner
 skills:
   - Low Poly 3D
   - Geometric Abstraction

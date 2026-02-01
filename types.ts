@@ -29,6 +29,8 @@ export interface LLMVariants {
   gemini?: string;
 }
 
+export type Difficulty = 'Beginner' | 'Intermediate' | 'Advanced';
+
 export interface Prompt {
   id: string;
   type: MainTab;
@@ -41,6 +43,10 @@ export interface Prompt {
   variables: TemplateVariable[];
   llmVariants: LLMVariants;
   isNew?: boolean;
+  difficulty?: Difficulty;
+  workflow?: string[];
+  exampleInput?: string;
+  exampleOutput?: string;
 }
 
 export const TEXT_LLM_TABS: { key: LLMProvider; label: string }[] = [

@@ -5,6 +5,7 @@ category: Engineering
 shortDescription: >-
   Manage long conversations and large documents within model context
   limitations.
+difficulty: Advanced
 skills:
   - Context Management
   - Long Documents

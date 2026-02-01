@@ -4,6 +4,7 @@ type: Prompts
 category: Healthcare
 shortDescription: >-
   Design clinical study protocols with methodology, blinding strategy, and ethical considerations.
+difficulty: Advanced
 skills:
   - Research Protocol
   - Clinical Research

@@ -5,6 +5,7 @@ category: Technical
 shortDescription: >-
   Design CI/CD pipelines, infrastructure-as-code, and deployment strategies
   for reliability.
+difficulty: Intermediate
 skills:
   - DevOps
   - CI/CD

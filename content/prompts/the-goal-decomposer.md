@@ -4,6 +4,7 @@ type: Prompts
 category: Personal
 shortDescription: >-
   Break ambitious goals into milestones, weekly habits, and accountability structures.
+difficulty: Beginner
 skills:
   - Goal Setting
   - Planning

@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Break complex problems into subproblems and solve from simplest to hardest, building up.
+difficulty: Advanced
 skills:
   - Decomposition
   - Scaffolding

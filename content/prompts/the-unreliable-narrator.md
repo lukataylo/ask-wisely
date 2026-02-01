@@ -5,6 +5,7 @@ category: Creative
 shortDescription: >-
   Master first-person perspective where the narrator's version of events
   cannot be fully trusted.
+difficulty: Beginner
 skills:
   - Point of View
   - Narrative Tension

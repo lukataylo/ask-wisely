@@ -5,6 +5,7 @@ category: Stylized
 shortDescription: >-
   A Chinese ink wash painting of a dragon emerging from mist with masterful
   brushwork.
+difficulty: Beginner
 skills:
   - Ink Wash
   - Chinese Brush Painting

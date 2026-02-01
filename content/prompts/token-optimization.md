@@ -5,6 +5,7 @@ category: Engineering
 shortDescription: >-
   Maximize output quality while minimizing token usage for cost-effective
   prompting.
+difficulty: Intermediate
 skills:
   - Efficiency
   - Cost Optimization

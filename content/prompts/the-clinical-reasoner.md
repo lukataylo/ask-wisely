@@ -4,6 +4,7 @@ type: Prompts
 category: Healthcare
 shortDescription: >-
   Walk through diagnostic reasoning from differential diagnosis to clinical decision points.
+difficulty: Advanced
 skills:
   - Clinical Reasoning
   - Differential Diagnosis

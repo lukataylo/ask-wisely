@@ -4,6 +4,7 @@ type: Image Prompts
 category: Commercial
 shortDescription: >-
   Editorial food photography with styled imperfection, directional lighting, and rich textures.
+difficulty: Beginner
 skills:
   - Food Photography
   - Styling

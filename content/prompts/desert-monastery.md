@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   A rammed-earth monastery emerging from desert landscape with contemplative
   courtyards.
+difficulty: Beginner
 skills:
   - Earth Architecture
   - Contemplative Space

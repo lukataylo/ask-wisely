@@ -5,6 +5,7 @@ category: Design
 shortDescription: >-
   Design tiny moments of feedback that make interfaces feel alive and
   responsive.
+difficulty: Intermediate
 skills:
   - Interaction Design
   - Animation

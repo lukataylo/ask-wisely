@@ -5,6 +5,7 @@ category: Persona
 shortDescription: >-
   Navigate conflicts and difficult conversations with grace and strategic
   empathy.
+difficulty: Beginner
 skills:
   - Conflict Resolution
   - Diplomacy

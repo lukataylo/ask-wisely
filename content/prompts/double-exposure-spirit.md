@@ -4,6 +4,7 @@ type: Image Prompts
 category: Portrait
 shortDescription: >-
   An in-camera double exposure blending a portrait with a forest landscape.
+difficulty: Beginner
 skills:
   - Double Exposure
   - Nature Fusion

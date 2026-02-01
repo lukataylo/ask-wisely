@@ -5,6 +5,7 @@ category: Architecture
 shortDescription: >-
   A skyscraper that appears grown rather than built, with living structural
   elements.
+difficulty: Beginner
 skills:
   - Biomimicry
   - Organic Architecture

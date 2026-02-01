@@ -4,6 +4,7 @@ type: Prompts
 category: Education
 shortDescription: >-
   Design complete curricula with learning outcomes, assessments, and scaffolding plans.
+difficulty: Intermediate
 skills:
   - Curriculum Design
   - Learning Objectives

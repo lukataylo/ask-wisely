@@ -4,6 +4,7 @@ type: Prompts
 category: Healthcare
 shortDescription: >-
   Generate comprehensive differentials with cannot-miss diagnoses and cognitive bias checks.
+difficulty: Advanced
 skills:
   - Diagnosis
   - Pattern Recognition

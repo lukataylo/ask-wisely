@@ -4,6 +4,7 @@ type: Skills
 category: Communication
 shortDescription: >-
   Train deep listening through mirroring, labeling emotions, and strategic silence.
+difficulty: Intermediate
 skills:
   - Listening
   - Empathy

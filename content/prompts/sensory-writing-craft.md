@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Engage all five senses to create immersive writing that readers experience
   physically.
+difficulty: Intermediate
 skills:
   - Sensory Detail
   - Immersion

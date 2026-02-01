@@ -5,6 +5,7 @@ category: Strategy
 shortDescription: >-
   Prioritize ruthlessly by separating urgency from importance to focus on
   what truly matters.
+difficulty: Beginner
 skills:
   - Prioritization
   - Time Management

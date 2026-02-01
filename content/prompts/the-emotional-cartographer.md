@@ -5,6 +5,7 @@ category: Creative
 shortDescription: >-
   Map complex emotional journeys through narrative structure and pacing
   control.
+difficulty: Beginner
 skills:
   - Emotional Arc
   - Pacing

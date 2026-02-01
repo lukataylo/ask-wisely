@@ -4,6 +4,7 @@ type: Prompts
 category: Product
 shortDescription: >-
   Assess product-market fit, moats, and growth models with a strategic advisor.
+difficulty: Intermediate
 skills:
   - Product Strategy
   - Vision

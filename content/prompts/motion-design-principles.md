@@ -5,6 +5,7 @@ category: Design
 shortDescription: >-
   Use animation purposefully to guide attention, communicate state, and add
   delight.
+difficulty: Intermediate
 skills:
   - Motion Design
   - Animation

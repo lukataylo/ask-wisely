@@ -5,6 +5,7 @@ category: Creative
 shortDescription: >-
   Rewrite any passage in radically different tones while preserving core
   meaning.
+difficulty: Beginner
 skills:
   - Tone Control
   - Adaptive Writing

@@ -4,6 +4,7 @@ type: Image Prompts
 category: Architecture
 shortDescription: >-
   A minimalist concrete pavilion hovering over a still reflecting pool.
+difficulty: Beginner
 skills:
   - Minimalism
   - Reflection

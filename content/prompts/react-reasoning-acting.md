@@ -4,6 +4,7 @@ type: Skills
 category: Engineering
 shortDescription: >-
   Combine reasoning with tool use for tasks requiring real-time information gathering.
+difficulty: Advanced
 skills:
   - ReAct
   - Tool Use

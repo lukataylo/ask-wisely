@@ -4,6 +4,7 @@ type: Prompts
 category: Persona
 shortDescription: >-
   Get startup advice from a battle-tested tech founder who has seen it all.
+difficulty: Beginner
 skills:
   - Startup Advice
   - Product Thinking

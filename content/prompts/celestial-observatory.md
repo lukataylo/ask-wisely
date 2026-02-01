@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A retro-futuristic observatory dome opened to a star-filled sky with
   dramatic scale.
+difficulty: Beginner
 skills:
   - Scale
   - Retro-Futurism

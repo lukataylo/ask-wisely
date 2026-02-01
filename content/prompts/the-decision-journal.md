@@ -4,6 +4,7 @@ type: Prompts
 category: Personal
 shortDescription: >-
   Structure a decision journal entry to improve judgment through reflection and pre-mortems.
+difficulty: Beginner
 skills:
   - Decision Making
   - Reflection

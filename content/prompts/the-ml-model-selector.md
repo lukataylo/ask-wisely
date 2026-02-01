@@ -4,6 +4,7 @@ type: Prompts
 category: Data
 shortDescription: >-
   Choose the right modeling approach with baseline strategy and deployment considerations.
+difficulty: Advanced
 skills:
   - Machine Learning
   - Model Selection

@@ -4,6 +4,7 @@ type: Prompts
 category: Legal
 shortDescription: >-
   Structure legal arguments using IRAC methodology with counter-arguments and policy reasoning.
+difficulty: Advanced
 skills:
   - Legal Analysis
   - Argumentation

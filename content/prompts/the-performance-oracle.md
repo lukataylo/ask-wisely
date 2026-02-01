@@ -4,6 +4,7 @@ type: Prompts
 category: Technical
 shortDescription: >-
   Identify bottlenecks and optimize code for speed, memory, and scalability.
+difficulty: Intermediate
 skills:
   - Optimization
   - Profiling

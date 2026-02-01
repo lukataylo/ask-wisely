@@ -4,6 +4,7 @@ type: Prompts
 category: Product
 shortDescription: >-
   Write comprehensive product requirements documents ready for engineering handoff.
+difficulty: Intermediate
 skills:
   - Product Requirements
   - Documentation

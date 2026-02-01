@@ -5,6 +5,7 @@ category: Business
 shortDescription: >-
   Prepare for high-stakes negotiations using BATNA analysis and principled
   bargaining.
+difficulty: Intermediate
 skills:
   - Negotiation
   - BATNA Analysis

@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A minimal composition of a tiny red cabin against infinite white Arctic
   landscape.
+difficulty: Beginner
 skills:
   - Minimalism
   - Scale

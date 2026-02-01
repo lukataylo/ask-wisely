@@ -5,6 +5,7 @@ category: Academic
 shortDescription: >-
   Build conceptual frameworks that reveal relationships between theories and
   ideas.
+difficulty: Intermediate
 skills:
   - Conceptual Thinking
   - Framework Design

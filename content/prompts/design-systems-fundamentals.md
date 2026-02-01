@@ -4,6 +4,7 @@ type: Skills
 category: Design
 shortDescription: >-
   Build scalable component libraries with tokens, patterns, and governance.
+difficulty: Intermediate
 skills:
   - Design Systems
   - Component Libraries

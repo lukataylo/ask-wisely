@@ -4,6 +4,7 @@ type: Skills
 category: Design
 shortDescription: >-
   Design inclusive interfaces that work for everyone regardless of ability.
+difficulty: Intermediate
 skills:
   - Accessibility
   - Inclusive Design

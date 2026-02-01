@@ -4,6 +4,7 @@ type: Prompts
 category: Academic
 shortDescription: >-
   Challenge arguments through steelmanning, counter-arguments, and falsifiability testing.
+difficulty: Advanced
 skills:
   - Self-Verification
   - Counter-Arguments

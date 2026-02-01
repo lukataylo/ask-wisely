@@ -4,6 +4,7 @@ type: Skills
 category: Communication
 shortDescription: >-
   Master written async communication with context-first messages and decision summaries.
+difficulty: Intermediate
 skills:
   - Remote Work
   - Written Communication

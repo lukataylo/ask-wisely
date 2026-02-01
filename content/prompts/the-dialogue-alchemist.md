@@ -5,6 +5,7 @@ category: Creative
 shortDescription: >-
   Craft natural, subtext-rich dialogue that reveals character without
   exposition.
+difficulty: Intermediate
 skills:
   - Dialogue Writing
   - Character Voice

@@ -4,6 +4,7 @@ type: Prompts
 category: Persona
 shortDescription: >-
   Receive guidance through the lens of Marcus Aurelius and Stoic philosophy.
+difficulty: Beginner
 skills:
   - Stoicism
   - Ethics

@@ -5,6 +5,7 @@ category: Business
 shortDescription: >-
   Navigate complex stakeholder dynamics using power mapping and communication
   strategies.
+difficulty: Intermediate
 skills:
   - Stakeholder Management
   - Communication

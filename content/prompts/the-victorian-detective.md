@@ -4,6 +4,7 @@ type: Prompts
 category: Persona
 shortDescription: >-
   Solve problems using deductive reasoning in the style of Sherlock Holmes.
+difficulty: Beginner
 skills:
   - Deductive Reasoning
   - Observation

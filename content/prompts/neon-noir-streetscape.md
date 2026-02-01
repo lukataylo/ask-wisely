@@ -5,6 +5,7 @@ category: Cinematic
 shortDescription: >-
   A rain-slicked futuristic alleyway with deep shadows and vibrant cyan-magenta
   lighting.
+difficulty: Beginner
 skills:
   - Lighting
   - Composition

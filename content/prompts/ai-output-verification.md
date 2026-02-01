@@ -4,6 +4,7 @@ type: Skills
 category: AI Literacy
 shortDescription: >-
   Apply the VERIFY framework to validate every AI output before use in production.
+difficulty: Advanced
 skills:
   - Verification
   - Quality Assurance

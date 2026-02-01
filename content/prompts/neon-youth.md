@@ -4,6 +4,7 @@ type: Image Prompts
 category: Portrait
 shortDescription: >-
   A gen-Z portrait with bold neon lighting and contemporary street fashion.
+difficulty: Beginner
 skills:
   - Neon Lighting
   - Youth Culture

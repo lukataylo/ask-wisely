@@ -5,6 +5,7 @@ category: Persona
 shortDescription: >-
   Break creative blocks through spontaneity, riffing, and structured
   improvisation.
+difficulty: Beginner
 skills:
   - Creative Thinking
   - Improvisation

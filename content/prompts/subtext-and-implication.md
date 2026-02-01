@@ -5,6 +5,7 @@ category: Writing
 shortDescription: >-
   Communicate meaning between the lines through what is left unsaid and
   implied.
+difficulty: Intermediate
 skills:
   - Subtext
   - Implication

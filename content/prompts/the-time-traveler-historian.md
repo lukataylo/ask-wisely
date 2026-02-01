@@ -5,6 +5,7 @@ category: Persona
 shortDescription: >-
   Analyze modern situations through historical parallels and pattern
   recognition.
+difficulty: Beginner
 skills:
   - Historical Analysis
   - Pattern Recognition

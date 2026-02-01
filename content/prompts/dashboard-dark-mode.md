@@ -4,6 +4,7 @@ type: Image Prompts
 category: Interface
 shortDescription: >-
   An analytics dashboard in dark mode with glass morphism panels and real-time data charts.
+difficulty: Beginner
 skills:
   - UI Design
   - Dashboard

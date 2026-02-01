@@ -4,6 +4,7 @@ type: Prompts
 category: Personal
 shortDescription: >-
   Design evidence-based habit systems with cue design, tracking, and progressive difficulty.
+difficulty: Beginner
 skills:
   - Habits
   - Behavior Design

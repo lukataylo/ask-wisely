@@ -4,6 +4,7 @@ type: Prompts
 category: Business
 shortDescription: >-
   Systematically destroy hidden assumptions in business plans through pre-mortems and stress tests.
+difficulty: Advanced
 skills:
   - Self-Verification
   - Critical Analysis

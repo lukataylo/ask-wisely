@@ -5,6 +5,7 @@ category: Portrait
 shortDescription: >-
   A modern subject painted in the style of a Flemish Renaissance oil
   portrait.
+difficulty: Beginner
 skills:
   - Classical Portraiture
   - Oil Painting Style
