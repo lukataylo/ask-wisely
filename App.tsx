@@ -2,8 +2,8 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Sparkles } from 'lucide-react';
-import { PROMPTS } from './data/prompts';
 import { Category, Prompt, MainTab } from './types';
+import { usePrompts } from './hooks/usePrompts';
 import PromptCard from './components/PromptCard';
 import PromptModal from './components/PromptModal';
 import AnimatedBackground from './components/AnimatedBackground';
@@ -17,6 +17,7 @@ const CATEGORY_MAP: Record<MainTab, Category[]> = {
 };
 
 const App: React.FC = () => {
+  const { prompts: PROMPTS, loading, error } = usePrompts();
   const [activeTab, setActiveTab] = useState<MainTab>('Prompts');
   const [activeCategory, setActiveCategory] = useState<Category>('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,7 +31,7 @@ const App: React.FC = () => {
                           p.shortDescription.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesTab && matchesCategory && matchesSearch;
     });
-  }, [activeTab, activeCategory, searchQuery]);
+  }, [activeTab, activeCategory, searchQuery, PROMPTS]);
 
   // Reset category when tab changes
   const handleTabChange = (tab: MainTab) => {
@@ -137,24 +138,49 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        {/* Loading State */}
+        {loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="py-32 text-center"
+          >
+            <div className="serif text-3xl text-stone-300 mb-2">Loading prompts...</div>
+          </motion.div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="py-32 text-center"
+          >
+            <div className="serif text-3xl text-stone-300 mb-2">Failed to load prompts</div>
+            <p className="text-stone-400">{error}</p>
+          </motion.div>
+        )}
+
         {/* Grid */}
-        <motion.div 
+        {!loading && !error && (
+        <motion.div
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
             {filteredPrompts.map((prompt) => (
-              <PromptCard 
-                key={prompt.id} 
-                prompt={prompt} 
-                onPreview={setSelectedPrompt} 
+              <PromptCard
+                key={prompt.id}
+                prompt={prompt}
+                onPreview={setSelectedPrompt}
               />
             ))}
           </AnimatePresence>
         </motion.div>
+        )}
 
         {/* Empty State */}
-        {filteredPrompts.length === 0 && (
+        {!loading && !error && filteredPrompts.length === 0 && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

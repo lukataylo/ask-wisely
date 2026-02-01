@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# TinaCMS generated
+tina/__generated__
+public/admin
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
