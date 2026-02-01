@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tinacms dev -c \"vite\"",
-    "build": "tinacms build && vite build",
+    "build": "node scripts/generate-prompts.js && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

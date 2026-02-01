@@ -12,9 +12,9 @@ dist
 dist-ssr
 *.local
 
-# TinaCMS generated
-tina/__generated__
+# TinaCMS admin (generated at dev time)
 public/admin
+public/prompts.json
 
 # Editor directories and files
 .vscode/*

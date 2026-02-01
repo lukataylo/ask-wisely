@@ -1,4 +1,3 @@
-import client from '../tina/__generated__/client';
 import type { Prompt, MainTab, Category } from '../types';
 
 function extractText(node: any): string {
@@ -7,7 +6,6 @@ function extractText(node: any): string {
   if (node.type === 'text') return node.text || '';
   if (node.children) {
     const text = node.children.map((child: any) => extractText(child)).join('');
-    // Add newlines between paragraph-level elements
     if (node.type === 'p' || node.type === 'h1' || node.type === 'h2' || node.type === 'h3') {
       return text + '\n';
     }
@@ -16,7 +14,8 @@ function extractText(node: any): string {
   return '';
 }
 
-export async function getAllPrompts(): Promise<Prompt[]> {
+async function getPromptsFromTina(): Promise<Prompt[]> {
+  const { default: client } = await import('../tina/__generated__/client');
   const result = await client.queries.promptConnection();
   const prompts: Prompt[] = [];
 
@@ -25,10 +24,8 @@ export async function getAllPrompts(): Promise<Prompt[]> {
       if (!edge?.node) continue;
       const node = edge.node;
 
-      const filename = node._sys.filename;
-
       prompts.push({
-        id: filename,
+        id: node._sys.filename,
         type: (node.type as MainTab) || 'Prompts',
         title: node.title,
         category: (node.category as Category) || 'Creative',
@@ -40,4 +37,17 @@ export async function getAllPrompts(): Promise<Prompt[]> {
   }
 
   return prompts;
+}
+
+async function getPromptsFromStatic(): Promise<Prompt[]> {
+  const response = await fetch('/prompts.json');
+  if (!response.ok) throw new Error('Failed to load prompts.json');
+  return response.json();
+}
+
+export async function getAllPrompts(): Promise<Prompt[]> {
+  if (import.meta.env.DEV) {
+    return getPromptsFromTina();
+  }
+  return getPromptsFromStatic();
 }
