@@ -229,49 +229,27 @@ function generateJsonLd(prompts) {
 }
 
 function generateSitemap(prompts) {
-  const CATEGORY_MAP = {
-    'Prompts': ['Creative', 'Technical', 'Business', 'Academic', 'Persona', 'Product', 'Data', 'Marketing', 'Personal', 'Legal', 'Education', 'Healthcare'],
-    'Image Prompts': ['Cinematic', 'Portrait', 'Stylized', 'Architecture', 'Commercial', 'Interface'],
-    'Skills': ['Engineering', 'Writing', 'Strategy', 'Design', 'Communication', 'AI Literacy'],
-  };
-
-  const TAB_SLUGS = {
-    'Prompts': 'prompts',
-    'Image Prompts': 'image-prompts',
-    'Skills': 'skills',
-  };
+  const today = new Date().toISOString().split('T')[0];
 
   const urls = [
-    { loc: 'https://askwisely.com/', changefreq: 'weekly', priority: '1.0' },
+    { loc: 'https://askwisely.com/', changefreq: 'weekly', priority: '1.0', lastmod: today },
   ];
 
-  // Tab pages
-  for (const [tab, slug] of Object.entries(TAB_SLUGS)) {
-    if (tab === 'Prompts') continue; // homepage covers this
-    urls.push({ loc: `https://askwisely.com/?tab=${slug}`, changefreq: 'weekly', priority: '0.8' });
-
-    // Category pages
-    for (const cat of CATEGORY_MAP[tab]) {
-      const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
-      urls.push({ loc: `https://askwisely.com/?tab=${slug}&cat=${catSlug}`, changefreq: 'monthly', priority: '0.6' });
-    }
-  }
-
-  // Prompts category pages (default tab)
-  for (const cat of CATEGORY_MAP['Prompts']) {
-    const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
-    urls.push({ loc: `https://askwisely.com/?cat=${catSlug}`, changefreq: 'monthly', priority: '0.6' });
-  }
-
-  // Individual prompt pages
+  // Individual prompt pages only — no query-string URLs
   for (const p of prompts) {
-    urls.push({ loc: `https://askwisely.com/${p.id}`, changefreq: 'monthly', priority: '0.7' });
+    urls.push({
+      loc: `https://askwisely.com/${p.id}`,
+      changefreq: 'monthly',
+      priority: '0.7',
+      lastmod: today,
+    });
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url>
     <loc>${u.loc}</loc>
+    <lastmod>${u.lastmod}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join('\n')}
