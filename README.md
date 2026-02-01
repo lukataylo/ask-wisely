@@ -2,148 +2,107 @@
 
 # Ask Wisely
 
-**A curated library of 133 expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks.**
+**A curated library of 200+ expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks.**
 
-[askwisely.com](https://askwisely.com)
+[askwisely.com](https://askwisely.com) &nbsp;|&nbsp; [Browse the API](https://askwisely.com/prompts.json) &nbsp;|&nbsp; [Contribute](CONTRIBUTING.md)
+
+![Build](https://img.shields.io/github/actions/workflow/status/lukataylo/ask-wisely/deploy.yml?branch=main&label=deploy)
+![Prompts](https://img.shields.io/badge/prompts-201-blue)
+![License](https://img.shields.io/badge/license-open--source-green)
 
 </div>
 
 ---
 
-## What is Ask Wisely?
+## Features
 
-Ask Wisely is a prompt library designed to help people get better results from AI tools like ChatGPT, Claude, Midjourney, and others. Each prompt has been written and refined to produce high-quality output for a specific use case.
+- **201 curated prompts** across text prompts, image prompts, and skills
+- **Search and filter** by category, technique, or free text
+- **Dark mode** with automatic system detection
+- **Favorites** — save prompts to a personal collection (localStorage)
+- **Copy to clipboard** with one click (plain text or Markdown)
+- **Share** any prompt via a direct URL (e.g., `askwisely.com/poetry-forge`)
+- **Keyboard shortcuts** — `/` to search, `j`/`k` to navigate, `Enter` to open, `c` to copy
+- **LLM-specific variants** — some prompts have versions optimized for Claude, ChatGPT, or Gemini
+- **Customizable variables** — fill in `[bracketed]` placeholders to personalize prompts
+- **Free JSON API** — fetch all prompts at `/prompts.json`
+- **SEO optimized** — noscript fallback, JSON-LD structured data, full sitemap
+
+---
+
+## Prompt Library
 
 The library is organized into three sections:
 
-- **Prompts** — Text prompts for reasoning, creative writing, business analysis, and more. Categories include Creative, Technical, Business, Academic, and Persona.
-- **Image Prompts** — Detailed visual descriptions for generative art tools. Categories include Cinematic, Portrait, Stylized, and Architecture.
-- **Skills** — Foundational methodologies and reference guides. Categories include Engineering, Writing, Strategy, and Design.
+### Prompts
+Text prompts for reasoning, creative writing, business analysis, and more.
 
-Users can search, filter by category, preview any prompt, and copy it to their clipboard with one click.
+| Category | Examples |
+|----------|---------|
+| Creative | Poetry Forge, Devil's Advocate, Narrative Engine |
+| Technical | Code Architect, Debug Detective, System Design |
+| Business | Strategy Canvas, Market Analysis, Pitch Deck |
+| Academic | Research Synthesis, Thesis Builder, Peer Review |
+| Persona | Expert Simulator, Historical Figure, Career Coach |
+| Product | PRD Generator, User Story Mapper, Feature Prioritizer |
+| Data | Data Storyteller, SQL Architect, Dashboard Designer |
+| Marketing | Campaign Strategist, Copy Framework, Brand Voice |
+| Personal | Decision Matrix, Habit Builder, Journal Prompts |
+| Legal | Contract Analyzer, Compliance Checker, Legal Brief |
+| Education | Lesson Planner, Quiz Generator, Rubric Builder |
+| Healthcare | Symptom Analyzer, Research Summarizer, Care Plan |
 
----
+### Image Prompts
+Detailed visual descriptions for generative art tools (DALL-E, Midjourney, Imagen).
 
-## Project Structure
+| Category | Examples |
+|----------|---------|
+| Cinematic | Neon Rain Chase, Golden Hour Portrait, Noir Detective |
+| Portrait | Renaissance Digital, Cyberpunk Elder, Studio Lighting |
+| Stylized | Watercolor Dreams, Pixel Art Worlds, Ink Wash |
+| Architecture | Ancient Future Temple, Brutalist Garden, Sky Bridge |
+| Commercial | Product Photography, Food Styling, Fashion Editorial |
+| Interface | Dashboard Concepts, Mobile Flows, Data Visualization |
 
-```
-ask-wisely/
-├── index.html                  # HTML shell with SEO meta tags and JSON-LD
-├── index.tsx                   # React entry point (mounts <App />)
-├── App.tsx                     # Main application component
-├── types.ts                    # TypeScript type definitions
-│
-├── components/
-│   ├── PromptCard.tsx          # Card component with copy and preview actions
-│   ├── PromptModal.tsx         # Full-screen modal for reading a prompt
-│   └── AnimatedBackground.tsx  # Animated gradient background
-│
-├── hooks/
-│   └── usePrompts.ts           # Hook that loads prompts (TinaCMS or static JSON)
-│
-├── lib/
-│   └── getPrompts.ts           # Data fetching logic for dev and production
-│
-├── content/
-│   └── prompts/                # 133 markdown files (one per prompt)
-│       ├── accessibility-first.md
-│       ├── poetry-forge.md
-│       ├── neon-rain-chase.md
-│       └── ...
-│
-├── tina/
-│   ├── config.ts               # TinaCMS schema and collection definition
-│   └── __generated__/          # Auto-generated TinaCMS client and types
-│
-├── scripts/
-│   ├── generate-prompts.js     # Parses markdown → JSON, SEO HTML, and JSON-LD
-│   └── inject-seo.js           # Post-build: injects SEO content into dist/index.html
-│
-├── public/
-│   ├── prompts.json            # Generated: all prompts as static JSON
-│   ├── seo-content.html        # Generated: semantic HTML for noscript fallback
-│   ├── ld-prompts.json         # Generated: JSON-LD ItemList for search engines
-│   ├── favicon.svg             # Owl favicon
-│   ├── og-image.svg            # Open Graph social sharing image (1200x630)
-│   ├── robots.txt              # Crawling rules and sitemap reference
-│   ├── sitemap.xml             # XML sitemap
-│   ├── 404.html                # Custom 404 page for GitHub Pages
-│   ├── CNAME                   # Custom domain: askwisely.com
-│   └── admin/                  # TinaCMS admin interface
-│
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Actions: build and deploy to GitHub Pages
-│
-├── vite.config.ts              # Vite configuration
-├── tsconfig.json               # TypeScript configuration
-└── package.json                # Dependencies and scripts
-```
+### Skills
+Foundational methodologies for becoming an AI power user.
+
+| Category | Examples |
+|----------|---------|
+| Engineering | Few-Shot Patterns, Chain-of-Thought, System Prompts |
+| Writing | Editing Frameworks, Style Transfer, Tone Calibration |
+| Strategy | Decision Trees, SWOT Analysis, Scenario Planning |
+| Design | Design System Prompts, UX Audit, Accessibility First |
+| Communication | Meeting Facilitator, Feedback Frameworks, Stakeholder Mapping |
+| AI Literacy | Prompt Debugging, Model Selection, Hallucination Detection |
 
 ---
 
-## How It Works
+## Using the API
 
-### Content Management
+All prompts are available as a JSON file at [`/prompts.json`](https://askwisely.com/prompts.json). Use it in your projects, browser extensions, CLI tools, or workflows:
 
-Prompts are stored as individual markdown files in `content/prompts/`. Each file has YAML frontmatter defining the prompt's metadata and a body containing the full prompt text:
-
-```markdown
----
-title: Poetry Forge
-type: Prompts
-category: Creative
-shortDescription: >-
-  Craft vivid, emotionally resonant poetry in any style or form.
-skills:
-  - Creative Writing
-  - Poetry
-  - Metaphor
----
-
-You are a poet with mastery over form, meter, and imagery...
+```bash
+curl https://askwisely.com/prompts.json | jq '.[0]'
 ```
 
-**Editing prompts:** In development, the TinaCMS admin interface provides a visual editor at `/admin`. In production, prompts are edited by modifying the markdown files directly and pushing to `main`.
+Each prompt has this shape:
 
-### Data Flow
-
-The project uses a dual data source approach:
-
-1. **Development** (`npm run dev`): The React app fetches prompts in real time from TinaCMS via its GraphQL client. This allows live editing through the CMS admin panel.
-
-2. **Production** (`npm run build`): A build script (`generate-prompts.js`) parses all 133 markdown files and produces a static `prompts.json`. The React app loads this JSON file at runtime instead of calling TinaCMS.
-
-### Build Pipeline
-
-The build command runs three steps in sequence:
-
+```json
+{
+  "id": "poetry-forge",
+  "type": "Prompts",
+  "title": "Poetry Forge",
+  "category": "Creative",
+  "shortDescription": "Generate structured poetry with precise meter...",
+  "fullPrompt": "You are a poet-engineer...",
+  "skills": ["Poetry", "Meter and Rhyme", "Imagery"],
+  "techniques": ["Role Assignment", "Constraint-Based"],
+  "variables": [{ "name": "your theme", "placeholder": "[your theme]" }],
+  "llmVariants": {},
+  "isNew": false
+}
 ```
-node scripts/generate-prompts.js → vite build → node scripts/inject-seo.js
-```
-
-1. **generate-prompts.js** reads every markdown file in `content/prompts/` and outputs:
-   - `public/prompts.json` — all prompt data as JSON (used by the React app)
-   - `public/seo-content.html` — all prompt titles and descriptions in semantic HTML
-   - `public/ld-prompts.json` — a JSON-LD `ItemList` with all 133 prompts
-
-2. **vite build** compiles the React/TypeScript app and copies `public/` into `dist/`.
-
-3. **inject-seo.js** modifies `dist/index.html` to replace placeholder comments with:
-   - A `<noscript>` block containing the full SEO HTML (so search engines can index all prompts without JavaScript)
-   - A `<script type="application/ld+json">` block with the complete `ItemList` structured data
-
-### Deployment
-
-The site is deployed to GitHub Pages via a GitHub Actions workflow (`.github/workflows/deploy.yml`). On every push to `main`:
-
-1. Checks out the code
-2. Installs dependencies with `npm ci`
-3. Runs `npm run build` (with TinaCMS credentials from repository secrets)
-4. Uploads the `dist/` folder as a GitHub Pages artifact
-5. Deploys to GitHub Pages
-
-The custom domain `askwisely.com` is configured via the `public/CNAME` file.
 
 ---
 
@@ -153,29 +112,12 @@ The custom domain `askwisely.com` is configured via the `public/CNAME` file.
 |-------|-----------|
 | Framework | React 19 with TypeScript |
 | Build tool | Vite 6 |
-| CMS | TinaCMS (headless, Git-backed) |
-| Styling | Tailwind CSS (CDN) |
+| CMS | Decap CMS (Git-backed) |
+| Styling | Tailwind CSS 4 |
 | Fonts | EB Garamond (serif), Inter (sans-serif) |
-| Animations | Framer Motion |
 | Icons | Lucide React |
 | Hosting | GitHub Pages |
 | CI/CD | GitHub Actions |
-
----
-
-## SEO
-
-The site is a single-page app, which means search engines would normally see an empty `<div id="root"></div>` until JavaScript executes. To address this:
-
-- **Noscript fallback:** The build injects a `<noscript>` block into `index.html` containing all 133 prompt titles, descriptions, categories, and skill tags in semantic HTML (`<h1>`, `<h2>`, `<article>`, `<section>`). This content is visible to crawlers that don't run JavaScript.
-
-- **JSON-LD structured data:** Two schema.org blocks are embedded — a `WebSite` schema and an `ItemList` schema listing every prompt with its name, description, and URL.
-
-- **Meta tags:** The page includes a meta description, Open Graph tags, Twitter Card tags, a canonical URL, and a theme color.
-
-- **Static files:** `robots.txt` allows all crawlers and points to `sitemap.xml`. The sitemap lists the homepage URL.
-
-- **404 page:** A styled `404.html` page is served by GitHub Pages for unmatched routes.
 
 ---
 
@@ -184,61 +126,85 @@ The site is a single-page app, which means search engines would normally see an 
 **Prerequisites:** Node.js 20+
 
 ```bash
-# Install dependencies
 npm install
-
-# Start the dev server (with TinaCMS)
-npm run dev
-
-# Or build for production
-npm run build
-
-# Preview the production build
-npm run preview
+npm run dev       # Start dev server at localhost:3000
+npm run build     # Production build
+npm run preview   # Preview production build
 ```
 
-The dev server starts at `http://localhost:3000`. The TinaCMS admin panel is available at `http://localhost:3000/admin`.
-
-### Environment Variables (optional, for TinaCMS cloud)
-
-| Variable | Purpose |
-|----------|---------|
-| `TINA_CLIENT_ID` | TinaCMS cloud project client ID |
-| `TINA_TOKEN` | TinaCMS cloud read-only token |
-| `TINA_BRANCH` | Git branch for TinaCMS content (defaults to `main`) |
-
-These are only needed for the CMS admin to connect to TinaCloud. The site builds and runs fine without them — it will just use the local markdown files.
+The Decap CMS admin panel is available at `http://localhost:3000/admin`.
 
 ---
 
-## Adding a New Prompt
+## Project Structure
 
-1. Create a new `.md` file in `content/prompts/` (the filename becomes the prompt ID):
-
-```markdown
----
-title: Your Prompt Title
-type: Prompts
-category: Creative
-shortDescription: >-
-  A brief description of what this prompt does.
-skills:
-  - Skill One
-  - Skill Two
----
-
-The full prompt text goes here...
+```
+ask-wisely/
+├── App.tsx                     # Main app (routing, filters, keyboard nav, dark mode)
+├── index.html                  # HTML shell + SEO meta + dark mode init
+├── index.css                   # Theme tokens, animations, dark mode
+├── types.ts                    # TypeScript type definitions
+├── components/
+│   ├── PromptCard.tsx          # Card with copy, favorite, preview
+│   ├── PromptModal.tsx         # Full modal: share, markdown export, related prompts
+│   ├── AnimatedBackground.tsx  # Floating gradient background
+│   └── OwlLogo.tsx             # SVG mascot
+├── hooks/
+│   ├── usePrompts.ts           # Loads prompts from JSON
+│   ├── useFavorites.ts         # localStorage favorites
+│   ├── useCopyCount.ts         # localStorage copy tracking
+│   ├── useCopyToClipboard.ts   # Clipboard API wrapper
+│   └── useDarkMode.ts          # Dark mode toggle + persistence
+├── content/prompts/            # 201 markdown source files
+├── scripts/
+│   ├── generate-prompts.js     # Markdown → JSON, SEO HTML, JSON-LD, sitemap
+│   └── inject-seo.js           # Post-build SEO injection
+└── public/                     # Static assets, CMS config, generated files
 ```
 
-2. Choose the correct `type` and `category`:
+---
 
-| Type | Available Categories |
-|------|---------------------|
-| Prompts | Creative, Technical, Business, Academic, Persona |
-| Image Prompts | Cinematic, Portrait, Stylized, Architecture |
-| Skills | Engineering, Writing, Strategy, Design |
+## Build Pipeline
 
-3. Commit, push to `main`, and the site redeploys automatically.
+```
+generate-prompts.js → vite build → inject-seo.js
+```
+
+1. **generate-prompts.js** reads all markdown files and outputs: `prompts.json`, `seo-content.html`, `ld-prompts.json`, `sitemap.xml`
+2. **vite build** compiles the React app and copies static assets
+3. **inject-seo.js** injects noscript fallback content and JSON-LD into `dist/index.html`
+
+---
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `/` | Focus search |
+| `Escape` | Close modal / clear search |
+| `j` / `↓` | Next prompt |
+| `k` / `↑` | Previous prompt |
+| `Enter` | Open focused prompt |
+| `c` | Copy focused prompt |
+
+---
+
+## OG Image
+
+The social sharing image (`og-image.svg`) is an SVG. For maximum compatibility on platforms like Twitter and LinkedIn, convert it to PNG:
+
+```bash
+# Using any SVG-to-PNG tool:
+npx svgexport public/og-image.svg public/og-image.png 1200:630
+```
+
+Then update the `og:image` and `twitter:image` meta tags in `index.html` to reference `og-image.png`.
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to submit new prompts, report issues, or improve the site.
 
 ---
 

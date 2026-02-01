@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ask Wisely — Curated AI Prompt Library for Creative, Technical & Visual Prompts</title>
-    <meta name="description" content="Discover 133+ expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks. A curated prompt library to help you get better results from ChatGPT, Claude, Midjourney, and more.">
+    <meta name="description" content="Discover 200+ expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks. A curated prompt library to help you get better results from ChatGPT, Claude, Midjourney, and more.">
     <meta name="theme-color" content="#fdfbf7">
     <link rel="canonical" href="https://askwisely.com/">
 
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Ask Wisely">
     <meta property="og:title" content="Ask Wisely — Curated AI Prompt Library">
-    <meta property="og:description" content="Discover 133+ expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks.">
+    <meta property="og:description" content="Discover 200+ expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks.">
     <meta property="og:url" content="https://askwisely.com/">
     <meta property="og:image" content="https://askwisely.com/og-image.svg">
     <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ask Wisely — Curated AI Prompt Library">
-    <meta name="twitter:description" content="Discover 133+ expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks.">
+    <meta name="twitter:description" content="Discover 200+ expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks.">
     <meta name="twitter:image" content="https://askwisely.com/og-image.svg">
 
     <!-- Favicon -->
@@ -49,10 +49,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+        try {
+            var t = localStorage.getItem('askwisely-theme');
+            if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        } catch(e) {}
+    </script>
 </head>
 <body>
     <div id="root"></div>
     <!-- SEO_NOSCRIPT_PLACEHOLDER -->
+<script>
+    // Restore clean URL from GitHub Pages 404.html SPA redirect
+    (function() {
+        var p = new URLSearchParams(window.location.search);
+        var spa = p.get('_spa');
+        if (spa) window.history.replaceState(null, '', spa);
+    })();
+</script>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>

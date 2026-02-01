@@ -14,7 +14,6 @@ export function usePrompts() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Failed to load prompts:', err);
         setError(err.message || 'Failed to load prompts');
         setLoading(false);
       });

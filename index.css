@@ -1,9 +1,49 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Theme tokens ── */
+:root {
+  --bg-page: #fdfbf7;
+  --bg-card: #f9f7f2;
+  --bg-card-border: #e5e0d8;
+  --bg-badge: #eeeae3;
+  --bg-nav: rgba(253, 251, 247, 0.8);
+  --bg-modal-overlay: rgba(28, 25, 23, 0.4);
+  --scrollbar-track: #fdfbf7;
+  --scrollbar-thumb: #e5e0d8;
+  --scrollbar-thumb-hover: #d4cfc5;
+  --float-from1: #f5f0e1;
+  --float-to1: #fdfbf7;
+  --float-from2: #e8dfd0;
+  --float-to2: #fdfbf7;
+  --card-hover-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+.dark {
+  --bg-page: #0c0a09;
+  --bg-card: #1c1917;
+  --bg-card-border: #44403c;
+  --bg-badge: #292524;
+  --bg-nav: rgba(12, 10, 9, 0.8);
+  --bg-modal-overlay: rgba(0, 0, 0, 0.6);
+  --scrollbar-track: #0c0a09;
+  --scrollbar-thumb: #44403c;
+  --scrollbar-thumb-hover: #57534e;
+  --float-from1: #1c1917;
+  --float-to1: #0c0a09;
+  --float-from2: #292524;
+  --float-to2: #0c0a09;
+  --card-hover-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+}
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #fdfbf7;
+  background-color: var(--bg-page);
   color: #1a1a1a;
+}
+
+.dark body {
+  color: #f5f5f4;
 }
 
 .serif {
@@ -15,14 +55,14 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #fdfbf7;
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: #e5e0d8;
+  background: var(--scrollbar-thumb);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4cfc5;
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* Animations */
@@ -60,20 +100,23 @@ body {
 
 /* Card hover */
 .prompt-card {
+  border-radius: 24px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .prompt-card:hover {
   transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--card-hover-shadow);
 }
 
 .prompt-card-bg {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   border-radius: 24px;
-  transition: clip-path 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
-.prompt-card:hover .prompt-card-bg {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+
+/* Keyboard focus ring on cards */
+.prompt-card.keyboard-focused {
+  box-shadow: 0 0 0 3px #a8a29e;
+  border-radius: 24px;
 }
 
 /* Arrow nudge on card hover */

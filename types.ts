@@ -40,6 +40,7 @@ export interface Prompt {
   techniques: Technique[];
   variables: TemplateVariable[];
   llmVariants: LLMVariants;
+  isNew?: boolean;
 }
 
 export const TEXT_LLM_TABS: { key: LLMProvider; label: string }[] = [

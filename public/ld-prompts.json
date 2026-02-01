@@ -3,938 +3,1414 @@
   "@type": "ItemList",
   "name": "AI Prompt Collection",
   "description": "A curated collection of expertly crafted AI prompts for creative, technical, and visual tasks.",
-  "numberOfItems": 133,
+  "numberOfItems": 201,
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "name": "Accessibility First",
       "description": "Design inclusive interfaces that work for everyone regardless of ability.",
-      "url": "https://askwisely.com/#accessibility-first"
+      "url": "https://askwisely.com/accessibility-first"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Ancient Future Temple",
-      "description": "A temple blending ancient stone construction with holographic technology elements.",
-      "url": "https://askwisely.com/#ancient-future-temple"
+      "name": "Active Listening Framework",
+      "description": "Train deep listening through mirroring, labeling emotions, and strategic silence.",
+      "url": "https://askwisely.com/active-listening-framework"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "API Design Architect",
-      "description": "Design clean, versioned RESTful APIs with proper resource modeling and error handling.",
-      "url": "https://askwisely.com/#api-design-architect"
+      "name": "AI Output Verification",
+      "description": "Apply the VERIFY framework to validate every AI output before use in production.",
+      "url": "https://askwisely.com/ai-output-verification"
     },
     {
       "@type": "ListItem",
       "position": 4,
-      "name": "Arctic Solitude",
-      "description": "A minimal composition of a tiny red cabin against infinite white Arctic landscape.",
-      "url": "https://askwisely.com/#arctic-solitude"
+      "name": "Ancient Future Temple",
+      "description": "A temple blending ancient stone construction with holographic technology elements.",
+      "url": "https://askwisely.com/ancient-future-temple"
     },
     {
       "@type": "ListItem",
       "position": 5,
-      "name": "Art Deco Metropolis",
-      "description": "A 1920s-inspired cityscape with geometric patterns and metallic gold accents.",
-      "url": "https://askwisely.com/#art-deco-metropolis"
+      "name": "API Design Architect",
+      "description": "Design clean, versioned RESTful APIs with proper resource modeling and error handling.",
+      "url": "https://askwisely.com/api-design-architect"
     },
     {
       "@type": "ListItem",
       "position": 6,
-      "name": "Art of Narrative Voice",
-      "description": "Developing a unique brand voice through diction, rhythm, and intentional pacing.",
-      "url": "https://askwisely.com/#art-of-narrative-voice"
+      "name": "Arctic Solitude",
+      "description": "A minimal composition of a tiny red cabin against infinite white Arctic landscape.",
+      "url": "https://askwisely.com/arctic-solitude"
     },
     {
       "@type": "ListItem",
       "position": 7,
-      "name": "Bio-Organic Tower",
-      "description": "A skyscraper that appears grown rather than built, with living structural elements.",
-      "url": "https://askwisely.com/#bio-organic-tower"
+      "name": "Art Deco Metropolis",
+      "description": "A 1920s-inspired cityscape with geometric patterns and metallic gold accents.",
+      "url": "https://askwisely.com/art-deco-metropolis"
     },
     {
       "@type": "ListItem",
       "position": 8,
-      "name": "Blue Ocean Strategy",
-      "description": "Create uncontested market space instead of competing in crowded existing markets.",
-      "url": "https://askwisely.com/#blue-ocean-strategy"
+      "name": "Art of Narrative Voice",
+      "description": "Developing a unique brand voice through diction, rhythm, and intentional pacing.",
+      "url": "https://askwisely.com/art-of-narrative-voice"
     },
     {
       "@type": "ListItem",
       "position": 9,
-      "name": "Brutalist Oasis",
-      "description": "Raw concrete structures intertwined with lush, overflowing tropical vegetation.",
-      "url": "https://askwisely.com/#brutalist-oasis"
+      "name": "Async Communication Mastery",
+      "description": "Master written async communication with context-first messages and decision summaries.",
+      "url": "https://askwisely.com/async-communication-mastery"
     },
     {
       "@type": "ListItem",
       "position": 10,
-      "name": "Celestial Observatory",
-      "description": "A retro-futuristic observatory dome opened to a star-filled sky with dramatic scale.",
-      "url": "https://askwisely.com/#celestial-observatory"
+      "name": "Bio-Organic Tower",
+      "description": "A skyscraper that appears grown rather than built, with living structural elements.",
+      "url": "https://askwisely.com/bio-organic-tower"
     },
     {
       "@type": "ListItem",
       "position": 11,
-      "name": "Chain of Thought Mastery",
-      "description": "Force step-by-step reasoning to improve accuracy on complex multi-step problems.",
-      "url": "https://askwisely.com/#chain-of-thought-mastery"
+      "name": "Blue Ocean Strategy",
+      "description": "Create uncontested market space instead of competing in crowded existing markets.",
+      "url": "https://askwisely.com/blue-ocean-strategy"
     },
     {
       "@type": "ListItem",
       "position": 12,
-      "name": "Claymation Explorer",
-      "description": "Hand-crafted aesthetic featuring tactile textures and whimsical proportions.",
-      "url": "https://askwisely.com/#claymation-explorer"
+      "name": "Brutalist Oasis",
+      "description": "Raw concrete structures intertwined with lush, overflowing tropical vegetation.",
+      "url": "https://askwisely.com/brutalist-oasis"
     },
     {
       "@type": "ListItem",
       "position": 13,
-      "name": "Clean Code Sage",
-      "description": "Refactor complex logic into readable, performant, and maintainable TypeScript patterns.",
-      "url": "https://askwisely.com/#clean-code-sage"
+      "name": "Celestial Observatory",
+      "description": "A retro-futuristic observatory dome opened to a star-filled sky with dramatic scale.",
+      "url": "https://askwisely.com/celestial-observatory"
     },
     {
       "@type": "ListItem",
       "position": 14,
-      "name": "Color Psychology",
-      "description": "Use color strategically to influence emotion, behavior, and brand perception.",
-      "url": "https://askwisely.com/#color-psychology"
+      "name": "Chain of Thought Mastery",
+      "description": "Force step-by-step reasoning to improve accuracy on complex multi-step problems.",
+      "url": "https://askwisely.com/chain-of-thought-mastery"
     },
     {
       "@type": "ListItem",
       "position": 15,
-      "name": "Context Window Strategy",
-      "description": "Manage long conversations and large documents within model context limitations.",
-      "url": "https://askwisely.com/#context-window-strategy"
+      "name": "Claymation Explorer",
+      "description": "Hand-crafted aesthetic featuring tactile textures and whimsical proportions.",
+      "url": "https://askwisely.com/claymation-explorer"
     },
     {
       "@type": "ListItem",
       "position": 16,
-      "name": "Database Schema Sage",
-      "description": "Design normalized database schemas with optimal indexing and query performance.",
-      "url": "https://askwisely.com/#database-schema-sage"
+      "name": "Clean Code Sage",
+      "description": "Refactor complex logic into readable, performant, and maintainable TypeScript patterns.",
+      "url": "https://askwisely.com/clean-code-sage"
     },
     {
       "@type": "ListItem",
       "position": 17,
-      "name": "Decision Tree Analysis",
-      "description": "Map complex decisions with branching outcomes, probabilities, and expected values.",
-      "url": "https://askwisely.com/#decision-tree-analysis"
+      "name": "Color Psychology",
+      "description": "Use color strategically to influence emotion, behavior, and brand perception.",
+      "url": "https://askwisely.com/color-psychology"
     },
     {
       "@type": "ListItem",
       "position": 18,
-      "name": "Desert Mirage Oasis",
-      "description": "A surreal heat-shimmer distortion revealing an impossible lush oasis in cracked earth.",
-      "url": "https://askwisely.com/#desert-mirage-oasis"
+      "name": "Context Window Strategy",
+      "description": "Manage long conversations and large documents within model context limitations.",
+      "url": "https://askwisely.com/context-window-strategy"
     },
     {
       "@type": "ListItem",
       "position": 19,
-      "name": "Desert Monastery",
-      "description": "A rammed-earth monastery emerging from desert landscape with contemplative courtyards.",
-      "url": "https://askwisely.com/#desert-monastery"
+      "name": "Contrastive Prompting",
+      "description": "Show both good and bad examples to sharpen output quality and define clear boundaries.",
+      "url": "https://askwisely.com/contrastive-prompting"
     },
     {
       "@type": "ListItem",
       "position": 20,
-      "name": "Design Systems Fundamentals",
-      "description": "Build scalable component libraries with tokens, patterns, and governance.",
-      "url": "https://askwisely.com/#design-systems-fundamentals"
+      "name": "Cosmetics Beauty Shot",
+      "description": "A macro beauty product shot with texture as the hero and clinical-meets-artistic precision.",
+      "url": "https://askwisely.com/cosmetics-beauty-shot"
     },
     {
       "@type": "ListItem",
       "position": 21,
-      "name": "Dialogue Dynamics",
-      "description": "Write dialogue that reveals character, advances plot, and sounds natural simultaneously.",
-      "url": "https://askwisely.com/#dialogue-dynamics"
+      "name": "Dashboard Dark Mode",
+      "description": "An analytics dashboard in dark mode with glass morphism panels and real-time data charts.",
+      "url": "https://askwisely.com/dashboard-dark-mode"
     },
     {
       "@type": "ListItem",
       "position": 22,
-      "name": "Double Exposure Spirit",
-      "description": "An in-camera double exposure blending a portrait with a forest landscape.",
-      "url": "https://askwisely.com/#double-exposure-spirit"
+      "name": "Data Visualization UI",
+      "description": "An information dashboard with multiple chart types arranged in a bento grid layout.",
+      "url": "https://askwisely.com/data-visualization-ui"
     },
     {
       "@type": "ListItem",
       "position": 23,
-      "name": "Editing as Craft",
-      "description": "Transform rough drafts into polished prose through systematic self-editing passes.",
-      "url": "https://askwisely.com/#editing-as-craft"
+      "name": "Database Schema Sage",
+      "description": "Design normalized database schemas with optimal indexing and query performance.",
+      "url": "https://askwisely.com/database-schema-sage"
     },
     {
       "@type": "ListItem",
       "position": 24,
-      "name": "Error Recovery Patterns",
-      "description": "Handle AI errors, hallucinations, and unexpected outputs with resilient prompt design.",
-      "url": "https://askwisely.com/#error-recovery-patterns"
+      "name": "Decision Tree Analysis",
+      "description": "Map complex decisions with branching outcomes, probabilities, and expected values.",
+      "url": "https://askwisely.com/decision-tree-analysis"
     },
     {
       "@type": "ListItem",
       "position": 25,
-      "name": "Evaluation and Benchmarking",
-      "description": "Measure prompt effectiveness with systematic testing and comparison frameworks.",
-      "url": "https://askwisely.com/#evaluation-and-benchmarking"
+      "name": "Desert Mirage Oasis",
+      "description": "A surreal heat-shimmer distortion revealing an impossible lush oasis in cracked earth.",
+      "url": "https://askwisely.com/desert-mirage-oasis"
     },
     {
       "@type": "ListItem",
       "position": 26,
-      "name": "Few-Shot Learning Patterns",
-      "description": "Teach AI new tasks by providing carefully structured examples in the prompt.",
-      "url": "https://askwisely.com/#few-shot-learning-patterns"
+      "name": "Desert Monastery",
+      "description": "A rammed-earth monastery emerging from desert landscape with contemplative courtyards.",
+      "url": "https://askwisely.com/desert-monastery"
     },
     {
       "@type": "ListItem",
       "position": 27,
-      "name": "Film Noir Femme",
-      "description": "A high-contrast black and white portrait channeling 1940s Hollywood glamour.",
-      "url": "https://askwisely.com/#film-noir-femme"
+      "name": "Design System Showcase",
+      "description": "A component library showcase with buttons, inputs, cards, and modals on a clean canvas.",
+      "url": "https://askwisely.com/design-system-showcase"
     },
     {
       "@type": "ListItem",
       "position": 28,
-      "name": "First Principles Thinking",
-      "description": "Break problems down to fundamental truths and reason up from the ground floor.",
-      "url": "https://askwisely.com/#first-principles-thinking"
+      "name": "Design Systems Fundamentals",
+      "description": "Build scalable component libraries with tokens, patterns, and governance.",
+      "url": "https://askwisely.com/design-systems-fundamentals"
     },
     {
       "@type": "ListItem",
       "position": 29,
-      "name": "Flash Fiction Architect",
-      "description": "Construct complete narratives in under 500 words with maximum emotional impact.",
-      "url": "https://askwisely.com/#flash-fiction-architect"
+      "name": "Dialogue Dynamics",
+      "description": "Write dialogue that reveals character, advances plot, and sounds natural simultaneously.",
+      "url": "https://askwisely.com/dialogue-dynamics"
     },
     {
       "@type": "ListItem",
       "position": 30,
-      "name": "Floating Pavilion",
-      "description": "A minimalist concrete pavilion hovering over a still reflecting pool.",
-      "url": "https://askwisely.com/#floating-pavilion"
+      "name": "Difficult Conversations Framework",
+      "description": "Navigate difficult conversations by separating impact from intent and using the AND stance.",
+      "url": "https://askwisely.com/difficult-conversations-framework"
     },
     {
       "@type": "ListItem",
       "position": 31,
-      "name": "Fog of War",
-      "description": "A tense battlefield scene obscured by dense fog with dramatic chiaroscuro lighting.",
-      "url": "https://askwisely.com/#fog-of-war"
+      "name": "Double Exposure Spirit",
+      "description": "An in-camera double exposure blending a portrait with a forest landscape.",
+      "url": "https://askwisely.com/double-exposure-spirit"
     },
     {
       "@type": "ListItem",
       "position": 32,
-      "name": "Glass Canyon Bridge",
-      "description": "A transparent glass bridge spanning a deep canyon with vertigo-inducing perspective.",
-      "url": "https://askwisely.com/#glass-canyon-bridge"
+      "name": "Editing as Craft",
+      "description": "Transform rough drafts into polished prose through systematic self-editing passes.",
+      "url": "https://askwisely.com/editing-as-craft"
     },
     {
       "@type": "ListItem",
       "position": 33,
-      "name": "Golden Hour Wasteland",
-      "description": "A post-apocalyptic desert bathed in warm amber light with lone silhouette.",
-      "url": "https://askwisely.com/#golden-hour-wasteland"
+      "name": "Error Recovery Patterns",
+      "description": "Handle AI errors, hallucinations, and unexpected outputs with resilient prompt design.",
+      "url": "https://askwisely.com/error-recovery-patterns"
     },
     {
       "@type": "ListItem",
       "position": 34,
-      "name": "Grid Systems",
-      "description": "Structure layouts with mathematical grids for consistency and visual harmony.",
-      "url": "https://askwisely.com/#grid-systems"
+      "name": "Evaluation and Benchmarking",
+      "description": "Measure prompt effectiveness with systematic testing and comparison frameworks.",
+      "url": "https://askwisely.com/evaluation-and-benchmarking"
     },
     {
       "@type": "ListItem",
       "position": 35,
-      "name": "Ice Hotel Aurora",
-      "description": "An ice architecture interior with carved walls reflecting the northern lights.",
-      "url": "https://askwisely.com/#ice-hotel-aurora"
+      "name": "Executive Summary Craft",
+      "description": "Write executive summaries that lead with the recommendation and respect the reader's time.",
+      "url": "https://askwisely.com/executive-summary-craft"
     },
     {
       "@type": "ListItem",
       "position": 36,
-      "name": "Information Architecture",
-      "description": "Organize and structure content so users can find what they need intuitively.",
-      "url": "https://askwisely.com/#information-architecture"
+      "name": "Few-Shot Learning Patterns",
+      "description": "Teach AI new tasks by providing carefully structured examples in the prompt.",
+      "url": "https://askwisely.com/few-shot-learning-patterns"
     },
     {
       "@type": "ListItem",
       "position": 37,
-      "name": "Ink Wash Dragon",
-      "description": "A Chinese ink wash painting of a dragon emerging from mist with masterful brushwork.",
-      "url": "https://askwisely.com/#ink-wash-dragon"
+      "name": "Film Noir Femme",
+      "description": "A high-contrast black and white portrait channeling 1940s Hollywood glamour.",
+      "url": "https://askwisely.com/film-noir-femme"
     },
     {
       "@type": "ListItem",
       "position": 38,
-      "name": "Isometric Sanctuary",
-      "description": "A cozy isometric room with impossible geometry and warm inviting detail.",
-      "url": "https://askwisely.com/#isometric-sanctuary"
+      "name": "First Principles Thinking",
+      "description": "Break problems down to fundamental truths and reason up from the ground floor.",
+      "url": "https://askwisely.com/first-principles-thinking"
     },
     {
       "@type": "ListItem",
       "position": 39,
-      "name": "Low Poly Wilderness",
-      "description": "A faceted geometric wilderness with dramatic lighting on triangulated surfaces.",
-      "url": "https://askwisely.com/#low-poly-wilderness"
+      "name": "Flash Fiction Architect",
+      "description": "Construct complete narratives in under 500 words with maximum emotional impact.",
+      "url": "https://askwisely.com/flash-fiction-architect"
     },
     {
       "@type": "ListItem",
       "position": 40,
-      "name": "Mental Model Stacking",
-      "description": "Combine multiple thinking frameworks to analyze problems from diverse angles simultaneously.",
-      "url": "https://askwisely.com/#mental-model-stacking"
+      "name": "Flat Lay Essentials",
+      "description": "An overhead flat lay product arrangement with precise grid alignment and soft shadows.",
+      "url": "https://askwisely.com/flat-lay-essentials"
     },
     {
       "@type": "ListItem",
       "position": 41,
-      "name": "Micro-Interactions",
-      "description": "Design tiny moments of feedback that make interfaces feel alive and responsive.",
-      "url": "https://askwisely.com/#micro-interactions"
+      "name": "Floating Pavilion",
+      "description": "A minimalist concrete pavilion hovering over a still reflecting pool.",
+      "url": "https://askwisely.com/floating-pavilion"
     },
     {
       "@type": "ListItem",
       "position": 42,
-      "name": "Midnight Express Train",
-      "description": "A vintage luxury train speeding through moonlit mountains with warm interior glow.",
-      "url": "https://askwisely.com/#midnight-express-train"
+      "name": "Fog of War",
+      "description": "A tense battlefield scene obscured by dense fog with dramatic chiaroscuro lighting.",
+      "url": "https://askwisely.com/fog-of-war"
     },
     {
       "@type": "ListItem",
       "position": 43,
-      "name": "Motion Design Principles",
-      "description": "Use animation purposefully to guide attention, communicate state, and add delight.",
-      "url": "https://askwisely.com/#motion-design-principles"
+      "name": "Food Editorial Feast",
+      "description": "Editorial food photography with styled imperfection, directional lighting, and rich textures.",
+      "url": "https://askwisely.com/food-editorial-feast"
     },
     {
       "@type": "ListItem",
       "position": 44,
-      "name": "Multi-Agent Orchestration",
-      "description": "Design systems where multiple AI agents collaborate with defined roles and handoffs.",
-      "url": "https://askwisely.com/#multi-agent-orchestration"
+      "name": "Glass Canyon Bridge",
+      "description": "A transparent glass bridge spanning a deep canyon with vertigo-inducing perspective.",
+      "url": "https://askwisely.com/glass-canyon-bridge"
     },
     {
       "@type": "ListItem",
       "position": 45,
-      "name": "Neon Noir Streetscape",
-      "description": "A rain-slicked futuristic alleyway with deep shadows and vibrant cyan-magenta lighting.",
-      "url": "https://askwisely.com/#neon-noir-streetscape"
+      "name": "Golden Hour Wasteland",
+      "description": "A post-apocalyptic desert bathed in warm amber light with lone silhouette.",
+      "url": "https://askwisely.com/golden-hour-wasteland"
     },
     {
       "@type": "ListItem",
       "position": 46,
-      "name": "Neon Rain Chase",
-      "description": "A high-speed motorcycle chase through rain-soaked neon streets of a future city.",
-      "url": "https://askwisely.com/#neon-rain-chase"
+      "name": "Grid Systems",
+      "description": "Structure layouts with mathematical grids for consistency and visual harmony.",
+      "url": "https://askwisely.com/grid-systems"
     },
     {
       "@type": "ListItem",
       "position": 47,
-      "name": "Neon Youth",
-      "description": "A gen-Z portrait with bold neon lighting and contemporary street fashion.",
-      "url": "https://askwisely.com/#neon-youth"
+      "name": "Hallucination Detection",
+      "description": "Identify and prevent AI fabrications with specificity tests and grounding techniques.",
+      "url": "https://askwisely.com/hallucination-detection"
     },
     {
       "@type": "ListItem",
       "position": 48,
-      "name": "Output Formatting Mastery",
-      "description": "Control AI output structure using format specifications and parsing techniques.",
-      "url": "https://askwisely.com/#output-formatting-mastery"
+      "name": "Ice Hotel Aurora",
+      "description": "An ice architecture interior with carved walls reflecting the northern lights.",
+      "url": "https://askwisely.com/ice-hotel-aurora"
     },
     {
       "@type": "ListItem",
       "position": 49,
-      "name": "Papercraft Cosmos",
-      "description": "A layered paper-cut solar system with visible layers, shadows, and craft textures.",
-      "url": "https://askwisely.com/#papercraft-cosmos"
+      "name": "Information Architecture",
+      "description": "Organize and structure content so users can find what they need intuitively.",
+      "url": "https://askwisely.com/information-architecture"
     },
     {
       "@type": "ListItem",
       "position": 50,
-      "name": "Parametric Concert Hall",
-      "description": "A flowing parametric interior designed for perfect acoustics with dramatic form.",
-      "url": "https://askwisely.com/#parametric-concert-hall"
+      "name": "Ink Wash Dragon",
+      "description": "A Chinese ink wash painting of a dragon emerging from mist with masterful brushwork.",
+      "url": "https://askwisely.com/ink-wash-dragon"
     },
     {
       "@type": "ListItem",
       "position": 51,
-      "name": "Pixel Art Odyssey",
-      "description": "A vast 16-bit landscape with nostalgic pixel aesthetics and modern complexity.",
-      "url": "https://askwisely.com/#pixel-art-odyssey"
+      "name": "Isometric Sanctuary",
+      "description": "A cozy isometric room with impossible geometry and warm inviting detail.",
+      "url": "https://askwisely.com/isometric-sanctuary"
     },
     {
       "@type": "ListItem",
       "position": 52,
-      "name": "Poetry Forge",
-      "description": "Generate structured poetry with precise meter, rhyme schemes, and thematic depth.",
-      "url": "https://askwisely.com/#poetry-forge"
+      "name": "Landing Page Hero",
+      "description": "A full SaaS landing page design with hero section, features, testimonials, and pricing.",
+      "url": "https://askwisely.com/landing-page-hero"
     },
     {
       "@type": "ListItem",
       "position": 53,
-      "name": "Porcelain Mask",
-      "description": "A surreal portrait where human skin transitions into cracked porcelain ceramic.",
-      "url": "https://askwisely.com/#porcelain-mask"
+      "name": "Least-to-Most Decomposition",
+      "description": "Break complex problems into subproblems and solve from simplest to hardest, building up.",
+      "url": "https://askwisely.com/least-to-most-decomposition"
     },
     {
       "@type": "ListItem",
       "position": 54,
-      "name": "Prompt Engineering 101",
-      "description": "The foundational principles of Chain-of-Thought and Few-Shot prompting techniques.",
-      "url": "https://askwisely.com/#prompt-engineering-101"
+      "name": "Low Poly Wilderness",
+      "description": "A faceted geometric wilderness with dramatic lighting on triangulated surfaces.",
+      "url": "https://askwisely.com/low-poly-wilderness"
     },
     {
       "@type": "ListItem",
       "position": 55,
-      "name": "Renaissance Digital",
-      "description": "A modern subject painted in the style of a Flemish Renaissance oil portrait.",
-      "url": "https://askwisely.com/#renaissance-digital"
+      "name": "Luxury Product Hero",
+      "description": "A dramatic studio hero shot with editorial lighting and luxury material backdrop.",
+      "url": "https://askwisely.com/luxury-product-hero"
     },
     {
       "@type": "ListItem",
       "position": 56,
-      "name": "Responsive Design Patterns",
-      "description": "Design fluid layouts that adapt gracefully across all screen sizes and devices.",
-      "url": "https://askwisely.com/#responsive-design-patterns"
+      "name": "Mental Model Stacking",
+      "description": "Combine multiple thinking frameworks to analyze problems from diverse angles simultaneously.",
+      "url": "https://askwisely.com/mental-model-stacking"
     },
     {
       "@type": "ListItem",
       "position": 57,
-      "name": "Scenario Planning",
-      "description": "Prepare for multiple futures by building strategic narratives around key uncertainties.",
-      "url": "https://askwisely.com/#scenario-planning"
+      "name": "Micro-Interactions",
+      "description": "Design tiny moments of feedback that make interfaces feel alive and responsive.",
+      "url": "https://askwisely.com/micro-interactions"
     },
     {
       "@type": "ListItem",
       "position": 58,
-      "name": "Second-Order Thinking",
-      "description": "Anticipate the consequences of consequences to make decisions that compound positively.",
-      "url": "https://askwisely.com/#second-order-thinking"
+      "name": "Midnight Express Train",
+      "description": "A vintage luxury train speeding through moonlit mountains with warm interior glow.",
+      "url": "https://askwisely.com/midnight-express-train"
     },
     {
       "@type": "ListItem",
       "position": 59,
-      "name": "Sensory Writing Craft",
-      "description": "Engage all five senses to create immersive writing that readers experience physically.",
-      "url": "https://askwisely.com/#sensory-writing-craft"
+      "name": "Mobile App Concept",
+      "description": "Three-screen mobile app flow showing onboarding through main experience in iOS style.",
+      "url": "https://askwisely.com/mobile-app-concept"
     },
     {
       "@type": "ListItem",
       "position": 60,
-      "name": "Show Don't Tell",
-      "description": "Replace abstract statements with concrete sensory details that let readers experience meaning.",
-      "url": "https://askwisely.com/#show-dont-tell"
+      "name": "Model Selection Guide",
+      "description": "Choose the right AI model by matching task complexity, cost, and latency requirements.",
+      "url": "https://askwisely.com/model-selection-guide"
     },
     {
       "@type": "ListItem",
       "position": 61,
-      "name": "Stained Glass Galaxy",
-      "description": "A galaxy rendered in medieval stained glass with lead lines and jewel tones.",
-      "url": "https://askwisely.com/#stained-glass-galaxy"
+      "name": "Motion Design Principles",
+      "description": "Use animation purposefully to guide attention, communicate state, and add delight.",
+      "url": "https://askwisely.com/motion-design-principles"
     },
     {
       "@type": "ListItem",
       "position": 62,
-      "name": "Subterranean Library",
-      "description": "A vast underground library carved into natural rock with dramatic light wells.",
-      "url": "https://askwisely.com/#subterranean-library"
+      "name": "Multi-Agent Orchestration",
+      "description": "Design systems where multiple AI agents collaborate with defined roles and handoffs.",
+      "url": "https://askwisely.com/multi-agent-orchestration"
     },
     {
       "@type": "ListItem",
       "position": 63,
-      "name": "Subtext and Implication",
-      "description": "Communicate meaning between the lines through what is left unsaid and implied.",
-      "url": "https://askwisely.com/#subtext-and-implication"
+      "name": "Neon Noir Streetscape",
+      "description": "A rain-slicked futuristic alleyway with deep shadows and vibrant cyan-magenta lighting.",
+      "url": "https://askwisely.com/neon-noir-streetscape"
     },
     {
       "@type": "ListItem",
       "position": 64,
-      "name": "System Design Blueprint",
-      "description": "Architect distributed systems with proper scaling, resilience, and data consistency patterns.",
-      "url": "https://askwisely.com/#system-design-blueprint"
+      "name": "Neon Rain Chase",
+      "description": "A high-speed motorcycle chase through rain-soaked neon streets of a future city.",
+      "url": "https://askwisely.com/neon-rain-chase"
     },
     {
       "@type": "ListItem",
       "position": 65,
-      "name": "System Prompt Architecture",
-      "description": "Design robust system prompts that establish consistent AI behavior and constraints.",
-      "url": "https://askwisely.com/#system-prompt-architecture"
+      "name": "Neon Youth",
+      "description": "A gen-Z portrait with bold neon lighting and contemporary street fashion.",
+      "url": "https://askwisely.com/neon-youth"
     },
     {
       "@type": "ListItem",
       "position": 66,
-      "name": "The 80/20 Principle",
-      "description": "Identify the vital few inputs that drive the majority of results in any system.",
-      "url": "https://askwisely.com/#the-80-20-principle"
+      "name": "Output Formatting Mastery",
+      "description": "Control AI output structure using format specifications and parsing techniques.",
+      "url": "https://askwisely.com/output-formatting-mastery"
     },
     {
       "@type": "ListItem",
       "position": 67,
-      "name": "The Abstract Crafter",
-      "description": "Write concise, structured abstracts that capture research significance in 250 words.",
-      "url": "https://askwisely.com/#the-abstract-crafter"
+      "name": "Packaging Showcase",
+      "description": "A dynamic 3D product packaging visualization with unboxing elements and brand identity.",
+      "url": "https://askwisely.com/packaging-showcase"
     },
     {
       "@type": "ListItem",
       "position": 68,
-      "name": "The Alchemist Portrait",
-      "description": "A mystical portrait of a figure surrounded by glowing elements and arcane symbols.",
-      "url": "https://askwisely.com/#the-alchemist-portrait"
+      "name": "Papercraft Cosmos",
+      "description": "A layered paper-cut solar system with visible layers, shadows, and craft textures.",
+      "url": "https://askwisely.com/papercraft-cosmos"
     },
     {
       "@type": "ListItem",
       "position": 69,
-      "name": "The Astronaut's Gaze",
-      "description": "A contemplative astronaut with Earth reflected in the helmet visor.",
-      "url": "https://askwisely.com/#the-astronauts-gaze"
+      "name": "Parametric Concert Hall",
+      "description": "A flowing parametric interior designed for perfect acoustics with dramatic form.",
+      "url": "https://askwisely.com/parametric-concert-hall"
     },
     {
       "@type": "ListItem",
       "position": 70,
-      "name": "The Brand Storyteller",
-      "description": "Build brand narratives that create emotional connection and market differentiation.",
-      "url": "https://askwisely.com/#the-brand-storyteller"
+      "name": "Pixel Art Odyssey",
+      "description": "A vast 16-bit landscape with nostalgic pixel aesthetics and modern complexity.",
+      "url": "https://askwisely.com/pixel-art-odyssey"
     },
     {
       "@type": "ListItem",
       "position": 71,
-      "name": "The Concept Mapper",
-      "description": "Build conceptual frameworks that reveal relationships between theories and ideas.",
-      "url": "https://askwisely.com/#the-concept-mapper"
+      "name": "Poetry Forge",
+      "description": "Generate structured poetry with precise meter, rhyme schemes, and thematic depth.",
+      "url": "https://askwisely.com/poetry-forge"
     },
     {
       "@type": "ListItem",
       "position": 72,
-      "name": "The Cosmic Philosopher",
-      "description": "Explore existential questions with the wonder of Carl Sagan and the rigor of philosophy.",
-      "url": "https://askwisely.com/#the-cosmic-philosopher"
+      "name": "Porcelain Mask",
+      "description": "A surreal portrait where human skin transitions into cracked porcelain ceramic.",
+      "url": "https://askwisely.com/porcelain-mask"
     },
     {
       "@type": "ListItem",
       "position": 73,
-      "name": "The Critical Thinker",
-      "description": "Analyze arguments for logical validity, hidden assumptions, and rhetorical manipulation.",
-      "url": "https://askwisely.com/#the-critical-thinker"
+      "name": "Presentation Architecture",
+      "description": "Structure presentations using narrative frameworks that hold attention and drive action.",
+      "url": "https://askwisely.com/presentation-architecture"
     },
     {
       "@type": "ListItem",
       "position": 74,
-      "name": "The Data Interpreter",
-      "description": "Translate statistical results into meaningful insights with proper caveats and context.",
-      "url": "https://askwisely.com/#the-data-interpreter"
+      "name": "Prompt Chaining Pipelines",
+      "description": "Connect multiple prompts into pipelines where each step feeds the next for complex workflows.",
+      "url": "https://askwisely.com/prompt-chaining-pipelines"
     },
     {
       "@type": "ListItem",
       "position": 75,
-      "name": "The Debug Whisperer",
-      "description": "Systematically diagnose and resolve bugs using structured reasoning and elimination.",
-      "url": "https://askwisely.com/#the-debug-whisperer"
+      "name": "Prompt Debugging",
+      "description": "Debug failing prompts systematically by classifying failures and isolating variables.",
+      "url": "https://askwisely.com/prompt-debugging"
     },
     {
       "@type": "ListItem",
       "position": 76,
-      "name": "The DevOps Navigator",
-      "description": "Design CI/CD pipelines, infrastructure-as-code, and deployment strategies for reliability.",
-      "url": "https://askwisely.com/#the-devops-navigator"
+      "name": "Prompt Engineering 101",
+      "description": "The foundational principles of Chain-of-Thought and Few-Shot prompting techniques.",
+      "url": "https://askwisely.com/prompt-engineering-101"
     },
     {
       "@type": "ListItem",
       "position": 77,
-      "name": "The Dialogue Alchemist",
-      "description": "Craft natural, subtext-rich dialogue that reveals character without exposition.",
-      "url": "https://askwisely.com/#the-dialogue-alchemist"
+      "name": "ReAct Framework",
+      "description": "Combine reasoning with tool use for tasks requiring real-time information gathering.",
+      "url": "https://askwisely.com/react-reasoning-acting"
     },
     {
       "@type": "ListItem",
       "position": 78,
-      "name": "The Diplomatic Envoy",
-      "description": "Navigate conflicts and difficult conversations with grace and strategic empathy.",
-      "url": "https://askwisely.com/#the-diplomatic-envoy"
+      "name": "Renaissance Digital",
+      "description": "A modern subject painted in the style of a Flemish Renaissance oil portrait.",
+      "url": "https://askwisely.com/renaissance-digital"
     },
     {
       "@type": "ListItem",
       "position": 79,
-      "name": "The Eisenhower Matrix",
-      "description": "Prioritize ruthlessly by separating urgency from importance to focus on what truly matters.",
-      "url": "https://askwisely.com/#the-eisenhower-matrix"
+      "name": "Responsive Design Patterns",
+      "description": "Design fluid layouts that adapt gracefully across all screen sizes and devices.",
+      "url": "https://askwisely.com/responsive-design-patterns"
     },
     {
       "@type": "ListItem",
       "position": 80,
-      "name": "The Elder Sage",
-      "description": "A Tibetan monk portrait with extraordinary detail and meditative serenity.",
-      "url": "https://askwisely.com/#the-elder-sage"
+      "name": "Scenario Planning",
+      "description": "Prepare for multiple futures by building strategic narratives around key uncertainties.",
+      "url": "https://askwisely.com/scenario-planning"
     },
     {
       "@type": "ListItem",
       "position": 81,
-      "name": "The Emotional Cartographer",
-      "description": "Map complex emotional journeys through narrative structure and pacing control.",
-      "url": "https://askwisely.com/#the-emotional-cartographer"
+      "name": "Second-Order Thinking",
+      "description": "Anticipate the consequences of consequences to make decisions that compound positively.",
+      "url": "https://askwisely.com/second-order-thinking"
     },
     {
       "@type": "ListItem",
       "position": 82,
-      "name": "The Financial Modeler",
-      "description": "Build financial projections with sensitivity analysis and key assumption documentation.",
-      "url": "https://askwisely.com/#the-financial-modeler"
+      "name": "Self-Consistency Sampling",
+      "description": "Sample multiple reasoning paths and take the majority answer for improved reliability.",
+      "url": "https://askwisely.com/self-consistency-sampling"
     },
     {
       "@type": "ListItem",
       "position": 83,
-      "name": "The Flywheel Effect",
-      "description": "Build self-reinforcing systems where each success makes the next one easier and faster.",
-      "url": "https://askwisely.com/#the-flywheel-effect"
+      "name": "Sensory Writing Craft",
+      "description": "Engage all five senses to create immersive writing that readers experience physically.",
+      "url": "https://askwisely.com/sensory-writing-craft"
     },
     {
       "@type": "ListItem",
       "position": 84,
-      "name": "The Genre Blender",
-      "description": "Fuse two incompatible genres into a cohesive narrative with original voice.",
-      "url": "https://askwisely.com/#the-genre-blender"
+      "name": "Show Don't Tell",
+      "description": "Replace abstract statements with concrete sensory details that let readers experience meaning.",
+      "url": "https://askwisely.com/show-dont-tell"
     },
     {
       "@type": "ListItem",
       "position": 85,
-      "name": "The Growth Hacker",
-      "description": "Design data-driven growth experiments with clear hypotheses and measurement frameworks.",
-      "url": "https://askwisely.com/#the-growth-hacker"
+      "name": "Stained Glass Galaxy",
+      "description": "A galaxy rendered in medieval stained glass with lead lines and jewel tones.",
+      "url": "https://askwisely.com/stained-glass-galaxy"
     },
     {
       "@type": "ListItem",
       "position": 86,
-      "name": "The Hook Formula",
-      "description": "Craft irresistible opening lines that compel readers to continue using proven structures.",
-      "url": "https://askwisely.com/#the-hook-formula"
+      "name": "Step-Back Prompting",
+      "description": "Derive general principles before solving specific problems to reduce errors by 36%.",
+      "url": "https://askwisely.com/step-back-prompting"
     },
     {
       "@type": "ListItem",
       "position": 87,
-      "name": "The Hypothesis Generator",
-      "description": "Generate testable hypotheses from observations using abductive reasoning and theory.",
-      "url": "https://askwisely.com/#the-hypothesis-generator"
+      "name": "Subterranean Library",
+      "description": "A vast underground library carved into natural rock with dramatic light wells.",
+      "url": "https://askwisely.com/subterranean-library"
     },
     {
       "@type": "ListItem",
       "position": 88,
-      "name": "The Inversion Method",
-      "description": "Solve problems backwards by identifying what would guarantee failure and avoiding it.",
-      "url": "https://askwisely.com/#the-inversion-method"
+      "name": "Subtext and Implication",
+      "description": "Communicate meaning between the lines through what is left unsaid and implied.",
+      "url": "https://askwisely.com/subtext-and-implication"
     },
     {
       "@type": "ListItem",
       "position": 89,
-      "name": "The Jazz Improviser",
-      "description": "Break creative blocks through spontaneity, riffing, and structured improvisation.",
-      "url": "https://askwisely.com/#the-jazz-improviser"
+      "name": "System Design Blueprint",
+      "description": "Architect distributed systems with proper scaling, resilience, and data consistency patterns.",
+      "url": "https://askwisely.com/system-design-blueprint"
     },
     {
       "@type": "ListItem",
       "position": 90,
-      "name": "The Last Light",
-      "description": "A lighthouse beam cutting through a violent storm at twilight with epic scale.",
-      "url": "https://askwisely.com/#the-last-light"
+      "name": "System Prompt Architecture",
+      "description": "Design robust system prompts that establish consistent AI behavior and constraints.",
+      "url": "https://askwisely.com/system-prompt-architecture"
     },
     {
       "@type": "ListItem",
       "position": 91,
-      "name": "The Literature Reviewer",
-      "description": "Synthesize research papers into structured literature reviews with gap analysis.",
-      "url": "https://askwisely.com/#the-literature-reviewer"
+      "name": "The 80/20 Principle",
+      "description": "Identify the vital few inputs that drive the majority of results in any system.",
+      "url": "https://askwisely.com/the-80-20-principle"
     },
     {
       "@type": "ListItem",
       "position": 92,
-      "name": "The Market Analyst",
-      "description": "Conduct deep market analysis with TAM/SAM/SOM calculations and competitive mapping.",
-      "url": "https://askwisely.com/#the-market-analyst"
+      "name": "The Abstract Crafter",
+      "description": "Write concise, structured abstracts that capture research significance in 250 words.",
+      "url": "https://askwisely.com/the-abstract-crafter"
     },
     {
       "@type": "ListItem",
       "position": 93,
-      "name": "The Metaphor Engine",
-      "description": "Transform abstract concepts into vivid, layered metaphors that resonate emotionally with readers.",
-      "url": "https://askwisely.com/#the-metaphor-engine"
+      "name": "The Adaptive Quiz Master",
+      "description": "Design adaptive quiz sequences with branching logic and targeted remediation paths.",
+      "url": "https://askwisely.com/the-adaptive-quiz-master"
     },
     {
       "@type": "ListItem",
       "position": 94,
-      "name": "The Narrative Architect",
-      "description": "Build immersive worlds with consistent internal logic and sensory-rich environments.",
-      "url": "https://askwisely.com/#the-narrative-architect"
+      "name": "The Alchemist Portrait",
+      "description": "A mystical portrait of a figure surrounded by glowing elements and arcane symbols.",
+      "url": "https://askwisely.com/the-alchemist-portrait"
     },
     {
       "@type": "ListItem",
       "position": 95,
-      "name": "The Negotiation Strategist",
-      "description": "Prepare for high-stakes negotiations using BATNA analysis and principled bargaining.",
-      "url": "https://askwisely.com/#the-negotiation-strategist"
+      "name": "The Assumption Auditor",
+      "description": "Systematically destroy hidden assumptions in business plans through pre-mortems and stress tests.",
+      "url": "https://askwisely.com/the-assumption-auditor"
     },
     {
       "@type": "ListItem",
       "position": 96,
-      "name": "The OKR Architect",
-      "description": "Design measurable objectives and key results that drive alignment and accountability.",
-      "url": "https://askwisely.com/#the-okr-architect"
+      "name": "The Astronaut's Gaze",
+      "description": "A contemplative astronaut with Earth reflected in the helmet visor.",
+      "url": "https://askwisely.com/the-astronauts-gaze"
     },
     {
       "@type": "ListItem",
       "position": 97,
-      "name": "The Peer Reviewer",
-      "description": "Provide constructive, structured peer review feedback that strengthens academic work.",
-      "url": "https://askwisely.com/#the-peer-reviewer"
+      "name": "The Brand Storyteller",
+      "description": "Build brand narratives that create emotional connection and market differentiation.",
+      "url": "https://askwisely.com/the-brand-storyteller"
     },
     {
       "@type": "ListItem",
       "position": 98,
-      "name": "The Performance Oracle",
-      "description": "Identify bottlenecks and optimize code for speed, memory, and scalability.",
-      "url": "https://askwisely.com/#the-performance-oracle"
+      "name": "The Clinical Reasoner",
+      "description": "Walk through diagnostic reasoning from differential diagnosis to clinical decision points.",
+      "url": "https://askwisely.com/the-clinical-reasoner"
     },
     {
       "@type": "ListItem",
       "position": 99,
-      "name": "The Pitch Perfectionist",
-      "description": "Craft compelling elevator pitches and investor decks using narrative frameworks.",
-      "url": "https://askwisely.com/#the-pitch-perfectionist"
+      "name": "The Competitive Analyst",
+      "description": "Conduct thorough competitive analysis with feature matrices and strategic responses.",
+      "url": "https://askwisely.com/the-competitive-analyst"
     },
     {
       "@type": "ListItem",
       "position": 100,
-      "name": "The Power of Brevity",
-      "description": "Communicate more by writing less through deliberate compression and precision.",
-      "url": "https://askwisely.com/#the-power-of-brevity"
+      "name": "The Compliance Navigator",
+      "description": "Assess regulatory compliance readiness with gap analysis and audit preparation.",
+      "url": "https://askwisely.com/the-compliance-navigator"
     },
     {
       "@type": "ListItem",
       "position": 101,
-      "name": "The Regex Artisan",
-      "description": "Craft precise regular expressions with clear explanations and edge case handling.",
-      "url": "https://askwisely.com/#the-regex-artisan"
+      "name": "The Concept Mapper",
+      "description": "Build conceptual frameworks that reveal relationships between theories and ideas.",
+      "url": "https://askwisely.com/the-concept-mapper"
     },
     {
       "@type": "ListItem",
       "position": 102,
-      "name": "The Renaissance Polymath",
-      "description": "Explore ideas across disciplines with the curiosity of Leonardo da Vinci.",
-      "url": "https://askwisely.com/#the-renaissance-polymath"
+      "name": "The Content Strategist",
+      "description": "Build a content strategy from audience personas to distribution and ROI models.",
+      "url": "https://askwisely.com/the-content-strategist"
     },
     {
       "@type": "ListItem",
       "position": 103,
-      "name": "The Research Methodologist",
-      "description": "Design research methodologies with proper sampling, controls, and validity measures.",
-      "url": "https://askwisely.com/#the-research-methodologist"
+      "name": "The Contract Reviewer",
+      "description": "Analyze contracts for red flags, hidden obligations, and negotiation priorities.",
+      "url": "https://askwisely.com/the-contract-reviewer"
     },
     {
       "@type": "ListItem",
       "position": 104,
-      "name": "The Risk Assessor",
-      "description": "Identify, quantify, and mitigate business risks using structured frameworks.",
-      "url": "https://askwisely.com/#the-risk-assessor"
+      "name": "The Copywriting Alchemist",
+      "description": "Write high-converting copy with headlines, objection handling, and A/B test plans.",
+      "url": "https://askwisely.com/the-copywriting-alchemist"
     },
     {
       "@type": "ListItem",
       "position": 105,
-      "name": "The Scene Painter",
-      "description": "Write immersive descriptions that engage all five senses in a specific emotional key.",
-      "url": "https://askwisely.com/#the-scene-painter"
+      "name": "The Cosmic Philosopher",
+      "description": "Explore existential questions with the wonder of Carl Sagan and the rigor of philosophy.",
+      "url": "https://askwisely.com/the-cosmic-philosopher"
     },
     {
       "@type": "ListItem",
       "position": 106,
-      "name": "The Security Sentinel",
-      "description": "Audit code for vulnerabilities using OWASP methodology and defense-in-depth principles.",
-      "url": "https://askwisely.com/#the-security-sentinel"
+      "name": "The Critical Thinker",
+      "description": "Analyze arguments for logical validity, hidden assumptions, and rhetorical manipulation.",
+      "url": "https://askwisely.com/the-critical-thinker"
     },
     {
       "@type": "ListItem",
       "position": 107,
-      "name": "The Silicon Valley Mentor",
-      "description": "Get startup advice from a battle-tested tech founder who has seen it all.",
-      "url": "https://askwisely.com/#the-silicon-valley-mentor"
+      "name": "The Curriculum Designer",
+      "description": "Design complete curricula with learning outcomes, assessments, and scaffolding plans.",
+      "url": "https://askwisely.com/the-curriculum-designer"
     },
     {
       "@type": "ListItem",
       "position": 108,
-      "name": "The Socrates Tutor",
-      "description": "Master complex subjects through guided questioning and first-principles thinking.",
-      "url": "https://askwisely.com/#the-socrates-tutor"
+      "name": "The Data Cleaner",
+      "description": "Design comprehensive data cleaning pipelines with validation and monitoring strategies.",
+      "url": "https://askwisely.com/the-data-cleaner"
     },
     {
       "@type": "ListItem",
       "position": 109,
-      "name": "The Stakeholder Whisperer",
-      "description": "Navigate complex stakeholder dynamics using power mapping and communication strategies.",
-      "url": "https://askwisely.com/#the-stakeholder-whisperer"
+      "name": "The Data Interpreter",
+      "description": "Translate statistical results into meaningful insights with proper caveats and context.",
+      "url": "https://askwisely.com/the-data-interpreter"
     },
     {
       "@type": "ListItem",
       "position": 110,
-      "name": "The Stoic Philosopher",
-      "description": "Receive guidance through the lens of Marcus Aurelius and Stoic philosophy.",
-      "url": "https://askwisely.com/#the-stoic-philosopher"
+      "name": "The Debug Whisperer",
+      "description": "Systematically diagnose and resolve bugs using structured reasoning and elimination.",
+      "url": "https://askwisely.com/the-debug-whisperer"
     },
     {
       "@type": "ListItem",
       "position": 111,
-      "name": "The Strategic Mind",
-      "description": "Develop high-level business strategies with detailed SWOT analysis and market entry plans.",
-      "url": "https://askwisely.com/#the-strategic-mind"
+      "name": "The Decision Journal",
+      "description": "Structure a decision journal entry to improve judgment through reflection and pre-mortems.",
+      "url": "https://askwisely.com/the-decision-journal"
     },
     {
       "@type": "ListItem",
       "position": 112,
-      "name": "The Test Strategist",
-      "description": "Design comprehensive test suites using the testing pyramid and boundary analysis.",
-      "url": "https://askwisely.com/#the-test-strategist"
+      "name": "The Devil's Advocate",
+      "description": "Challenge arguments through steelmanning, counter-arguments, and falsifiability testing.",
+      "url": "https://askwisely.com/the-devils-advocate"
     },
     {
       "@type": "ListItem",
       "position": 113,
-      "name": "The Thesis Architect",
-      "description": "Develop rigorous thesis statements and argument structures for academic writing.",
-      "url": "https://askwisely.com/#the-thesis-architect"
+      "name": "The DevOps Navigator",
+      "description": "Design CI/CD pipelines, infrastructure-as-code, and deployment strategies for reliability.",
+      "url": "https://askwisely.com/the-devops-navigator"
     },
     {
       "@type": "ListItem",
       "position": 114,
-      "name": "The Three-Act Structure",
-      "description": "Build compelling narratives using the universal story architecture of setup, confrontation, and resolution.",
-      "url": "https://askwisely.com/#the-three-act-structure"
+      "name": "The Dialogue Alchemist",
+      "description": "Craft natural, subtext-rich dialogue that reveals character without exposition.",
+      "url": "https://askwisely.com/the-dialogue-alchemist"
     },
     {
       "@type": "ListItem",
       "position": 115,
-      "name": "The Time Traveler Historian",
-      "description": "Analyze modern situations through historical parallels and pattern recognition.",
-      "url": "https://askwisely.com/#the-time-traveler-historian"
+      "name": "The Differential Diagnosis Engine",
+      "description": "Generate comprehensive differentials with cannot-miss diagnoses and cognitive bias checks.",
+      "url": "https://askwisely.com/the-differential-diagnosis-engine"
     },
     {
       "@type": "ListItem",
       "position": 116,
-      "name": "The Tone Shapeshifter",
-      "description": "Rewrite any passage in radically different tones while preserving core meaning.",
-      "url": "https://askwisely.com/#the-tone-shapeshifter"
+      "name": "The Diplomatic Envoy",
+      "description": "Navigate conflicts and difficult conversations with grace and strategic empathy.",
+      "url": "https://askwisely.com/the-diplomatic-envoy"
     },
     {
       "@type": "ListItem",
       "position": 117,
-      "name": "The Unreliable Narrator",
-      "description": "Master first-person perspective where the narrator's version of events cannot be fully trusted.",
-      "url": "https://askwisely.com/#the-unreliable-narrator"
+      "name": "The EDA Navigator",
+      "description": "Guide thorough exploratory data analysis from first questions to executive headlines.",
+      "url": "https://askwisely.com/the-eda-navigator"
     },
     {
       "@type": "ListItem",
       "position": 118,
-      "name": "The Victorian Detective",
-      "description": "Solve problems using deductive reasoning in the style of Sherlock Holmes.",
-      "url": "https://askwisely.com/#the-victorian-detective"
+      "name": "The Eisenhower Matrix",
+      "description": "Prioritize ruthlessly by separating urgency from importance to focus on what truly matters.",
+      "url": "https://askwisely.com/the-eisenhower-matrix"
     },
     {
       "@type": "ListItem",
       "position": 119,
-      "name": "The War Room General",
-      "description": "Approach strategic challenges with military precision and decisive leadership.",
-      "url": "https://askwisely.com/#the-war-room-general"
+      "name": "The Elder Sage",
+      "description": "A Tibetan monk portrait with extraordinary detail and meditative serenity.",
+      "url": "https://askwisely.com/the-elder-sage"
     },
     {
       "@type": "ListItem",
       "position": 120,
-      "name": "The Zen Master",
-      "description": "Find clarity through koans, mindfulness, and the art of non-attachment.",
-      "url": "https://askwisely.com/#the-zen-master"
+      "name": "The Email Sequence Builder",
+      "description": "Design high-converting email sequences with segmentation and A/B testing strategies.",
+      "url": "https://askwisely.com/the-email-sequence-builder"
     },
     {
       "@type": "ListItem",
       "position": 121,
-      "name": "Token Optimization",
-      "description": "Maximize output quality while minimizing token usage for cost-effective prompting.",
-      "url": "https://askwisely.com/#token-optimization"
+      "name": "The Emotional Cartographer",
+      "description": "Map complex emotional journeys through narrative structure and pacing control.",
+      "url": "https://askwisely.com/the-emotional-cartographer"
     },
     {
       "@type": "ListItem",
       "position": 122,
-      "name": "Treehouse Metropolis",
-      "description": "An entire city built into the canopy of ancient giant trees connected by bridges.",
-      "url": "https://askwisely.com/#treehouse-metropolis"
+      "name": "The Financial Modeler",
+      "description": "Build financial projections with sensitivity analysis and key assumption documentation.",
+      "url": "https://askwisely.com/the-financial-modeler"
     },
     {
       "@type": "ListItem",
       "position": 123,
-      "name": "Tribal Royalty",
-      "description": "A regal portrait blending traditional African adornment with contemporary fashion.",
-      "url": "https://askwisely.com/#tribal-royalty"
+      "name": "The Flywheel Effect",
+      "description": "Build self-reinforcing systems where each success makes the next one easier and faster.",
+      "url": "https://askwisely.com/the-flywheel-effect"
     },
     {
       "@type": "ListItem",
       "position": 124,
-      "name": "Typography Fundamentals",
-      "description": "Master type hierarchy, pairing, and readability to elevate any design.",
-      "url": "https://askwisely.com/#typography-fundamentals"
+      "name": "The Genre Blender",
+      "description": "Fuse two incompatible genres into a cohesive narrative with original voice.",
+      "url": "https://askwisely.com/the-genre-blender"
     },
     {
       "@type": "ListItem",
       "position": 125,
-      "name": "Underwater Cathedral",
-      "description": "A submerged gothic cathedral with light filtering through stained glass and water.",
-      "url": "https://askwisely.com/#underwater-cathedral"
+      "name": "The Goal Decomposer",
+      "description": "Break ambitious goals into milestones, weekly habits, and accountability structures.",
+      "url": "https://askwisely.com/the-goal-decomposer"
     },
     {
       "@type": "ListItem",
       "position": 126,
-      "name": "Urban Decay Renaissance",
-      "description": "An abandoned industrial space reclaimed by nature with Renaissance painting composition.",
-      "url": "https://askwisely.com/#urban-decay-renaissance"
+      "name": "The Growth Hacker",
+      "description": "Design data-driven growth experiments with clear hypotheses and measurement frameworks.",
+      "url": "https://askwisely.com/the-growth-hacker"
     },
     {
       "@type": "ListItem",
       "position": 127,
-      "name": "Vaporwave Temple",
-      "description": "A retro-digital Greek temple floating in a neon grid void with glitch effects.",
-      "url": "https://askwisely.com/#vaporwave-temple"
+      "name": "The Habit Architect",
+      "description": "Design evidence-based habit systems with cue design, tracking, and progressive difficulty.",
+      "url": "https://askwisely.com/the-habit-architect"
     },
     {
       "@type": "ListItem",
       "position": 128,
-      "name": "Vertical Garden City",
-      "description": "A residential tower where every surface is covered in lush cascading greenery.",
-      "url": "https://askwisely.com/#vertical-garden-city"
+      "name": "The Hook Formula",
+      "description": "Craft irresistible opening lines that compel readers to continue using proven structures.",
+      "url": "https://askwisely.com/the-hook-formula"
     },
     {
       "@type": "ListItem",
       "position": 129,
-      "name": "Visual Hierarchy",
-      "description": "Guiding user attention through size, color, and whitespace in UI/UX design.",
-      "url": "https://askwisely.com/#visual-hierarchy"
+      "name": "The Hypothesis Generator",
+      "description": "Generate testable hypotheses from observations using abductive reasoning and theory.",
+      "url": "https://askwisely.com/the-hypothesis-generator"
     },
     {
       "@type": "ListItem",
       "position": 130,
-      "name": "Watercolor Dreamscape",
-      "description": "An ethereal landscape where watercolor bleeds and blooms create surreal nature scenes.",
-      "url": "https://askwisely.com/#watercolor-dreamscape"
+      "name": "The Inquiry Architect",
+      "description": "Design Socratic inquiry sequences that lead groups to insights through questions alone.",
+      "url": "https://askwisely.com/the-inquiry-architect"
     },
     {
       "@type": "ListItem",
       "position": 131,
-      "name": "Weathered Storyteller",
-      "description": "An elderly face mapped with deep lines, each wrinkle telling a story of lived experience.",
-      "url": "https://askwisely.com/#weathered-storyteller"
+      "name": "The Inversion Method",
+      "description": "Solve problems backwards by identifying what would guarantee failure and avoiding it.",
+      "url": "https://askwisely.com/the-inversion-method"
     },
     {
       "@type": "ListItem",
       "position": 132,
-      "name": "Woodblock Print Storm",
-      "description": "A dramatic ocean storm in the style of Japanese ukiyo-e woodblock prints.",
-      "url": "https://askwisely.com/#woodblock-print-storm"
+      "name": "The Jazz Improviser",
+      "description": "Break creative blocks through spontaneity, riffing, and structured improvisation.",
+      "url": "https://askwisely.com/the-jazz-improviser"
     },
     {
       "@type": "ListItem",
       "position": 133,
+      "name": "The Last Light",
+      "description": "A lighthouse beam cutting through a violent storm at twilight with epic scale.",
+      "url": "https://askwisely.com/the-last-light"
+    },
+    {
+      "@type": "ListItem",
+      "position": 134,
+      "name": "The Learning Path Architect",
+      "description": "Build personalized self-directed learning paths with milestones and plateau prevention.",
+      "url": "https://askwisely.com/the-learning-path-architect"
+    },
+    {
+      "@type": "ListItem",
+      "position": 135,
+      "name": "The Legal Argument Builder",
+      "description": "Structure legal arguments using IRAC methodology with counter-arguments and policy reasoning.",
+      "url": "https://askwisely.com/the-legal-argument-builder"
+    },
+    {
+      "@type": "ListItem",
+      "position": 136,
+      "name": "The Lesson Planner",
+      "description": "Design detailed lesson plans with hooks, guided practice, and formative assessments.",
+      "url": "https://askwisely.com/the-lesson-planner"
+    },
+    {
+      "@type": "ListItem",
+      "position": 137,
+      "name": "The Life Auditor",
+      "description": "Conduct an honest life audit across all domains with gap analysis and bold move planning.",
+      "url": "https://askwisely.com/the-life-auditor"
+    },
+    {
+      "@type": "ListItem",
+      "position": 138,
+      "name": "The Literature Reviewer",
+      "description": "Synthesize research papers into structured literature reviews with gap analysis.",
+      "url": "https://askwisely.com/the-literature-reviewer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 139,
+      "name": "The Market Analyst",
+      "description": "Conduct deep market analysis with TAM/SAM/SOM calculations and competitive mapping.",
+      "url": "https://askwisely.com/the-market-analyst"
+    },
+    {
+      "@type": "ListItem",
+      "position": 140,
+      "name": "The Medical Literature Synthesizer",
+      "description": "Synthesize medical evidence using PICO, GRADE criteria, and clinical bottom lines.",
+      "url": "https://askwisely.com/the-medical-literature-synthesizer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 141,
+      "name": "The Metaphor Engine",
+      "description": "Transform abstract concepts into vivid, layered metaphors that resonate emotionally with readers.",
+      "url": "https://askwisely.com/the-metaphor-engine"
+    },
+    {
+      "@type": "ListItem",
+      "position": 142,
+      "name": "The ML Model Selector",
+      "description": "Choose the right modeling approach with baseline strategy and deployment considerations.",
+      "url": "https://askwisely.com/the-ml-model-selector"
+    },
+    {
+      "@type": "ListItem",
+      "position": 143,
+      "name": "The Narrative Architect",
+      "description": "Build immersive worlds with consistent internal logic and sensory-rich environments.",
+      "url": "https://askwisely.com/the-narrative-architect"
+    },
+    {
+      "@type": "ListItem",
+      "position": 144,
+      "name": "The Negotiation Strategist",
+      "description": "Prepare for high-stakes negotiations using BATNA analysis and principled bargaining.",
+      "url": "https://askwisely.com/the-negotiation-strategist"
+    },
+    {
+      "@type": "ListItem",
+      "position": 145,
+      "name": "The OKR Architect",
+      "description": "Design measurable objectives and key results that drive alignment and accountability.",
+      "url": "https://askwisely.com/the-okr-architect"
+    },
+    {
+      "@type": "ListItem",
+      "position": 146,
+      "name": "The Patient Communicator",
+      "description": "Explain medical topics at a 6th-grade reading level with analogies and action steps.",
+      "url": "https://askwisely.com/the-patient-communicator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 147,
+      "name": "The Peer Reviewer",
+      "description": "Provide constructive, structured peer review feedback that strengthens academic work.",
+      "url": "https://askwisely.com/the-peer-reviewer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 148,
+      "name": "The Performance Oracle",
+      "description": "Identify bottlenecks and optimize code for speed, memory, and scalability.",
+      "url": "https://askwisely.com/the-performance-oracle"
+    },
+    {
+      "@type": "ListItem",
+      "position": 149,
+      "name": "The Pitch Perfectionist",
+      "description": "Craft compelling elevator pitches and investor decks using narrative frameworks.",
+      "url": "https://askwisely.com/the-pitch-perfectionist"
+    },
+    {
+      "@type": "ListItem",
+      "position": 150,
+      "name": "The Policy Drafter",
+      "description": "Draft clear, enforceable policy documents with definitions, provisions, and review cadence.",
+      "url": "https://askwisely.com/the-policy-drafter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 151,
+      "name": "The Power of Brevity",
+      "description": "Communicate more by writing less through deliberate compression and precision.",
+      "url": "https://askwisely.com/the-power-of-brevity"
+    },
+    {
+      "@type": "ListItem",
+      "position": 152,
+      "name": "The PRD Architect",
+      "description": "Write comprehensive product requirements documents ready for engineering handoff.",
+      "url": "https://askwisely.com/the-prd-architect"
+    },
+    {
+      "@type": "ListItem",
+      "position": 153,
+      "name": "The Prioritization Engine",
+      "description": "Apply RICE, Value/Effort, and Kano frameworks to rank your product backlog.",
+      "url": "https://askwisely.com/the-prioritization-engine"
+    },
+    {
+      "@type": "ListItem",
+      "position": 154,
+      "name": "The Product Strategist",
+      "description": "Assess product-market fit, moats, and growth models with a strategic advisor.",
+      "url": "https://askwisely.com/the-product-strategist"
+    },
+    {
+      "@type": "ListItem",
+      "position": 155,
+      "name": "The Reflective Writer",
+      "description": "Develop metacognitive writing skills through guided self-reflection before receiving feedback.",
+      "url": "https://askwisely.com/the-reflective-writer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 156,
+      "name": "The Regex Artisan",
+      "description": "Craft precise regular expressions with clear explanations and edge case handling.",
+      "url": "https://askwisely.com/the-regex-artisan"
+    },
+    {
+      "@type": "ListItem",
+      "position": 157,
+      "name": "The Regulatory Analyst",
+      "description": "Analyze regulatory environments with classification, precedent analysis, and engagement strategies.",
+      "url": "https://askwisely.com/the-regulatory-analyst"
+    },
+    {
+      "@type": "ListItem",
+      "position": 158,
+      "name": "The Renaissance Polymath",
+      "description": "Explore ideas across disciplines with the curiosity of Leonardo da Vinci.",
+      "url": "https://askwisely.com/the-renaissance-polymath"
+    },
+    {
+      "@type": "ListItem",
+      "position": 159,
+      "name": "The Research Methodologist",
+      "description": "Design research methodologies with proper sampling, controls, and validity measures.",
+      "url": "https://askwisely.com/the-research-methodologist"
+    },
+    {
+      "@type": "ListItem",
+      "position": 160,
+      "name": "The Research Protocol Designer",
+      "description": "Design clinical study protocols with methodology, blinding strategy, and ethical considerations.",
+      "url": "https://askwisely.com/the-research-protocol-designer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 161,
+      "name": "The Risk Assessor",
+      "description": "Identify, quantify, and mitigate business risks using structured frameworks.",
+      "url": "https://askwisely.com/the-risk-assessor"
+    },
+    {
+      "@type": "ListItem",
+      "position": 162,
+      "name": "The Rubric Builder",
+      "description": "Build comprehensive grading rubrics with observable descriptors and self-assessment versions.",
+      "url": "https://askwisely.com/the-rubric-builder"
+    },
+    {
+      "@type": "ListItem",
+      "position": 163,
+      "name": "The Scene Painter",
+      "description": "Write immersive descriptions that engage all five senses in a specific emotional key.",
+      "url": "https://askwisely.com/the-scene-painter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 164,
+      "name": "The Security Sentinel",
+      "description": "Audit code for vulnerabilities using OWASP methodology and defense-in-depth principles.",
+      "url": "https://askwisely.com/the-security-sentinel"
+    },
+    {
+      "@type": "ListItem",
+      "position": 165,
+      "name": "The SEO Strategist",
+      "description": "Build a complete SEO content strategy with keyword clusters and pillar-cluster models.",
+      "url": "https://askwisely.com/the-seo-strategist"
+    },
+    {
+      "@type": "ListItem",
+      "position": 166,
+      "name": "The Silicon Valley Mentor",
+      "description": "Get startup advice from a battle-tested tech founder who has seen it all.",
+      "url": "https://askwisely.com/the-silicon-valley-mentor"
+    },
+    {
+      "@type": "ListItem",
+      "position": 167,
+      "name": "The Social Media Architect",
+      "description": "Design a 30-day content strategy with platform-specific posts and engagement plans.",
+      "url": "https://askwisely.com/the-social-media-architect"
+    },
+    {
+      "@type": "ListItem",
+      "position": 168,
+      "name": "The Socrates Tutor",
+      "description": "Master complex subjects through guided questioning and first-principles thinking.",
+      "url": "https://askwisely.com/the-socrates-tutor"
+    },
+    {
+      "@type": "ListItem",
+      "position": 169,
+      "name": "The Socratic Debugger",
+      "description": "Debug code through guided questions that teach problem isolation without giving direct answers.",
+      "url": "https://askwisely.com/the-socratic-debugger"
+    },
+    {
+      "@type": "ListItem",
+      "position": 170,
+      "name": "The Stakeholder Whisperer",
+      "description": "Navigate complex stakeholder dynamics using power mapping and communication strategies.",
+      "url": "https://askwisely.com/the-stakeholder-whisperer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 171,
+      "name": "The Statistical Detective",
+      "description": "Walk through hypothesis testing, effect sizes, and confidence intervals for rigorous analysis.",
+      "url": "https://askwisely.com/the-statistical-detective"
+    },
+    {
+      "@type": "ListItem",
+      "position": 172,
+      "name": "The Stoic Philosopher",
+      "description": "Receive guidance through the lens of Marcus Aurelius and Stoic philosophy.",
+      "url": "https://askwisely.com/the-stoic-philosopher"
+    },
+    {
+      "@type": "ListItem",
+      "position": 173,
+      "name": "The Strategic Mind",
+      "description": "Develop high-level business strategies with detailed SWOT analysis and market entry plans.",
+      "url": "https://askwisely.com/the-strategic-mind"
+    },
+    {
+      "@type": "ListItem",
+      "position": 174,
+      "name": "The Test Strategist",
+      "description": "Design comprehensive test suites using the testing pyramid and boundary analysis.",
+      "url": "https://askwisely.com/the-test-strategist"
+    },
+    {
+      "@type": "ListItem",
+      "position": 175,
+      "name": "The Thesis Architect",
+      "description": "Develop rigorous thesis statements and argument structures for academic writing.",
+      "url": "https://askwisely.com/the-thesis-architect"
+    },
+    {
+      "@type": "ListItem",
+      "position": 176,
+      "name": "The Three-Act Structure",
+      "description": "Build compelling narratives using the universal story architecture of setup, confrontation, and resolution.",
+      "url": "https://askwisely.com/the-three-act-structure"
+    },
+    {
+      "@type": "ListItem",
+      "position": 177,
+      "name": "The Time Traveler Historian",
+      "description": "Analyze modern situations through historical parallels and pattern recognition.",
+      "url": "https://askwisely.com/the-time-traveler-historian"
+    },
+    {
+      "@type": "ListItem",
+      "position": 178,
+      "name": "The Tone Shapeshifter",
+      "description": "Rewrite any passage in radically different tones while preserving core meaning.",
+      "url": "https://askwisely.com/the-tone-shapeshifter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 179,
+      "name": "The Unreliable Narrator",
+      "description": "Master first-person perspective where the narrator's version of events cannot be fully trusted.",
+      "url": "https://askwisely.com/the-unreliable-narrator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 180,
+      "name": "The User Story Crafter",
+      "description": "Generate complete user stories with acceptance criteria and implementation order.",
+      "url": "https://askwisely.com/the-user-story-crafter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 181,
+      "name": "The Victorian Detective",
+      "description": "Solve problems using deductive reasoning in the style of Sherlock Holmes.",
+      "url": "https://askwisely.com/the-victorian-detective"
+    },
+    {
+      "@type": "ListItem",
+      "position": 182,
+      "name": "The Visualization Storyteller",
+      "description": "Design data visualizations that tell compelling stories with clarity over cleverness.",
+      "url": "https://askwisely.com/the-visualization-storyteller"
+    },
+    {
+      "@type": "ListItem",
+      "position": 183,
+      "name": "The War Room General",
+      "description": "Approach strategic challenges with military precision and decisive leadership.",
+      "url": "https://askwisely.com/the-war-room-general"
+    },
+    {
+      "@type": "ListItem",
+      "position": 184,
+      "name": "The Weekly Reviewer",
+      "description": "Run a thorough weekly review covering wins, misses, energy audits, and next priorities.",
+      "url": "https://askwisely.com/the-weekly-reviewer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 185,
+      "name": "The Zen Master",
+      "description": "Find clarity through koans, mindfulness, and the art of non-attachment.",
+      "url": "https://askwisely.com/the-zen-master"
+    },
+    {
+      "@type": "ListItem",
+      "position": 186,
+      "name": "Token Optimization",
+      "description": "Maximize output quality while minimizing token usage for cost-effective prompting.",
+      "url": "https://askwisely.com/token-optimization"
+    },
+    {
+      "@type": "ListItem",
+      "position": 187,
+      "name": "Tree of Thought",
+      "description": "Explore multiple reasoning paths before committing to improve planning and creative tasks.",
+      "url": "https://askwisely.com/tree-of-thought"
+    },
+    {
+      "@type": "ListItem",
+      "position": 188,
+      "name": "Treehouse Metropolis",
+      "description": "An entire city built into the canopy of ancient giant trees connected by bridges.",
+      "url": "https://askwisely.com/treehouse-metropolis"
+    },
+    {
+      "@type": "ListItem",
+      "position": 189,
+      "name": "Tribal Royalty",
+      "description": "A regal portrait blending traditional African adornment with contemporary fashion.",
+      "url": "https://askwisely.com/tribal-royalty"
+    },
+    {
+      "@type": "ListItem",
+      "position": 190,
+      "name": "Typography Fundamentals",
+      "description": "Master type hierarchy, pairing, and readability to elevate any design.",
+      "url": "https://askwisely.com/typography-fundamentals"
+    },
+    {
+      "@type": "ListItem",
+      "position": 191,
+      "name": "Underwater Cathedral",
+      "description": "A submerged gothic cathedral with light filtering through stained glass and water.",
+      "url": "https://askwisely.com/underwater-cathedral"
+    },
+    {
+      "@type": "ListItem",
+      "position": 192,
+      "name": "Urban Decay Renaissance",
+      "description": "An abandoned industrial space reclaimed by nature with Renaissance painting composition.",
+      "url": "https://askwisely.com/urban-decay-renaissance"
+    },
+    {
+      "@type": "ListItem",
+      "position": 193,
+      "name": "Vaporwave Temple",
+      "description": "A retro-digital Greek temple floating in a neon grid void with glitch effects.",
+      "url": "https://askwisely.com/vaporwave-temple"
+    },
+    {
+      "@type": "ListItem",
+      "position": 194,
+      "name": "Vertical Garden City",
+      "description": "A residential tower where every surface is covered in lush cascading greenery.",
+      "url": "https://askwisely.com/vertical-garden-city"
+    },
+    {
+      "@type": "ListItem",
+      "position": 195,
+      "name": "Visual Hierarchy",
+      "description": "Guiding user attention through size, color, and whitespace in UI/UX design.",
+      "url": "https://askwisely.com/visual-hierarchy"
+    },
+    {
+      "@type": "ListItem",
+      "position": 196,
+      "name": "Watercolor Dreamscape",
+      "description": "An ethereal landscape where watercolor bleeds and blooms create surreal nature scenes.",
+      "url": "https://askwisely.com/watercolor-dreamscape"
+    },
+    {
+      "@type": "ListItem",
+      "position": 197,
+      "name": "Weathered Storyteller",
+      "description": "An elderly face mapped with deep lines, each wrinkle telling a story of lived experience.",
+      "url": "https://askwisely.com/weathered-storyteller"
+    },
+    {
+      "@type": "ListItem",
+      "position": 198,
+      "name": "When Not to Use AI",
+      "description": "Know the boundaries — when AI should assist vs. when human judgment is irreplaceable.",
+      "url": "https://askwisely.com/when-not-to-use-ai"
+    },
+    {
+      "@type": "ListItem",
+      "position": 199,
+      "name": "Woodblock Print Storm",
+      "description": "A dramatic ocean storm in the style of Japanese ukiyo-e woodblock prints.",
+      "url": "https://askwisely.com/woodblock-print-storm"
+    },
+    {
+      "@type": "ListItem",
+      "position": 200,
       "name": "World-Building Foundations",
       "description": "Construct believable fictional worlds with consistent rules and lived-in texture.",
-      "url": "https://askwisely.com/#world-building-foundations"
+      "url": "https://askwisely.com/world-building-foundations"
+    },
+    {
+      "@type": "ListItem",
+      "position": 201,
+      "name": "Zero-Shot Mastery",
+      "description": "Craft precise instructions that produce accurate results without any examples.",
+      "url": "https://askwisely.com/zero-shot-mastery"
     }
   ]
 }

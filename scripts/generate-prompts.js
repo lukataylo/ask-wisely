@@ -1,10 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const CONTENT_DIR = path.resolve('content/prompts');
 const OUTPUT_FILE = path.resolve('public/prompts.json');
 const SEO_HTML_FILE = path.resolve('public/seo-content.html');
 const LD_PROMPTS_FILE = path.resolve('public/ld-prompts.json');
+const SITEMAP_FILE = path.resolve('public/sitemap.xml');
 
 const TECHNIQUE_PATTERNS = {
   'Role Assignment':   /\b(Act as|You are|Assume the role|Imagine you're|Play the role)\b/i,
@@ -149,7 +151,21 @@ function parseMarkdown(filePath) {
     techniques,
     variables,
     llmVariants: variants,
+    _isNewFlag: fields.isNew === 'true',
   };
+}
+
+function getGitAddedDate(filePath) {
+  try {
+    const output = execSync(
+      `git log --diff-filter=A --follow --format=%aI -- "${filePath}"`,
+      { encoding: 'utf-8', timeout: 5000, stdio: ['pipe', 'pipe', 'pipe'] }
+    ).trim();
+    const lines = output.split('\n').filter(Boolean);
+    return lines.length > 0 ? lines[lines.length - 1] : null;
+  } catch {
+    return null;
+  }
 }
 
 function escapeHtml(str) {
@@ -170,13 +186,13 @@ function generateSeoHtml(prompts) {
 
   let html = '<div>\n';
   html += '  <h1>Ask Wisely — Curated AI Prompt Library</h1>\n';
-  html += '  <p>A collection of 133+ expertly crafted prompts for creative writing, coding, image generation, and technical tasks.</p>\n';
+  html += `  <p>A collection of ${prompts.length}+ expertly crafted prompts for creative writing, coding, image generation, and technical tasks.</p>\n`;
 
   for (const [type, items] of Object.entries(grouped)) {
     html += `  <section>\n    <h2>${escapeHtml(type)}</h2>\n`;
     for (const p of items) {
       html += '    <article>\n';
-      html += `      <h3>${escapeHtml(p.title)}</h3>\n`;
+      html += `      <h3><a href="/${escapeHtml(p.id)}">${escapeHtml(p.title)}</a></h3>\n`;
       if (p.shortDescription) {
         html += `      <p>${escapeHtml(p.shortDescription)}</p>\n`;
       }
@@ -199,7 +215,7 @@ function generateJsonLd(prompts) {
     position: i + 1,
     name: p.title,
     description: p.shortDescription,
-    url: `https://askwisely.com/#${p.id}`,
+    url: `https://askwisely.com/${p.id}`,
   }));
 
   return {
@@ -212,6 +228,58 @@ function generateJsonLd(prompts) {
   };
 }
 
+function generateSitemap(prompts) {
+  const CATEGORY_MAP = {
+    'Prompts': ['Creative', 'Technical', 'Business', 'Academic', 'Persona', 'Product', 'Data', 'Marketing', 'Personal', 'Legal', 'Education', 'Healthcare'],
+    'Image Prompts': ['Cinematic', 'Portrait', 'Stylized', 'Architecture', 'Commercial', 'Interface'],
+    'Skills': ['Engineering', 'Writing', 'Strategy', 'Design', 'Communication', 'AI Literacy'],
+  };
+
+  const TAB_SLUGS = {
+    'Prompts': 'prompts',
+    'Image Prompts': 'image-prompts',
+    'Skills': 'skills',
+  };
+
+  const urls = [
+    { loc: 'https://askwisely.com/', changefreq: 'weekly', priority: '1.0' },
+  ];
+
+  // Tab pages
+  for (const [tab, slug] of Object.entries(TAB_SLUGS)) {
+    if (tab === 'Prompts') continue; // homepage covers this
+    urls.push({ loc: `https://askwisely.com/?tab=${slug}`, changefreq: 'weekly', priority: '0.8' });
+
+    // Category pages
+    for (const cat of CATEGORY_MAP[tab]) {
+      const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+      urls.push({ loc: `https://askwisely.com/?tab=${slug}&cat=${catSlug}`, changefreq: 'monthly', priority: '0.6' });
+    }
+  }
+
+  // Prompts category pages (default tab)
+  for (const cat of CATEGORY_MAP['Prompts']) {
+    const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+    urls.push({ loc: `https://askwisely.com/?cat=${catSlug}`, changefreq: 'monthly', priority: '0.6' });
+  }
+
+  // Individual prompt pages
+  for (const p of prompts) {
+    urls.push({ loc: `https://askwisely.com/${p.id}`, changefreq: 'monthly', priority: '0.7' });
+  }
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+}
+
+// ── Main ──
+
 const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
 const parsed = files.map(f => parseMarkdown(path.join(CONTENT_DIR, f)));
 
@@ -221,7 +289,20 @@ for (let i = 0; i < files.length; i++) {
   }
 }
 
-const prompts = parsed.filter(Boolean);
+const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+
+const prompts = parsed.filter(Boolean).map((prompt, i) => {
+  const filePath = path.join(CONTENT_DIR, files[i]);
+  const gitDate = getGitAddedDate(filePath);
+  const isNewByDate = gitDate ? new Date(gitDate).getTime() > thirtyDaysAgo : false;
+  const isNewByFlag = prompt._isNewFlag;
+
+  const { _isNewFlag, ...rest } = prompt;
+  return {
+    ...rest,
+    isNew: isNewByDate || isNewByFlag,
+  };
+});
 
 fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
 
@@ -238,3 +319,8 @@ console.log(`Generated SEO content to ${SEO_HTML_FILE}`);
 const jsonLd = generateJsonLd(prompts);
 fs.writeFileSync(LD_PROMPTS_FILE, JSON.stringify(jsonLd, null, 2));
 console.log(`Generated JSON-LD data to ${LD_PROMPTS_FILE}`);
+
+// Write sitemap
+const sitemap = generateSitemap(prompts);
+fs.writeFileSync(SITEMAP_FILE, sitemap);
+console.log(`Generated sitemap with ${sitemap.split('<url>').length - 1} URLs to ${SITEMAP_FILE}`);

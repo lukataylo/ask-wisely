@@ -1,0 +1,78 @@
+name: New Prompt Suggestion
+description: Suggest a new prompt for the library
+title: "[Prompt] "
+labels: ["new-prompt"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Prompt Title
+      placeholder: e.g., "Startup Pitch Analyzer"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Prompts
+        - Image Prompts
+        - Skills
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Creative
+        - Technical
+        - Business
+        - Academic
+        - Persona
+        - Product
+        - Data
+        - Marketing
+        - Personal
+        - Legal
+        - Education
+        - Healthcare
+        - Cinematic
+        - Portrait
+        - Stylized
+        - Architecture
+        - Commercial
+        - Interface
+        - Engineering
+        - Writing
+        - Strategy
+        - Design
+        - Communication
+        - AI Literacy
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Short Description
+      placeholder: 1-2 sentences describing what the prompt does.
+    validations:
+      required: true
+
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Full Prompt
+      description: The complete prompt text. Use [bracketed placeholders] for customizable parts.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Which LLMs have you tested this with? What kind of output does it produce?
