@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfbf7"/>
+      <stop offset="100%" stop-color="#f5f0e8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#daa520"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle border -->
+  <rect x="40" y="40" width="1120" height="550" rx="12" fill="none" stroke="#e5e0d8" stroke-width="1.5"/>
+
+  <!-- Owl icon -->
+  <g transform="translate(556, 140) scale(3)">
+    <!-- Body -->
+    <path d="M16 4 C10 4 6 9 6 16 C6 24 10 28 16 28 C22 28 26 24 26 16 C26 9 22 4 16 4 Z" fill="url(#accent)"/>
+    <!-- Ear tufts -->
+    <path d="M8 8 L10 4 L12 9 Z" fill="#b8860b"/>
+    <path d="M24 8 L22 4 L20 9 Z" fill="#b8860b"/>
+    <!-- Eye circles -->
+    <circle cx="12" cy="14" r="4" fill="#fdfbf7"/>
+    <circle cx="20" cy="14" r="4" fill="#fdfbf7"/>
+    <!-- Pupils -->
+    <circle cx="12" cy="14" r="2" fill="#1a1a1a"/>
+    <circle cx="20" cy="14" r="2" fill="#1a1a1a"/>
+    <!-- Beak -->
+    <path d="M14.5 18 L16 21 L17.5 18 Z" fill="#c8940c"/>
+    <!-- Chest feather pattern -->
+    <path d="M12 22 Q16 26 20 22 Q16 24 12 22 Z" fill="#c8940c" opacity="0.5"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="370" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="400" fill="#1a1a1a" letter-spacing="-1">Ask Wisely</text>
+
+  <!-- Decorative line -->
+  <line x1="480" y1="400" x2="720" y2="400" stroke="url(#accent)" stroke-width="2"/>
+
+  <!-- Subtitle -->
+  <text x="600" y="445" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="300" fill="#6b6b6b" letter-spacing="2">CURATED AI PROMPT LIBRARY</text>
+
+  <!-- Tagline -->
+  <text x="600" y="490" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8b8b8b">Creative, Technical &amp; Visual Prompts</text>
+
+  <!-- URL -->
+  <text x="600" y="550" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#b8860b">askwisely.com</text>
+</svg>

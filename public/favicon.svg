@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#daa520"/>
+    </linearGradient>
+  </defs>
+  <!-- Body -->
+  <path d="M16 4 C10 4 6 9 6 16 C6 24 10 28 16 28 C22 28 26 24 26 16 C26 9 22 4 16 4 Z" fill="url(#g)"/>
+  <!-- Ear tufts -->
+  <path d="M8 8 L10 4 L12 9 Z" fill="#b8860b"/>
+  <path d="M24 8 L22 4 L20 9 Z" fill="#b8860b"/>
+  <!-- Eye circles -->
+  <circle cx="12" cy="14" r="4" fill="#fdfbf7"/>
+  <circle cx="20" cy="14" r="4" fill="#fdfbf7"/>
+  <!-- Pupils -->
+  <circle cx="12" cy="14" r="2" fill="#1a1a1a"/>
+  <circle cx="20" cy="14" r="2" fill="#1a1a1a"/>
+  <!-- Beak -->
+  <path d="M14.5 18 L16 21 L17.5 18 Z" fill="#c8940c"/>
+  <!-- Chest feather pattern -->
+  <path d="M12 22 Q16 26 20 22 Q16 24 12 22 Z" fill="#c8940c" opacity="0.5"/>
+</svg>
