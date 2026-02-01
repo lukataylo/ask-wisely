@@ -187,18 +187,6 @@ generate-prompts.js → vite build → inject-seo.js
 | `Enter` | Open focused prompt |
 | `c` | Copy focused prompt |
 
----
-
-## OG Image
-
-The social sharing image (`og-image.svg`) is an SVG. For maximum compatibility on platforms like Twitter and LinkedIn, convert it to PNG:
-
-```bash
-# Using any SVG-to-PNG tool:
-npx svgexport public/og-image.svg public/og-image.png 1200:630
-```
-
-Then update the `og:image` and `twitter:image` meta tags in `index.html` to reference `og-image.png`.
 
 ---
 
