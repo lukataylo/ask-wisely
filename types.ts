@@ -4,8 +4,12 @@ export type MainTab = 'Prompts' | 'Image Prompts' | 'Skills';
 export type Category =
   | 'All'
   | 'Creative' | 'Technical' | 'Business' | 'Academic' | 'Persona'
+  | 'Product' | 'Data' | 'Marketing' | 'Personal'
+  | 'Legal' | 'Education' | 'Healthcare'
   | 'Cinematic' | 'Portrait' | 'Stylized' | 'Architecture'
-  | 'Engineering' | 'Writing' | 'Strategy' | 'Design';
+  | 'Commercial' | 'Interface'
+  | 'Engineering' | 'Writing' | 'Strategy' | 'Design'
+  | 'Communication' | 'AI Literacy';
 
 export type LLMProvider = 'claude' | 'chatgpt' | 'gemini';
 

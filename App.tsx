@@ -11,9 +11,9 @@ import AnimatedBackground from './components/AnimatedBackground';
 const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills'];
 
 const CATEGORY_MAP: Record<MainTab, Category[]> = {
-  'Prompts': ['All', 'Creative', 'Technical', 'Business', 'Academic', 'Persona'],
-  'Image Prompts': ['All', 'Cinematic', 'Portrait', 'Stylized', 'Architecture'],
-  'Skills': ['All', 'Engineering', 'Writing', 'Strategy', 'Design']
+  'Prompts': ['All', 'Creative', 'Technical', 'Business', 'Academic', 'Persona', 'Product', 'Data', 'Marketing', 'Personal', 'Legal', 'Education', 'Healthcare'],
+  'Image Prompts': ['All', 'Cinematic', 'Portrait', 'Stylized', 'Architecture', 'Commercial', 'Interface'],
+  'Skills': ['All', 'Engineering', 'Writing', 'Strategy', 'Design', 'Communication', 'AI Literacy']
 };
 
 const ALL_TECHNIQUES: Technique[] = [
