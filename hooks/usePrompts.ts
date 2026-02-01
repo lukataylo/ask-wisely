@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { Prompt } from '../types';
 import { getAllPrompts } from '../lib/getPrompts';
 
@@ -7,7 +7,9 @@ export function usePrompts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const fetchPrompts = useCallback(() => {
+    setLoading(true);
+    setError(null);
     getAllPrompts()
       .then((data) => {
         setPrompts(data);
@@ -19,5 +21,9 @@ export function usePrompts() {
       });
   }, []);
 
-  return { prompts, loading, error };
+  useEffect(() => {
+    fetchPrompts();
+  }, [fetchPrompts]);
+
+  return { prompts, loading, error, retry: fetchPrompts };
 }

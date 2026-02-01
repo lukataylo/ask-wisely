@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { X, Copy, Check, Heart, Share2, FileText } from 'lucide-react';
+import { X, Copy, Check, Heart, FileText, Link } from 'lucide-react';
 import { Prompt, LLMProvider, TEXT_LLM_TABS, IMAGE_LLM_TABS } from '../types';
 import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
 import { useCopyCount } from '../hooks/useCopyCount';
@@ -43,7 +43,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
   const dialogRef = useRef<HTMLDivElement>(null);
   const [activeLLM, setActiveLLM] = useState<LLMProvider>('claude');
   const [variableValues, setVariableValues] = useState<Record<string, string>>({});
-  const [shared, setShared] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const { getCount, increment } = useCopyCount();
   const [copyCount, setCopyCount] = useState(0);
 
@@ -53,7 +53,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
       const tabs = prompt.type === 'Image Prompts' ? IMAGE_LLM_TABS : TEXT_LLM_TABS;
       setActiveLLM(tabs[0].key);
       setVariableValues({});
-      setShared(false);
+      setLinkCopied(false);
       setCopyCount(getCount(prompt.id));
     }
   }, [prompt, getCount]);
@@ -105,18 +105,23 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
     setCopyCount(prev => prev + 1);
   };
 
-  const handleShare = async () => {
-    const url = `${window.location.origin}/${prompt.id}`;
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: prompt.title, text: prompt.shortDescription, url });
-        setShared(true);
-      } catch {}
-    } else {
-      await navigator.clipboard.writeText(url);
-      setShared(true);
-    }
-    setTimeout(() => setShared(false), 2000);
+  const shareUrl = `${window.location.origin}/${prompt.id}`;
+
+  const handleShareTwitter = () => {
+    const text = encodeURIComponent(`${prompt.title} — ${prompt.shortDescription}`);
+    const url = encodeURIComponent(shareUrl);
+    window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleShareLinkedIn = () => {
+    const url = encodeURIComponent(shareUrl);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCopyLink = async () => {
+    await navigator.clipboard.writeText(shareUrl);
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2000);
   };
 
   return (
@@ -289,14 +294,31 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
         </div>
 
         {/* 8. Footer with actions */}
-        <div className="p-6 md:px-12 md:pb-12 bg-stone-50 dark:bg-stone-900 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-3 flex-wrap">
-          <button
-            onClick={handleShare}
-            className="flex items-center gap-2 px-5 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
-          >
-            <Share2 size={16} />
-            {shared ? 'Link copied!' : 'Share'}
-          </button>
+        <div className="shrink-0 p-6 md:px-12 md:pb-12 bg-stone-50 dark:bg-stone-900 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleShareTwitter}
+              className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
+              aria-label="Share on X"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </button>
+            <button
+              onClick={handleShareLinkedIn}
+              className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
+              aria-label="Share on LinkedIn"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </button>
+            <button
+              onClick={handleCopyLink}
+              className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
+              aria-label="Copy link"
+            >
+              {linkCopied ? <Check size={16} /> : <Link size={16} />}
+              {linkCopied ? 'Copied!' : 'Copy Link'}
+            </button>
+          </div>
           <div className="flex items-center gap-3">
             <button
               onClick={() => copyMd()}

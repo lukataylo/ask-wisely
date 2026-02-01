@@ -114,8 +114,8 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, 
                 {copyCount}x
               </span>
             )}
-            <div className="flex items-center text-xs font-medium text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-stone-200 transition-colors">
-              Preview
+            <div className="flex items-center shrink-0 whitespace-nowrap text-xs font-medium text-stone-500 dark:text-stone-400 group-hover:text-stone-900 dark:group-hover:text-stone-200 transition-colors">
+              Open
               <span className="arrow-icon ml-1">
                 <ArrowUpRight size={14} />
               </span>

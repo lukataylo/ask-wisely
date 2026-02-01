@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
-import { Search, X, Moon, Sun, Heart, Shuffle } from 'lucide-react';
+import { Search, X, Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw } from 'lucide-react';
 import { OwlLogo } from './components/OwlLogo';
 import { Category, Prompt, MainTab, Technique } from './types';
 import { usePrompts } from './hooks/usePrompts';
@@ -79,7 +79,7 @@ function buildURL(tab: MainTab, cat: Category, promptId: string | null): string 
 const DEFAULT_TITLE = 'Ask Wisely — Curated AI Prompt Library for Creative, Technical & Visual Prompts';
 
 const App: React.FC = () => {
-  const { prompts: PROMPTS, loading, error } = usePrompts();
+  const { prompts: PROMPTS, loading, error, retry } = usePrompts();
   const { isDark, toggle: toggleDarkMode } = useDarkMode();
   const { favorites, toggleFavorite, isFavorite, count: favCount } = useFavorites();
   const searchRef = useRef<HTMLInputElement>(null);
@@ -380,13 +380,25 @@ const App: React.FC = () => {
             )}
           </p>
           {!loading && PROMPTS.length > 0 && (
-            <button
-              onClick={handleSurpriseMe}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
-            >
-              <Shuffle size={14} />
-              Surprise Me
-            </button>
+            <div className="flex items-center gap-3 flex-wrap">
+              <button
+                onClick={handleSurpriseMe}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
+              >
+                <Shuffle size={14} />
+                Surprise Me
+              </button>
+              <button
+                onClick={() => {
+                  searchRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  setTimeout(() => searchRef.current?.focus(), 400);
+                }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
+              >
+                Browse Collection
+                <ArrowDown size={14} />
+              </button>
+            </div>
           )}
         </header>
 
@@ -469,7 +481,14 @@ const App: React.FC = () => {
         {error && (
           <div className="py-32 text-center animate-fade-in-fast">
             <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-2">Failed to load prompts</div>
-            <p className="text-stone-400 dark:text-stone-500">{error}</p>
+            <p className="text-stone-400 dark:text-stone-500 mb-6">{error}</p>
+            <button
+              onClick={retry}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
+            >
+              <RotateCcw size={14} />
+              Try Again
+            </button>
           </div>
         )}
 
@@ -498,11 +517,24 @@ const App: React.FC = () => {
             <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-2">
               {showFavoritesOnly ? 'No favorites yet' : `No ${activeTab.toLowerCase()} found`}
             </div>
-            <p className="text-stone-400 dark:text-stone-500">
+            <p className="text-stone-400 dark:text-stone-500 mb-6">
               {showFavoritesOnly
                 ? 'Save prompts you love by clicking the heart icon.'
                 : 'Try adjusting your filters or search terms.'}
             </p>
+            {!showFavoritesOnly && (
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setActiveCategory('All');
+                  setActiveTechniques([]);
+                }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
+              >
+                <RotateCcw size={14} />
+                Reset Filters
+              </button>
+            )}
           </div>
         )}
       </main>
