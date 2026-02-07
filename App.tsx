@@ -2,13 +2,13 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { Search, X, Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw, Mail } from 'lucide-react';
 import { OwlLogo } from './components/OwlLogo';
-import { Category, Prompt, MainTab, Technique, Difficulty } from './types';
+import { Category, Prompt, MainTab, Technique } from './types';
 import { usePrompts } from './hooks/usePrompts';
 import { useFavorites } from './hooks/useFavorites';
 import { useDarkMode } from './hooks/useDarkMode';
+import { useCopyCount } from './hooks/useCopyCount';
 import PromptCard from './components/PromptCard';
 import PromptModal from './components/PromptModal';
-import AnimatedBackground from './components/AnimatedBackground';
 
 const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills'];
 
@@ -24,22 +24,7 @@ const ALL_TECHNIQUES: Technique[] = [
   'Socratic Method', 'Meta-Cognitive',
 ];
 
-const ALL_DIFFICULTIES: Difficulty[] = ['Beginner', 'Intermediate', 'Advanced'];
-
-const DIFFICULTY_COLORS: Record<Difficulty, { active: string; inactive: string }> = {
-  Beginner: {
-    active: 'bg-emerald-700 dark:bg-emerald-400 text-white dark:text-stone-900 border-emerald-700 dark:border-emerald-400',
-    inactive: 'bg-white dark:bg-stone-800 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-600',
-  },
-  Intermediate: {
-    active: 'bg-amber-700 dark:bg-amber-400 text-white dark:text-stone-900 border-amber-700 dark:border-amber-400',
-    inactive: 'bg-white dark:bg-stone-800 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800 hover:border-amber-400 dark:hover:border-amber-600',
-  },
-  Advanced: {
-    active: 'bg-rose-700 dark:bg-rose-400 text-white dark:text-stone-900 border-rose-700 dark:border-rose-400',
-    inactive: 'bg-white dark:bg-stone-800 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800 hover:border-rose-400 dark:hover:border-rose-600',
-  },
-};
+const BTN_OUTLINE = 'inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all';
 
 // --- URL Routing helpers ---
 const TAB_SLUGS: Record<string, MainTab> = {
@@ -99,6 +84,7 @@ const App: React.FC = () => {
   const { prompts: PROMPTS, loading, error, retry } = usePrompts();
   const { isDark, toggle: toggleDarkMode } = useDarkMode();
   const { favorites, toggleFavorite, isFavorite, count: favCount } = useFavorites();
+  const { counts: copyCounts, increment: incrementCopy } = useCopyCount();
   const searchRef = useRef<HTMLInputElement>(null);
 
   // Initialize state from URL
@@ -111,7 +97,6 @@ const App: React.FC = () => {
   const [pendingPromptId, setPendingPromptId] = useState<string | null>(initial.promptId);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [focusedCardIndex, setFocusedCardIndex] = useState<number | null>(null);
-  const [activeDifficulties, setActiveDifficulties] = useState<Difficulty[]>([]);
 
   // Once prompts load, resolve pending prompt ID from URL
   useEffect(() => {
@@ -153,7 +138,6 @@ const App: React.FC = () => {
       setActiveTab(tab);
       setActiveCategory(cat);
       setActiveTechniques([]);
-      setActiveDifficulties([]);
       if (promptId && PROMPTS.length > 0) {
         const found = PROMPTS.find(p => p.id === promptId);
         setSelectedPrompt(found || null);
@@ -173,38 +157,29 @@ const App: React.FC = () => {
     );
   };
 
-  const toggleDifficulty = (d: Difficulty) => {
-    setActiveDifficulties(prev =>
-      prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]
-    );
-  };
-
   const filteredPrompts = useMemo(() => {
+    const q = searchQuery.toLowerCase();
     return PROMPTS.filter(p => {
       const matchesTab = p.type === activeTab;
       const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
-      const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          p.shortDescription.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesSearch = !q || p.title.toLowerCase().includes(q) ||
+                          p.shortDescription.toLowerCase().includes(q);
       const matchesTechniques = activeTechniques.length === 0 ||
                                activeTechniques.some(t => p.techniques.includes(t));
       const matchesFavorites = !showFavoritesOnly || isFavorite(p.id);
-      const matchesDifficulty = activeDifficulties.length === 0 ||
-                                (p.difficulty && activeDifficulties.includes(p.difficulty));
-      return matchesTab && matchesCategory && matchesSearch && matchesTechniques && matchesFavorites && matchesDifficulty;
+      return matchesTab && matchesCategory && matchesSearch && matchesTechniques && matchesFavorites;
     });
-  }, [activeTab, activeCategory, searchQuery, activeTechniques, PROMPTS, showFavoritesOnly, isFavorite, activeDifficulties]);
-
-  const tabPromptCount = useMemo(() =>
-    PROMPTS.filter(p => p.type === activeTab).length
-  , [activeTab, PROMPTS]);
+  }, [activeTab, activeCategory, searchQuery, activeTechniques, PROMPTS, showFavoritesOnly, isFavorite]);
 
   const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    const tabPrompts = PROMPTS.filter(p => p.type === activeTab);
-    counts['All'] = tabPrompts.length;
+    const counts: Record<string, number> = { All: 0 };
     for (const cat of CATEGORY_MAP[activeTab]) {
-      if (cat === 'All') continue;
-      counts[cat] = tabPrompts.filter(p => p.category === cat).length;
+      if (cat !== 'All') counts[cat] = 0;
+    }
+    for (const p of PROMPTS) {
+      if (p.type !== activeTab) continue;
+      counts['All']++;
+      counts[p.category]++;
     }
     return counts;
   }, [activeTab, PROMPTS]);
@@ -226,7 +201,6 @@ const App: React.FC = () => {
     setActiveTab(tab);
     setActiveCategory('All');
     setActiveTechniques([]);
-    setActiveDifficulties([]);
     setFocusedCardIndex(null);
     updateURL(tab, 'All', null);
   };
@@ -303,7 +277,7 @@ const App: React.FC = () => {
       } else if (e.key === 'c' && focusedCardIndex !== null) {
         e.preventDefault();
         const prompt = filteredPrompts[focusedCardIndex];
-        if (prompt) navigator.clipboard.writeText(prompt.fullPrompt);
+        if (prompt) navigator.clipboard.writeText(prompt.fullPrompt).catch(() => {});
       }
     };
 
@@ -314,11 +288,12 @@ const App: React.FC = () => {
   // Reset focused card when filters change
   useEffect(() => {
     setFocusedCardIndex(null);
-  }, [activeTab, activeCategory, searchQuery, activeTechniques, activeDifficulties]);
+  }, [activeTab, activeCategory, searchQuery, activeTechniques]);
+
+  const tabPromptCount = categoryCounts['All'] || 0;
 
   return (
-    <div className="min-h-screen selection:bg-stone-200 dark:selection:bg-stone-700 selection:text-stone-900 dark:selection:text-stone-100">
-      <AnimatedBackground />
+    <div className="min-h-screen selection:bg-stone-200 dark:selection:bg-stone-700 selection:text-stone-900 dark:selection:text-stone-100 animated-bg">
 
       {/* Navigation */}
       <nav className="sticky top-0 z-40 bg-[var(--bg-nav)] backdrop-blur-md border-b border-stone-200/50 dark:border-stone-800/50 px-6 py-4">
@@ -360,6 +335,7 @@ const App: React.FC = () => {
                   : 'text-stone-400 hover:text-stone-600 dark:hover:text-stone-300'
               }`}
               aria-label="Toggle favorites"
+              aria-pressed={showFavoritesOnly}
             >
               <Heart size={18} className={showFavoritesOnly ? 'fill-red-500' : ''} />
               {favCount > 0 && (
@@ -411,7 +387,7 @@ const App: React.FC = () => {
             <div className="flex items-center gap-3 flex-wrap">
               <button
                 onClick={handleSurpriseMe}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
+                className={BTN_OUTLINE}
               >
                 <Shuffle size={14} />
                 Surprise Me
@@ -497,32 +473,6 @@ const App: React.FC = () => {
             )}
           </div>
 
-          {/* Difficulty Filter Pills */}
-          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pb-1">
-            <span className="shrink-0 text-[10px] font-bold uppercase tracking-widest text-stone-400">Level</span>
-            {ALL_DIFFICULTIES.map((d) => (
-              <button
-                key={d}
-                onClick={() => toggleDifficulty(d)}
-                className={`shrink-0 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] transition-all duration-300 border shadow-sm ${
-                  activeDifficulties.includes(d)
-                    ? DIFFICULTY_COLORS[d].active
-                    : DIFFICULTY_COLORS[d].inactive
-                }`}
-              >
-                {d}
-              </button>
-            ))}
-            {activeDifficulties.length > 0 && (
-              <button
-                onClick={() => setActiveDifficulties([])}
-                className="shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] text-stone-500 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
-              >
-                <X size={12} />
-                Clear
-              </button>
-            )}
-          </div>
         </section>
 
         {/* Loading State */}
@@ -539,13 +489,18 @@ const App: React.FC = () => {
             <p className="text-stone-400 dark:text-stone-500 mb-6">{error}</p>
             <button
               onClick={retry}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
+              className={BTN_OUTLINE}
             >
               <RotateCcw size={14} />
               Try Again
             </button>
           </div>
         )}
+
+        {/* Screen reader announcement for filter results */}
+        <div className="sr-only" aria-live="polite" aria-atomic="true">
+          {!loading && !error && `${filteredPrompts.length} ${activeTab.toLowerCase()} found`}
+        </div>
 
         {/* Grid */}
         {!loading && !error && (
@@ -556,11 +511,10 @@ const App: React.FC = () => {
               prompt={prompt}
               onPreview={handleSelectPrompt}
               isFavorite={isFavorite(prompt.id)}
-              onToggleFavorite={(e) => {
-                e.stopPropagation();
-                toggleFavorite(prompt.id);
-              }}
+              onToggleFavorite={toggleFavorite}
               isFocused={focusedCardIndex === index}
+              copyCount={copyCounts[prompt.id] || 0}
+              onIncrementCopy={incrementCopy}
             />
           ))}
         </div>
@@ -583,9 +537,8 @@ const App: React.FC = () => {
                   setSearchQuery('');
                   setActiveCategory('All');
                   setActiveTechniques([]);
-                  setActiveDifficulties([]);
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
+                className={BTN_OUTLINE}
               >
                 <RotateCcw size={14} />
                 Reset Filters
@@ -604,6 +557,8 @@ const App: React.FC = () => {
         onToggleFavorite={() => {
           if (selectedPrompt) toggleFavorite(selectedPrompt.id);
         }}
+        copyCount={selectedPrompt ? (copyCounts[selectedPrompt.id] || 0) : 0}
+        onIncrementCopy={incrementCopy}
       />
 
       {/* Subscribe Section */}

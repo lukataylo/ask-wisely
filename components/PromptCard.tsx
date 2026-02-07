@@ -1,28 +1,26 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Copy, Check, ArrowUpRight, Heart } from 'lucide-react';
 import { Prompt } from '../types';
 import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
-import { useCopyCount } from '../hooks/useCopyCount';
 
 interface PromptCardProps {
   prompt: Prompt;
   onPreview: (prompt: Prompt) => void;
   isFavorite: boolean;
-  onToggleFavorite: (e: React.MouseEvent) => void;
+  onToggleFavorite: (id: string) => void;
   isFocused?: boolean;
+  copyCount: number;
+  onIncrementCopy: (id: string) => void;
 }
 
-const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, onToggleFavorite, isFocused }) => {
+const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, onToggleFavorite, isFocused, copyCount, onIncrementCopy }) => {
   const [copied, copy] = useCopyToClipboard(prompt.fullPrompt);
-  const { getCount, increment } = useCopyCount();
-  const [copyCount, setCopyCount] = useState(() => getCount(prompt.id));
 
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
     copy();
-    increment(prompt.id);
-    setCopyCount(prev => prev + 1);
+    onIncrementCopy(prompt.id);
   };
 
   return (
@@ -38,30 +36,12 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, 
       <div className="relative z-10 p-8 h-full flex flex-col justify-between">
         <div>
           <div className="flex justify-between items-start mb-6">
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] uppercase tracking-widest text-stone-500 dark:text-stone-400 font-semibold px-2 py-1 bg-[var(--bg-badge)] rounded-full">
-                {prompt.category}
-              </span>
-              {prompt.difficulty && (
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${
-                  prompt.difficulty === 'Beginner'
-                    ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'
-                    : prompt.difficulty === 'Intermediate'
-                    ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
-                    : 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400'
-                }`}>
-                  {prompt.difficulty}
-                </span>
-              )}
-              {prompt.isNew && (
-                <span className="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 rounded-full">
-                  New
-                </span>
-              )}
-            </div>
+            <span className="text-[10px] uppercase tracking-widest text-stone-500 dark:text-stone-400 font-semibold px-2 py-1 bg-[var(--bg-badge)] rounded-full">
+              {prompt.category}
+            </span>
             <div className="flex items-center gap-1">
               <button
-                onClick={onToggleFavorite}
+                onClick={(e) => { e.stopPropagation(); onToggleFavorite(prompt.id); }}
                 className="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
                 aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
               >

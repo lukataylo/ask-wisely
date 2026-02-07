@@ -1,9 +1,8 @@
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { X, Copy, Check, Heart, FileText, Link, ExternalLink, ChevronDown, ArrowRight } from 'lucide-react';
+import { X, Copy, Check, Heart, Link, ExternalLink, ChevronDown, ArrowRight, Share2 } from 'lucide-react';
 import { Prompt, LLMProvider, TEXT_LLM_TABS, IMAGE_LLM_TABS } from '../types';
 import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
-import { useCopyCount } from '../hooks/useCopyCount';
 
 interface PromptModalProps {
   prompt: Prompt | null;
@@ -12,6 +11,8 @@ interface PromptModalProps {
   onSelectPrompt: (prompt: Prompt) => void;
   isFavorite: boolean;
   onToggleFavorite: () => void;
+  copyCount: number;
+  onIncrementCopy: (id: string) => void;
 }
 
 function highlightVariables(text: string): React.ReactNode[] {
@@ -48,22 +49,17 @@ const LLM_OPTIONS = [
   { name: 'Mistral', url: 'https://chat.mistral.ai/chat' },
 ];
 
-const DIFFICULTY_STYLES: Record<string, string> = {
-  Beginner: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400',
-  Intermediate: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400',
-  Advanced: 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400',
-};
+const BTN_SECONDARY = 'flex items-center gap-2 px-4 py-3 rounded-full border border-stone-200 dark:border-stone-700 font-medium hover:border-stone-400 dark:hover:border-stone-500 text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 transition-all text-sm';
 
-const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPrompts, onSelectPrompt, isFavorite, onToggleFavorite }) => {
+const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPrompts, onSelectPrompt, isFavorite, onToggleFavorite, copyCount, onIncrementCopy }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const [activeLLM, setActiveLLM] = useState<LLMProvider>('claude');
   const [variableValues, setVariableValues] = useState<Record<string, string>>({});
-  const [linkCopied, setLinkCopied] = useState(false);
-  const { getCount, increment } = useCopyCount();
-  const [copyCount, setCopyCount] = useState(0);
   const [openInDropdown, setOpenInDropdown] = useState(false);
+  const [shareDropdown, setShareDropdown] = useState(false);
   const [openInToast, setOpenInToast] = useState('');
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const openInRef = useRef<HTMLDivElement>(null);
+  const shareRef = useRef<HTMLDivElement>(null);
   const [workflowOpen, setWorkflowOpen] = useState(false);
   const [exampleOpen, setExampleOpen] = useState(false);
 
@@ -73,36 +69,73 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
       const tabs = prompt.type === 'Image Prompts' ? IMAGE_LLM_TABS : TEXT_LLM_TABS;
       setActiveLLM(tabs[0].key);
       setVariableValues({});
-      setLinkCopied(false);
-      setCopyCount(getCount(prompt.id));
       setOpenInDropdown(false);
+      setShareDropdown(false);
       setOpenInToast('');
       setWorkflowOpen(false);
       setExampleOpen(false);
     }
-  }, [prompt, getCount]);
+  }, [prompt]);
+
+  // Focus trap + Escape handling
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!prompt) return;
+
+    previousFocusRef.current = document.activeElement as HTMLElement;
+
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+
+      if (e.key === 'Tab' && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
     };
+
     document.addEventListener('keydown', handleKey);
     dialogRef.current?.focus();
-    return () => document.removeEventListener('keydown', handleKey);
+
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      previousFocusRef.current?.focus();
+    };
   }, [prompt, onClose]);
 
-  // Close dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
-    if (!openInDropdown) return;
+    if (!openInDropdown && !shareDropdown) return;
     const handleClick = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (openInRef.current && !openInRef.current.contains(e.target as Node)) {
         setOpenInDropdown(false);
+      }
+      if (shareRef.current && !shareRef.current.contains(e.target as Node)) {
+        setShareDropdown(false);
       }
     };
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
-  }, [openInDropdown]);
+  }, [openInDropdown, shareDropdown]);
 
   const allTabs = prompt?.type === 'Image Prompts' ? IMAGE_LLM_TABS : TEXT_LLM_TABS;
   const hasAnyVariant = prompt ? Object.values(prompt.llmVariants).some(v => !!v) : false;
@@ -123,13 +156,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
     return text;
   }, [activePromptText, variableValues]);
 
-  const markdownExport = useMemo(() => {
-    if (!prompt) return '';
-    return `# ${prompt.title}\n\n> ${prompt.shortDescription}\n\n**Category:** ${prompt.category}  \n**Techniques:** ${prompt.techniques.join(', ') || 'None'}\n\n---\n\n\`\`\`\n${substitutedPrompt}\n\`\`\`\n`;
-  }, [prompt, substitutedPrompt]);
-
   const [copied, copy] = useCopyToClipboard(substitutedPrompt);
-  const [copiedMd, copyMd] = useCopyToClipboard(markdownExport);
 
   if (!prompt) return null;
 
@@ -137,8 +164,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
 
   const handleCopy = () => {
     copy();
-    increment(prompt.id);
-    setCopyCount(prev => prev + 1);
+    onIncrementCopy(prompt.id);
   };
 
   const shareUrl = `${window.location.origin}/${prompt.id}`;
@@ -147,25 +173,30 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
     const text = encodeURIComponent(`${prompt.title} — ${prompt.shortDescription}`);
     const url = encodeURIComponent(shareUrl);
     window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
+    setShareDropdown(false);
   };
 
   const handleShareLinkedIn = () => {
     const url = encodeURIComponent(shareUrl);
     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'noopener,noreferrer');
+    setShareDropdown(false);
   };
 
   const handleCopyLink = async () => {
-    await navigator.clipboard.writeText(shareUrl);
-    setLinkCopied(true);
-    setTimeout(() => setLinkCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+    } catch { /* clipboard unavailable */ }
+    setShareDropdown(false);
   };
 
   const handleOpenIn = async (llm: typeof LLM_OPTIONS[number]) => {
-    await navigator.clipboard.writeText(substitutedPrompt);
+    try {
+      await navigator.clipboard.writeText(substitutedPrompt);
+    } catch { /* clipboard unavailable */ }
     window.open(llm.url, '_blank', 'noopener,noreferrer');
     setOpenInDropdown(false);
     setOpenInToast(llm.name);
-    setTimeout(() => setOpenInToast(''), 3000);
+    setTimeout(() => setOpenInToast(''), 2000);
   };
 
   return (
@@ -183,24 +214,12 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
         className="relative w-full max-w-2xl bg-[var(--bg-page)] rounded-[32px] shadow-2xl overflow-hidden border border-[var(--bg-card-border)] flex flex-col max-h-[90vh] focus:outline-none animate-slide-up"
       >
         <div className="p-8 md:p-12 overflow-y-auto">
-          {/* 1. Category badge + difficulty + title + actions */}
+          {/* Header: Category + title + actions */}
           <div className="flex justify-between items-start mb-6">
             <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400 font-bold bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-full">
-                  {prompt.category}
-                </span>
-                {prompt.difficulty && (
-                  <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[prompt.difficulty]}`}>
-                    {prompt.difficulty}
-                  </span>
-                )}
-                {prompt.isNew && (
-                  <span className="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 rounded-full">
-                    New
-                  </span>
-                )}
-              </div>
+              <span className="text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400 font-bold bg-stone-100 dark:bg-stone-800 px-3 py-1 rounded-full">
+                {prompt.category}
+              </span>
               <h2 className="serif text-4xl md:text-5xl font-medium text-stone-900 dark:text-stone-100 mt-4 leading-tight">
                 {prompt.title}
               </h2>
@@ -225,7 +244,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
             </div>
           </div>
 
-          {/* 2. LLM Tab Bar */}
+          {/* LLM Tab Bar */}
           <div className="flex items-center gap-2 mb-8">
             {hasAnyVariant ? (
               allTabs.map((tab) => (
@@ -252,7 +271,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
           </div>
 
           <div className="space-y-8">
-            {/* 3. The Wisdom — prompt preview */}
+            {/* The Wisdom — prompt preview */}
             <section>
               <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">The Wisdom</h3>
               <div className="relative group">
@@ -324,7 +343,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
               </section>
             )}
 
-            {/* 4. Customize — variable input fields */}
+            {/* Customize — variable input fields */}
             {prompt.variables.length > 0 && (
               <section>
                 <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Customize</h3>
@@ -352,7 +371,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
               </section>
             )}
 
-            {/* 5. Techniques Used */}
+            {/* Techniques Used */}
             {prompt.techniques.length > 0 && (
               <section>
                 <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Techniques Used</h3>
@@ -369,16 +388,18 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
               </section>
             )}
 
-            {/* 6. Skills */}
-            <section className="flex flex-wrap gap-2">
-              {prompt.skills.map((skill, i) => (
-                <span key={i} className="px-4 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-medium">
-                  {skill}
-                </span>
-              ))}
-            </section>
+            {/* Skills */}
+            {prompt.skills.length > 0 && (
+              <section className="flex flex-wrap gap-2">
+                {prompt.skills.map((skill, i) => (
+                  <span key={i} className="px-4 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 text-xs font-medium">
+                    {skill}
+                  </span>
+                ))}
+              </section>
+            )}
 
-            {/* 7. Related Prompts */}
+            {/* Related Prompts */}
             {relatedPrompts.length > 0 && (
               <section>
                 <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Related</h3>
@@ -403,18 +424,18 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
           </div>
         </div>
 
-        {/* 8. Footer with actions */}
-        <div className="shrink-0 p-6 md:px-12 md:pb-12 bg-stone-50 dark:bg-stone-900 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-3 flex-wrap">
+        {/* Footer with actions */}
+        <div className="shrink-0 p-6 md:px-12 md:pb-10 bg-stone-50 dark:bg-stone-900 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             {/* Open in LLM dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative" ref={openInRef}>
               <button
-                onClick={() => setOpenInDropdown(!openInDropdown)}
-                className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
+                onClick={() => { setOpenInDropdown(!openInDropdown); setShareDropdown(false); }}
+                className={BTN_SECONDARY}
                 aria-label="Open in LLM"
               >
                 <ExternalLink size={16} />
-                Open in...
+                <span className="hidden sm:inline">Open in...</span>
               </button>
               {openInDropdown && (
                 <div className="absolute bottom-full left-0 mb-2 w-48 bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl shadow-xl overflow-hidden z-10 animate-fade-in-fast">
@@ -431,48 +452,56 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
                 </div>
               )}
             </div>
-            <button
-              onClick={handleShareTwitter}
-              className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
-              aria-label="Share on X"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </button>
-            <button
-              onClick={handleShareLinkedIn}
-              className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
-              aria-label="Share on LinkedIn"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </button>
-            <button
-              onClick={handleCopyLink}
-              className="flex items-center gap-2 px-4 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
-              aria-label="Copy link"
-            >
-              {linkCopied ? <Check size={16} /> : <Link size={16} />}
-              {linkCopied ? 'Copied!' : 'Copy Link'}
-            </button>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => copyMd()}
-              className="flex items-center gap-2 px-5 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-all text-sm"
-            >
-              {copiedMd ? <Check size={16} /> : <FileText size={16} />}
-              {copiedMd ? 'Copied!' : 'Markdown'}
-            </button>
-            <button
-              onClick={handleCopy}
-              className="flex items-center gap-2 px-8 py-3 rounded-full border-2 border-stone-200 dark:border-stone-700 font-medium hover:border-stone-900 dark:hover:border-stone-300 hover:text-stone-900 dark:hover:text-stone-100 text-stone-600 dark:text-stone-300 transition-all text-sm"
-            >
-              {copied ? <Check size={18} /> : <Copy size={18} />}
-              {copied ? 'Copied!' : 'Copy Prompt'}
-              {copyCount > 0 && !copied && (
-                <span className="text-stone-400 dark:text-stone-500 text-xs">{copyCount}x</span>
+
+            {/* Share dropdown */}
+            <div className="relative" ref={shareRef}>
+              <button
+                onClick={() => { setShareDropdown(!shareDropdown); setOpenInDropdown(false); }}
+                className={BTN_SECONDARY}
+                aria-label="Share"
+              >
+                <Share2 size={16} />
+                <span className="hidden sm:inline">Share</span>
+              </button>
+              {shareDropdown && (
+                <div className="absolute bottom-full left-0 mb-2 w-40 bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl shadow-xl overflow-hidden z-10 animate-fade-in-fast">
+                  <button
+                    onClick={handleCopyLink}
+                    className="w-full text-left px-4 py-2.5 text-sm text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors flex items-center gap-2"
+                  >
+                    <Link size={14} />
+                    Copy Link
+                  </button>
+                  <button
+                    onClick={handleShareTwitter}
+                    className="w-full text-left px-4 py-2.5 text-sm text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors flex items-center gap-2"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    X / Twitter
+                  </button>
+                  <button
+                    onClick={handleShareLinkedIn}
+                    className="w-full text-left px-4 py-2.5 text-sm text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors flex items-center gap-2"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                  </button>
+                </div>
               )}
-            </button>
+            </div>
           </div>
+
+          {/* Primary CTA: Copy Prompt */}
+          <button
+            onClick={handleCopy}
+            className="flex items-center gap-2 px-8 py-3 rounded-full font-bold text-sm bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-all shadow-lg hover:shadow-xl"
+          >
+            {copied ? <Check size={18} /> : <Copy size={18} />}
+            {copied ? 'Copied!' : 'Copy Prompt'}
+            {copyCount > 0 && !copied && (
+              <span className="text-stone-400 dark:text-stone-500 text-xs">{copyCount}x</span>
+            )}
+          </button>
         </div>
 
         {/* "Copied! Paste in chat" toast */}

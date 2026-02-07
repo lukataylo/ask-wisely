@@ -17,6 +17,7 @@
   --float-from2: #e8dfd0;
   --float-to2: #fdfbf7;
   --card-hover-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+  --focus-ring: #78716c;
 }
 
 .dark {
@@ -34,6 +35,7 @@
   --float-from2: #292524;
   --float-to2: #0c0a09;
   --card-hover-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+  --focus-ring: #a8a29e;
 }
 
 body {
@@ -115,7 +117,7 @@ body {
 
 /* Keyboard focus ring on cards */
 .prompt-card.keyboard-focused {
-  box-shadow: 0 0 0 3px #a8a29e;
+  box-shadow: 0 0 0 3px var(--focus-ring);
   border-radius: 24px;
 }
 
@@ -135,7 +137,7 @@ body {
   opacity: 0;
 }
 .accordion-content.open {
-  max-height: 2000px;
+  max-height: 5000px;
   opacity: 1;
 }
 
@@ -177,6 +179,61 @@ body {
 .dark .subscribe-btn:hover {
   box-shadow: 0 8px 32px -4px rgba(245, 245, 244, 0.25);
   transform: translateY(-2px);
+}
+
+/* Animated background (replaces AnimatedBackground component) */
+.animated-bg {
+  position: relative;
+}
+.animated-bg::before,
+.animated-bg::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  border-radius: 0;
+  will-change: transform;
+}
+.animated-bg::before {
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  opacity: 0.4;
+  filter: blur(120px);
+  background: radial-gradient(circle, var(--float-from1) 0%, var(--float-to1) 70%);
+  animation: float1 20s linear infinite;
+}
+.animated-bg::after {
+  bottom: -25%;
+  right: -25%;
+  width: 150%;
+  height: 150%;
+  opacity: 0.3;
+  filter: blur(120px);
+  background: radial-gradient(circle, var(--float-from2) 0%, var(--float-to2) 70%);
+  animation: float2 25s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-bg::before,
+  .animated-bg::after {
+    animation: none;
+  }
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-fade-in-fast,
+  .animate-fade-in-slow,
+  .animate-slide-up {
+    animation: none;
+  }
+  .prompt-card {
+    transition: none;
+  }
+  .prompt-card .arrow-icon {
+    transition: none;
+  }
 }
 
 /* Scrollbar hide utility */

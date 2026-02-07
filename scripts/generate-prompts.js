@@ -118,7 +118,7 @@ function parseMarkdown(filePath) {
       inList = false;
     }
 
-    const kvMatch = line.match(/^(\w+):\s*(.*)$/);
+    const kvMatch = line.match(/^([a-zA-Z]\w*):\s*(.*)$/);
     if (kvMatch) {
       currentKey = kvMatch[1];
       const value = kvMatch[2].trim();
@@ -190,16 +190,31 @@ function parseMarkdown(filePath) {
   return result;
 }
 
-function getGitAddedDate(filePath) {
+function getGitAddedDates(contentDir) {
   try {
     const output = execSync(
-      `git log --diff-filter=A --follow --format=%aI -- "${filePath}"`,
-      { encoding: 'utf-8', timeout: 5000, stdio: ['pipe', 'pipe', 'pipe'] }
+      `git log --diff-filter=A --format="COMMIT %aI" --name-only -- "${contentDir}"`,
+      { encoding: 'utf-8', timeout: 15000, stdio: ['pipe', 'pipe', 'pipe'] }
     ).trim();
-    const lines = output.split('\n').filter(Boolean);
-    return lines.length > 0 ? lines[lines.length - 1] : null;
+
+    const map = {};
+    let currentDate = null;
+
+    for (const line of output.split('\n')) {
+      if (line.startsWith('COMMIT ')) {
+        currentDate = line.slice(7).trim();
+      } else if (line && currentDate) {
+        const basename = path.basename(line);
+        // Keep the earliest (first-added) date per file
+        if (!map[basename]) {
+          map[basename] = currentDate;
+        }
+      }
+    }
+
+    return map;
   } catch {
-    return null;
+    return {};
   }
 }
 
@@ -303,19 +318,22 @@ for (let i = 0; i < files.length; i++) {
 }
 
 const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+const gitDates = getGitAddedDates(CONTENT_DIR);
 
-const prompts = parsed.filter(Boolean).map((prompt, i) => {
-  const filePath = path.join(CONTENT_DIR, files[i]);
-  const gitDate = getGitAddedDate(filePath);
-  const isNewByDate = gitDate ? new Date(gitDate).getTime() > thirtyDaysAgo : false;
-  const isNewByFlag = prompt._isNewFlag;
+const prompts = parsed
+  .map((prompt, i) => (prompt ? { prompt, file: files[i] } : null))
+  .filter(Boolean)
+  .map(({ prompt, file }) => {
+    const gitDate = gitDates[file] || null;
+    const isNewByDate = gitDate ? new Date(gitDate).getTime() > thirtyDaysAgo : false;
+    const isNewByFlag = prompt._isNewFlag;
 
-  const { _isNewFlag, ...rest } = prompt;
-  return {
-    ...rest,
-    isNew: isNewByDate || isNewByFlag,
-  };
-});
+    const { _isNewFlag, ...rest } = prompt;
+    return {
+      ...rest,
+      isNew: isNewByDate || isNewByFlag,
+    };
+  });
 
 fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
 

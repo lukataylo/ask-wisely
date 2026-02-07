@@ -30,5 +30,5 @@ export function useCopyCount() {
     });
   }, []);
 
-  return { getCount, increment };
+  return { counts, getCount, increment };
 }
