@@ -20,12 +20,16 @@
 - **Search and filter** by category, technique, or free text
 - **Dark mode** with automatic system detection
 - **Favorites** — save prompts to a personal collection (localStorage)
-- **Copy to clipboard** with one click (plain text or Markdown)
-- **Share** any prompt via a direct URL (e.g., `askwisely.com/poetry-forge`)
+- **Copy to clipboard** with one click
+- **Open in LLM** — launch prompts directly in Claude, ChatGPT, Gemini, Perplexity, Copilot, or Mistral
+- **Share** via direct URL, X/Twitter, or LinkedIn
 - **Keyboard shortcuts** — `/` to search, `j`/`k` to navigate, `Enter` to open, `c` to copy
 - **LLM-specific variants** — some prompts have versions optimized for Claude, ChatGPT, or Gemini
 - **Customizable variables** — fill in `[bracketed]` placeholders to personalize prompts
+- **Workflows** — step-by-step guides for complex prompts
+- **Examples** — input/output samples showing prompts in action
 - **Free JSON API** — fetch all prompts at `/prompts.json`
+- **Accessible** — respects `prefers-reduced-motion`, keyboard navigable, screen reader friendly
 - **SEO optimized** — noscript fallback, JSON-LD structured data, full sitemap
 
 ---
@@ -99,7 +103,10 @@ Each prompt has this shape:
   "skills": ["Poetry", "Meter and Rhyme", "Imagery"],
   "techniques": ["Role Assignment", "Constraint-Based"],
   "variables": [{ "name": "your theme", "placeholder": "[your theme]" }],
-  "llmVariants": {},
+  "llmVariants": { "claude": "...", "chatgpt": "..." },
+  "workflow": ["Step 1...", "Step 2..."],
+  "exampleInput": "A poem about...",
+  "exampleOutput": "Here is the generated poem...",
   "isNew": false
 }
 ```
@@ -112,7 +119,6 @@ Each prompt has this shape:
 |-------|-----------|
 | Framework | React 19 with TypeScript |
 | Build tool | Vite 6 |
-| CMS | Decap CMS (Git-backed) |
 | Styling | Tailwind CSS 4 |
 | Fonts | EB Garamond (serif), Inter (sans-serif) |
 | Icons | Lucide React |
@@ -127,12 +133,10 @@ Each prompt has this shape:
 
 ```bash
 npm install
-npm run dev       # Start dev server at localhost:3000
+npm run dev       # Start dev server at localhost:5173
 npm run build     # Production build
 npm run preview   # Preview production build
 ```
-
-The Decap CMS admin panel is available at `http://localhost:3000/admin`.
 
 ---
 
@@ -142,24 +146,25 @@ The Decap CMS admin panel is available at `http://localhost:3000/admin`.
 ask-wisely/
 ├── App.tsx                     # Main app (routing, filters, keyboard nav, dark mode)
 ├── index.html                  # HTML shell + SEO meta + dark mode init
-├── index.css                   # Theme tokens, animations, dark mode
+├── index.css                   # Theme tokens, animations, reduced-motion support
 ├── types.ts                    # TypeScript type definitions
 ├── components/
 │   ├── PromptCard.tsx          # Card with copy, favorite, preview
-│   ├── PromptModal.tsx         # Full modal: share, markdown export, related prompts
-│   ├── AnimatedBackground.tsx  # Floating gradient background
+│   ├── PromptModal.tsx         # Full modal: LLM launcher, share, variables
 │   └── OwlLogo.tsx             # SVG mascot
 ├── hooks/
-│   ├── usePrompts.ts           # Loads prompts from JSON
+│   ├── usePrompts.ts           # Loads prompts with abort controller
 │   ├── useFavorites.ts         # localStorage favorites
 │   ├── useCopyCount.ts         # localStorage copy tracking
 │   ├── useCopyToClipboard.ts   # Clipboard API wrapper
 │   └── useDarkMode.ts          # Dark mode toggle + persistence
+├── lib/
+│   └── getPrompts.ts           # Fetch wrapper with AbortSignal
 ├── content/prompts/            # 201 markdown source files
 ├── scripts/
 │   ├── generate-prompts.js     # Markdown → JSON, SEO HTML, JSON-LD, sitemap
 │   └── inject-seo.js           # Post-build SEO injection
-└── public/                     # Static assets, CMS config, generated files
+└── public/                     # Static assets, generated files
 ```
 
 ---
