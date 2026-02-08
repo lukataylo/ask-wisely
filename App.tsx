@@ -91,7 +91,7 @@ const App: React.FC = () => {
     );
   };
 
-  const { filteredPrompts, categoryCounts, relatedPrompts } = usePromptFilters({
+  const { tabPrompts, filteredPrompts, categoryCounts, relatedPrompts } = usePromptFilters({
     prompts: PROMPTS,
     activeTab,
     activeCategory,
@@ -130,7 +130,6 @@ const App: React.FC = () => {
   }, [activeTab, activeCategory, updateURL]);
 
   const handleSurpriseMe = () => {
-    const tabPrompts = PROMPTS.filter(p => p.type === activeTab);
     if (tabPrompts.length === 0) return;
     const random = tabPrompts[Math.floor(Math.random() * tabPrompts.length)];
     handleSelectPrompt(random);

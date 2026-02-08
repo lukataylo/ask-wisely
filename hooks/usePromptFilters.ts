@@ -24,9 +24,14 @@ export function usePromptFilters({
   selectedPrompt,
   categoryMap,
 }: Params) {
+  const tabPrompts = useMemo(
+    () => prompts.filter((p) => p.type === activeTab),
+    [prompts, activeTab],
+  );
+
   const searchableTextById = useMemo(() => {
     const map = new Map<string, string>();
-    for (const p of prompts) {
+    for (const p of tabPrompts) {
       map.set(
         p.id,
         [
@@ -41,37 +46,35 @@ export function usePromptFilters({
       );
     }
     return map;
-  }, [prompts]);
+  }, [tabPrompts]);
 
   const filteredPrompts = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    return prompts.filter(p => {
-      const matchesTab = p.type === activeTab;
+    return tabPrompts.filter(p => {
       const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
       const matchesSearch = !q || (searchableTextById.get(p.id)?.includes(q) ?? false);
       const matchesTechniques = activeTechniques.length === 0 ||
         activeTechniques.some(t => p.techniques.includes(t));
       const matchesFavorites = !showFavoritesOnly || isFavorite(p.id);
-      return matchesTab && matchesCategory && matchesSearch && matchesTechniques && matchesFavorites;
+      return matchesCategory && matchesSearch && matchesTechniques && matchesFavorites;
     });
-  }, [activeTab, activeCategory, searchQuery, activeTechniques, prompts, showFavoritesOnly, isFavorite, searchableTextById]);
+  }, [activeCategory, searchQuery, activeTechniques, tabPrompts, showFavoritesOnly, isFavorite, searchableTextById]);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { All: 0 };
     for (const cat of categoryMap[activeTab]) {
       if (cat !== 'All') counts[cat] = 0;
     }
-    for (const p of prompts) {
-      if (p.type !== activeTab) continue;
+    for (const p of tabPrompts) {
       counts.All++;
       counts[p.category]++;
     }
     return counts;
-  }, [activeTab, prompts, categoryMap]);
+  }, [activeTab, tabPrompts, categoryMap]);
 
   const relatedPrompts = useMemo(() => {
     if (!selectedPrompt) return [];
-    return prompts
+    return tabPrompts
       .filter(p =>
         p.id !== selectedPrompt.id && (
           p.category === selectedPrompt.category ||
@@ -79,7 +82,7 @@ export function usePromptFilters({
         ),
       )
       .slice(0, 3);
-  }, [selectedPrompt, prompts]);
+  }, [selectedPrompt, tabPrompts]);
 
-  return { filteredPrompts, categoryCounts, relatedPrompts };
+  return { tabPrompts, filteredPrompts, categoryCounts, relatedPrompts };
 }
