@@ -3,6 +3,7 @@ import React from 'react';
 import { Copy, Check, ArrowUpRight, Heart } from 'lucide-react';
 import { Prompt } from '../types';
 import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
+import IconButton from './ui/IconButton';
 
 interface PromptCardProps {
   prompt: Prompt;
@@ -48,27 +49,28 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, 
               {prompt.category}
             </span>
             <div className="flex items-center gap-1">
-              <button
+              <IconButton
                 onClick={(e) => { e.stopPropagation(); onToggleFavorite(prompt.id); }}
-                className="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
-                aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                active={isFavorite}
+                className={isFavorite ? 'hover:bg-red-50 dark:hover:bg-red-900/20' : ''}
               >
                 <Heart
                   size={16}
                   className={isFavorite ? 'fill-red-500 text-red-500' : 'text-stone-400 dark:text-stone-500'}
                 />
-              </button>
-              <button
+              </IconButton>
+              <IconButton
                 onClick={handleCopy}
-                className="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors text-stone-600 dark:text-stone-400"
-                aria-label="Copy prompt"
+                label="Copy prompt"
+                className="text-stone-600 dark:text-stone-400"
               >
                 {copied ? (
                   <Check size={16} className="text-green-600 dark:text-green-400" />
                 ) : (
                   <Copy size={16} />
                 )}
-              </button>
+              </IconButton>
             </div>
           </div>
 

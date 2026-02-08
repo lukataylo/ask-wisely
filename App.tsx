@@ -14,6 +14,7 @@ import { copyText } from './lib/copyText';
 import PromptGrid from './components/PromptGrid';
 import FilterControls from './components/FilterControls';
 import PromptModal from './components/PromptModal';
+import IconButton from './components/ui/IconButton';
 
 const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills'];
 
@@ -197,15 +198,12 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-1 shrink-0">
-            <button
+            <IconButton
               onClick={() => setShowFavoritesOnly(prev => !prev)}
-              className={`p-2 rounded-full transition-colors relative ${
-                showFavoritesOnly
-                  ? 'text-red-500'
-                  : 'text-stone-400 hover:text-stone-600 dark:hover:text-stone-300'
-              }`}
-              aria-label="Toggle favorites"
+              label="Toggle favorites"
+              active={showFavoritesOnly}
               aria-pressed={showFavoritesOnly}
+              className="relative"
             >
               <Heart size={18} className={showFavoritesOnly ? 'fill-red-500' : ''} />
               {favCount > 0 && (
@@ -213,14 +211,13 @@ const App: React.FC = () => {
                   {favCount}
                 </span>
               )}
-            </button>
-            <button
+            </IconButton>
+            <IconButton
               onClick={toggleDarkMode}
-              className="p-2 rounded-full text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
-              aria-label="Toggle dark mode"
+              label="Toggle dark mode"
             >
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            </IconButton>
           </div>
         </div>
       </nav>
