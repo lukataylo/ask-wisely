@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useTransition } from 'react';
 import { Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw, Mail } from 'lucide-react';
 import { OwlLogo } from './components/OwlLogo';
 import { Category, Prompt, MainTab, Technique } from './types';
@@ -52,6 +52,7 @@ const App: React.FC = () => {
   const [pendingPromptId, setPendingPromptId] = useState<string | null>(initial.promptId);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [focusedCardIndex, setFocusedCardIndex] = useState<number | null>(null);
+  const [isFilterPending, startFilterTransition] = useTransition();
 
   // Once prompts load, resolve pending prompt ID from URL
   useEffect(() => {
@@ -85,11 +86,13 @@ const App: React.FC = () => {
   }, CATEGORY_MAP);
 
   const toggleTechnique = (technique: Technique) => {
-    setActiveTechniques(prev =>
-      prev.includes(technique)
-        ? prev.filter(t => t !== technique)
-        : [...prev, technique]
-    );
+    startFilterTransition(() => {
+      setActiveTechniques(prev =>
+        prev.includes(technique)
+          ? prev.filter(t => t !== technique)
+          : [...prev, technique]
+      );
+    });
   };
 
   const { tabPrompts, filteredPrompts, categoryCounts, relatedPrompts } = usePromptFilters({
@@ -114,9 +117,11 @@ const App: React.FC = () => {
   };
 
   const handleCategoryChange = (cat: Category) => {
-    setActiveCategory(cat);
-    setFocusedCardIndex(null);
-    updateURL(activeTab, cat, null);
+    startFilterTransition(() => {
+      setActiveCategory(cat);
+      setFocusedCardIndex(null);
+      updateURL(activeTab, cat, null);
+    });
   };
 
   const handleSelectPrompt = useCallback((prompt: Prompt) => {
@@ -199,7 +204,7 @@ const App: React.FC = () => {
 
           <div className="flex items-center gap-1 shrink-0">
             <IconButton
-              onClick={() => setShowFavoritesOnly(prev => !prev)}
+              onClick={() => startFilterTransition(() => setShowFavoritesOnly(prev => !prev))}
               label="Toggle favorites"
               active={showFavoritesOnly}
               aria-pressed={showFavoritesOnly}
@@ -281,7 +286,7 @@ const App: React.FC = () => {
           categoryCounts={categoryCounts}
           loading={loading}
           searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+          setSearchQuery={(q) => startFilterTransition(() => setSearchQuery(q))}
           searchRef={searchRef}
           allTechniques={ALL_TECHNIQUES}
           activeTechniques={activeTechniques}
@@ -291,6 +296,12 @@ const App: React.FC = () => {
           setShowFavoritesOnly={setShowFavoritesOnly}
           onCategoryChange={handleCategoryChange}
         />
+
+        {isFilterPending && !loading && (
+          <div className="text-[11px] uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
+            Updating results...
+          </div>
+        )}
 
         {/* Loading State */}
         {loading && (
