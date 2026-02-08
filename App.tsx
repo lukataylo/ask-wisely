@@ -10,7 +10,7 @@ import { useCopyCount } from './hooks/useCopyCount';
 import { parseURL, useUrlState } from './hooks/useUrlState';
 import { usePromptFilters } from './hooks/usePromptFilters';
 import { usePromptKeyboardNav } from './hooks/usePromptKeyboardNav';
-import PromptCard from './components/PromptCard';
+import PromptGrid from './components/PromptGrid';
 import PromptModal from './components/PromptModal';
 
 const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills'];
@@ -429,20 +429,15 @@ const App: React.FC = () => {
 
         {/* Grid */}
         {!loading && !error && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPrompts.map((prompt, index) => (
-            <PromptCard
-              key={prompt.id}
-              prompt={prompt}
-              onPreview={handleSelectPrompt}
-              isFavorite={isFavorite(prompt.id)}
-              onToggleFavorite={toggleFavorite}
-              isFocused={focusedCardIndex === index}
-              copyCount={copyCounts[prompt.id] || 0}
-              onIncrementCopy={incrementCopy}
-            />
-          ))}
-        </div>
+          <PromptGrid
+            prompts={filteredPrompts}
+            focusedCardIndex={focusedCardIndex}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleFavorite}
+            onPreview={handleSelectPrompt}
+            copyCounts={copyCounts}
+            onIncrementCopy={incrementCopy}
+          />
         )}
 
         {/* Empty State */}
