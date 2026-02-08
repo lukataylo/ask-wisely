@@ -121,6 +121,12 @@ const App: React.FC = () => {
     categoryMap: CATEGORY_MAP,
   });
 
+  const handleSurpriseMe = useCallback(() => {
+    if (tabPrompts.length === 0) return;
+    const random = tabPrompts[Math.floor(Math.random() * tabPrompts.length)];
+    handleSelectPrompt(random);
+  }, [tabPrompts, handleSelectPrompt]);
+
   const handleCopyPrompt = useCallback((prompt: Prompt) => {
     copyText(prompt.fullPrompt).then((ok) => {
       if (ok) incrementCopy(prompt.id);
