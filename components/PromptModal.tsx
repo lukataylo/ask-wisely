@@ -156,15 +156,14 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
     return text;
   }, [activePromptText, variableValues]);
 
-  const [copied, copy] = useCopyToClipboard(substitutedPrompt);
+  const [copied, copy] = useCopyToClipboard(substitutedPrompt, () => onIncrementCopy(prompt.id));
 
   if (!prompt) return null;
 
   const hasVariant = (key: LLMProvider) => !!prompt.llmVariants[key];
 
   const handleCopy = () => {
-    copy();
-    onIncrementCopy(prompt.id);
+    void copy();
   };
 
   const shareUrl = `${window.location.origin}/${prompt.id}`;

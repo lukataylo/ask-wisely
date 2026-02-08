@@ -15,12 +15,11 @@ interface PromptCardProps {
 }
 
 const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, onToggleFavorite, isFocused, copyCount, onIncrementCopy }) => {
-  const [copied, copy] = useCopyToClipboard(prompt.fullPrompt);
+  const [copied, copy] = useCopyToClipboard(prompt.fullPrompt, () => onIncrementCopy(prompt.id));
 
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
-    copy();
-    onIncrementCopy(prompt.id);
+    void copy();
   };
 
   return (
