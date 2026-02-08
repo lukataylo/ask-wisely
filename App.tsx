@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Search, X, Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw, Mail } from 'lucide-react';
 import { OwlLogo } from './components/OwlLogo';
 import { Category, Prompt, MainTab, Technique } from './types';
@@ -7,6 +7,9 @@ import { usePrompts } from './hooks/usePrompts';
 import { useFavorites } from './hooks/useFavorites';
 import { useDarkMode } from './hooks/useDarkMode';
 import { useCopyCount } from './hooks/useCopyCount';
+import { parseURL, useUrlState } from './hooks/useUrlState';
+import { usePromptFilters } from './hooks/usePromptFilters';
+import { usePromptKeyboardNav } from './hooks/usePromptKeyboardNav';
 import PromptCard from './components/PromptCard';
 import PromptModal from './components/PromptModal';
 
@@ -26,58 +29,6 @@ const ALL_TECHNIQUES: Technique[] = [
 
 const BTN_OUTLINE = 'inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all';
 
-// --- URL Routing helpers ---
-const TAB_SLUGS: Record<string, MainTab> = {
-  'prompts': 'Prompts',
-  'image-prompts': 'Image Prompts',
-  'skills': 'Skills',
-};
-const TAB_TO_SLUG: Record<MainTab, string> = {
-  'Prompts': 'prompts',
-  'Image Prompts': 'image-prompts',
-  'Skills': 'skills',
-};
-
-function slugify(s: string): string {
-  return s.toLowerCase().replace(/\s+/g, '-');
-}
-
-function parseURL(): { tab: MainTab; cat: Category; promptId: string | null } {
-  const pathname = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
-  const params = new URLSearchParams(window.location.search);
-
-  // A non-empty single-segment path is a prompt slug: /the-devils-advocate
-  if (pathname && !pathname.includes('/')) {
-    return { tab: 'Prompts', cat: 'All', promptId: pathname };
-  }
-
-  // Otherwise read tab/cat from query params
-  const tabSlug = params.get('tab');
-  const catSlug = params.get('cat');
-
-  const tab: MainTab = (tabSlug && TAB_SLUGS[tabSlug]) || 'Prompts';
-
-  let cat: Category = 'All';
-  if (catSlug) {
-    const categories = CATEGORY_MAP[tab];
-    const match = categories.find(c => slugify(c) === catSlug);
-    if (match) cat = match;
-  }
-
-  return { tab, cat, promptId: null };
-}
-
-function buildURL(tab: MainTab, cat: Category, promptId: string | null): string {
-  if (promptId) {
-    return `/${promptId}`;
-  }
-  const params = new URLSearchParams();
-  if (tab !== 'Prompts') params.set('tab', TAB_TO_SLUG[tab]);
-  if (cat !== 'All') params.set('cat', slugify(cat));
-  const qs = params.toString();
-  return qs ? `/?${qs}` : '/';
-}
-
 const DEFAULT_TITLE = 'Ask Wisely — Curated AI Prompt Library for Creative, Technical & Visual Prompts';
 
 const App: React.FC = () => {
@@ -86,9 +37,10 @@ const App: React.FC = () => {
   const { favorites, toggleFavorite, isFavorite, count: favCount } = useFavorites();
   const { counts: copyCounts, increment: incrementCopy } = useCopyCount();
   const searchRef = useRef<HTMLInputElement>(null);
+  const { updateURL, usePopStateListener, resolvePromptFromId } = useUrlState();
 
   // Initialize state from URL
-  const initial = parseURL();
+  const initial = parseURL(CATEGORY_MAP);
   const [activeTab, setActiveTab] = useState<MainTab>(initial.tab);
   const [activeCategory, setActiveCategory] = useState<Category>(initial.cat);
   const [searchQuery, setSearchQuery] = useState('');
@@ -101,24 +53,15 @@ const App: React.FC = () => {
   // Once prompts load, resolve pending prompt ID from URL
   useEffect(() => {
     if (!loading && PROMPTS.length > 0 && pendingPromptId) {
-      const found = PROMPTS.find(p => p.id === pendingPromptId);
+      const found = resolvePromptFromId(PROMPTS, pendingPromptId);
       if (found) {
         setSelectedPrompt(found);
         setActiveTab(found.type);
       }
       setPendingPromptId(null);
     }
-  }, [loading, PROMPTS, pendingPromptId]);
+  }, [loading, PROMPTS, pendingPromptId, resolvePromptFromId]);
 
-  // Sync state → URL
-  const updateURL = useCallback((tab: MainTab, cat: Category, promptId: string | null, replace = false) => {
-    const url = buildURL(tab, cat, promptId);
-    if (replace) {
-      window.history.replaceState(null, '', url);
-    } else {
-      window.history.pushState(null, '', url);
-    }
-  }, []);
 
   // Update document title
   useEffect(() => {
@@ -131,23 +74,12 @@ const App: React.FC = () => {
     }
   }, [selectedPrompt, activeTab]);
 
-  // Listen for popstate (back/forward navigation)
-  useEffect(() => {
-    const handlePopState = () => {
-      const { tab, cat, promptId } = parseURL();
-      setActiveTab(tab);
-      setActiveCategory(cat);
-      setActiveTechniques([]);
-      if (promptId && PROMPTS.length > 0) {
-        const found = PROMPTS.find(p => p.id === promptId);
-        setSelectedPrompt(found || null);
-      } else {
-        setSelectedPrompt(null);
-      }
-    };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, [PROMPTS]);
+  usePopStateListener(({ tab, cat, promptId }) => {
+    setActiveTab(tab);
+    setActiveCategory(cat);
+    setActiveTechniques([]);
+    setSelectedPrompt(resolvePromptFromId(PROMPTS, promptId));
+  }, CATEGORY_MAP);
 
   const toggleTechnique = (technique: Technique) => {
     setActiveTechniques(prev =>
@@ -157,54 +89,17 @@ const App: React.FC = () => {
     );
   };
 
-  const filteredPrompts = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-    return PROMPTS.filter(p => {
-      const matchesTab = p.type === activeTab;
-      const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
-      const searchableText = [
-        p.title,
-        p.shortDescription,
-        p.fullPrompt,
-        p.category,
-        ...p.skills,
-        ...p.techniques,
-        ...(p.variables?.map(v => `${v.name} ${v.placeholder}`) || []),
-      ]
-        .join(' ')
-        .toLowerCase();
-      const matchesSearch = !q || searchableText.includes(q);
-      const matchesTechniques = activeTechniques.length === 0 ||
-                               activeTechniques.some(t => p.techniques.includes(t));
-      const matchesFavorites = !showFavoritesOnly || isFavorite(p.id);
-      return matchesTab && matchesCategory && matchesSearch && matchesTechniques && matchesFavorites;
-    });
-  }, [activeTab, activeCategory, searchQuery, activeTechniques, PROMPTS, showFavoritesOnly, isFavorite]);
-
-  const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { All: 0 };
-    for (const cat of CATEGORY_MAP[activeTab]) {
-      if (cat !== 'All') counts[cat] = 0;
-    }
-    for (const p of PROMPTS) {
-      if (p.type !== activeTab) continue;
-      counts['All']++;
-      counts[p.category]++;
-    }
-    return counts;
-  }, [activeTab, PROMPTS]);
-
-  const relatedPrompts = useMemo(() => {
-    if (!selectedPrompt) return [];
-    return PROMPTS
-      .filter(p =>
-        p.id !== selectedPrompt.id && (
-          p.category === selectedPrompt.category ||
-          p.techniques.some(t => selectedPrompt.techniques.includes(t))
-        )
-      )
-      .slice(0, 3);
-  }, [selectedPrompt, PROMPTS]);
+  const { filteredPrompts, categoryCounts, relatedPrompts } = usePromptFilters({
+    prompts: PROMPTS,
+    activeTab,
+    activeCategory,
+    searchQuery,
+    activeTechniques,
+    showFavoritesOnly,
+    isFavorite,
+    selectedPrompt,
+    categoryMap: CATEGORY_MAP,
+  });
 
   // Reset category and techniques when tab changes
   const handleTabChange = (tab: MainTab) => {
@@ -239,86 +134,42 @@ const App: React.FC = () => {
     handleSelectPrompt(random);
   };
 
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const target = e.target as HTMLElement;
-      const inInput = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
+  const handleCopyPrompt = useCallback((prompt: Prompt) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = prompt.fullPrompt;
+    textArea.setAttribute('readonly', '');
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
 
-      // "/" focuses search (unless already in an input)
-      if (e.key === '/' && !inInput && !selectedPrompt) {
-        e.preventDefault();
-        searchRef.current?.focus();
-        return;
-      }
-
-      // Escape: blur search or close modal
-      if (e.key === 'Escape') {
-        if (document.activeElement === searchRef.current) {
-          searchRef.current?.blur();
-          setSearchQuery('');
-          return;
-        }
-        // Modal escape is handled in PromptModal
-        return;
-      }
-
-      // Card navigation only when not in input and no modal
-      if (inInput || selectedPrompt) return;
-
-      if (e.key === 'j' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        setFocusedCardIndex(prev => {
-          const next = prev === null ? 0 : Math.min(prev + 1, filteredPrompts.length - 1);
-          scrollCardIntoView(next);
-          return next;
-        });
-      } else if (e.key === 'k' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        setFocusedCardIndex(prev => {
-          const next = prev === null ? 0 : Math.max(prev - 1, 0);
-          scrollCardIntoView(next);
-          return next;
-        });
-      } else if (e.key === 'Enter' && focusedCardIndex !== null) {
-        e.preventDefault();
-        const prompt = filteredPrompts[focusedCardIndex];
-        if (prompt) handleSelectPrompt(prompt);
-      } else if (e.key === 'c' && focusedCardIndex !== null) {
-        e.preventDefault();
-        const prompt = filteredPrompts[focusedCardIndex];
-        if (prompt) {
-          const textArea = document.createElement('textarea');
-          textArea.value = prompt.fullPrompt;
-          textArea.setAttribute('readonly', '');
-          textArea.style.position = 'fixed';
-          textArea.style.opacity = '0';
-          document.body.appendChild(textArea);
-
-          const cleanup = () => {
-            if (document.body.contains(textArea)) document.body.removeChild(textArea);
-          };
-
-          if (navigator.clipboard?.writeText) {
-            navigator.clipboard.writeText(prompt.fullPrompt)
-              .then(() => incrementCopy(prompt.id))
-              .catch(() => {
-                textArea.select();
-                if (document.execCommand('copy')) incrementCopy(prompt.id);
-              })
-              .finally(cleanup);
-          } else {
-            textArea.select();
-            if (document.execCommand('copy')) incrementCopy(prompt.id);
-            cleanup();
-          }
-        }
-      }
+    const cleanup = () => {
+      if (document.body.contains(textArea)) document.body.removeChild(textArea);
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedPrompt, filteredPrompts, focusedCardIndex, handleSelectPrompt]);
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(prompt.fullPrompt)
+        .then(() => incrementCopy(prompt.id))
+        .catch(() => {
+          textArea.select();
+          if (document.execCommand('copy')) incrementCopy(prompt.id);
+        })
+        .finally(cleanup);
+    } else {
+      textArea.select();
+      if (document.execCommand('copy')) incrementCopy(prompt.id);
+      cleanup();
+    }
+  }, [incrementCopy]);
+
+  usePromptKeyboardNav({
+    selectedPrompt,
+    filteredPrompts,
+    focusedCardIndex,
+    setFocusedCardIndex,
+    onSelectPrompt: handleSelectPrompt,
+    onCopyPrompt: handleCopyPrompt,
+    searchRef,
+  });
 
   // Keep keyboard focus stable when filtered list changes
   useEffect(() => {
@@ -681,12 +532,5 @@ const App: React.FC = () => {
     </div>
   );
 };
-
-function scrollCardIntoView(index: number) {
-  requestAnimationFrame(() => {
-    const cards = document.querySelectorAll('.prompt-card');
-    cards[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-}
 
 export default App;
