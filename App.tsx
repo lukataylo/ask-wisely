@@ -158,12 +158,22 @@ const App: React.FC = () => {
   };
 
   const filteredPrompts = useMemo(() => {
-    const q = searchQuery.toLowerCase();
+    const q = searchQuery.trim().toLowerCase();
     return PROMPTS.filter(p => {
       const matchesTab = p.type === activeTab;
       const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
-      const matchesSearch = !q || p.title.toLowerCase().includes(q) ||
-                          p.shortDescription.toLowerCase().includes(q);
+      const searchableText = [
+        p.title,
+        p.shortDescription,
+        p.fullPrompt,
+        p.category,
+        ...p.skills,
+        ...p.techniques,
+        ...(p.variables?.map(v => `${v.name} ${v.placeholder}`) || []),
+      ]
+        .join(' ')
+        .toLowerCase();
+      const matchesSearch = !q || searchableText.includes(q);
       const matchesTechniques = activeTechniques.length === 0 ||
                                activeTechniques.some(t => p.techniques.includes(t));
       const matchesFavorites = !showFavoritesOnly || isFavorite(p.id);
@@ -310,10 +320,14 @@ const App: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedPrompt, filteredPrompts, focusedCardIndex, handleSelectPrompt]);
 
-  // Reset focused card when filters change
+  // Keep keyboard focus stable when filtered list changes
   useEffect(() => {
-    setFocusedCardIndex(null);
-  }, [activeTab, activeCategory, searchQuery, activeTechniques]);
+    setFocusedCardIndex(prev => {
+      if (prev === null) return null;
+      if (filteredPrompts.length === 0) return null;
+      return Math.min(prev, filteredPrompts.length - 1);
+    });
+  }, [filteredPrompts.length]);
 
   const tabPromptCount = categoryCounts['All'] || 0;
 
