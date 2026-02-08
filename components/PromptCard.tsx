@@ -24,8 +24,17 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, 
 
   return (
     <div
-      className={`prompt-card group relative cursor-pointer ${isFocused ? 'keyboard-focused' : ''}`}
+      className={`prompt-card group relative cursor-pointer focus:outline-none ${isFocused ? 'keyboard-focused' : ''}`}
       onClick={() => onPreview(prompt)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onPreview(prompt);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open prompt ${prompt.title}`}
     >
       {/* The Shape-Shifting Background Layer */}
       <div

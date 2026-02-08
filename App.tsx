@@ -496,14 +496,49 @@ const App: React.FC = () => {
                 Clear
               </button>
             )}
+
+            {(searchQuery || activeCategory !== 'All' || activeTechniques.length > 0 || showFavoritesOnly) && (
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setActiveCategory('All');
+                  setActiveTechniques([]);
+                  setShowFavoritesOnly(false);
+                }}
+                className="shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] text-stone-500 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+              >
+                <RotateCcw size={12} />
+                Reset All
+              </button>
+            )}
           </div>
 
         </section>
 
         {/* Loading State */}
         {loading && (
-          <div className="py-32 text-center animate-fade-in-fast">
-            <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-2">Loading prompts...</div>
+          <div className="py-12 animate-fade-in-fast" aria-busy="true" aria-live="polite">
+            <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-8 text-center">Loading prompts...</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="rounded-[24px] border border-stone-200 dark:border-stone-800 bg-white/60 dark:bg-stone-900/60 p-8 shadow-sm"
+                  aria-hidden="true"
+                >
+                  <div className="h-5 w-20 rounded-full bg-stone-200/70 dark:bg-stone-700/70 mb-6 animate-pulse" />
+                  <div className="h-7 w-3/4 rounded bg-stone-200/70 dark:bg-stone-700/70 mb-3 animate-pulse" />
+                  <div className="h-4 w-full rounded bg-stone-200/60 dark:bg-stone-700/60 mb-2 animate-pulse" />
+                  <div className="h-4 w-5/6 rounded bg-stone-200/60 dark:bg-stone-700/60 mb-6 animate-pulse" />
+                  <div className="flex gap-2 mb-6">
+                    <div className="h-5 w-16 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
+                    <div className="h-5 w-20 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
+                  </div>
+                  <div className="h-px w-full bg-stone-200/70 dark:bg-stone-700/70 mb-4" />
+                  <div className="h-4 w-24 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
+                </div>
+              ))}
+            </div>
           </div>
         )}
 

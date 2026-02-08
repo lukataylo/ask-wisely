@@ -237,6 +237,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
               <button
                 onClick={onClose}
                 className="p-3 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+                aria-label="Close prompt modal"
               >
                 <X size={24} />
               </button>
