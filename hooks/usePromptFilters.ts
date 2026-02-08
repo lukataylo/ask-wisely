@@ -24,27 +24,37 @@ export function usePromptFilters({
   selectedPrompt,
   categoryMap,
 }: Params) {
+  const searchableTextById = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const p of prompts) {
+      map.set(
+        p.id,
+        [
+          p.title,
+          p.shortDescription,
+          p.fullPrompt,
+          p.category,
+          ...p.skills,
+          ...p.techniques,
+          ...(p.variables?.map(v => `${v.name} ${v.placeholder}`) || []),
+        ].join(' ').toLowerCase(),
+      );
+    }
+    return map;
+  }, [prompts]);
+
   const filteredPrompts = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     return prompts.filter(p => {
       const matchesTab = p.type === activeTab;
       const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
-      const searchableText = [
-        p.title,
-        p.shortDescription,
-        p.fullPrompt,
-        p.category,
-        ...p.skills,
-        ...p.techniques,
-        ...(p.variables?.map(v => `${v.name} ${v.placeholder}`) || []),
-      ].join(' ').toLowerCase();
-      const matchesSearch = !q || searchableText.includes(q);
+      const matchesSearch = !q || (searchableTextById.get(p.id)?.includes(q) ?? false);
       const matchesTechniques = activeTechniques.length === 0 ||
         activeTechniques.some(t => p.techniques.includes(t));
       const matchesFavorites = !showFavoritesOnly || isFavorite(p.id);
       return matchesTab && matchesCategory && matchesSearch && matchesTechniques && matchesFavorites;
     });
-  }, [activeTab, activeCategory, searchQuery, activeTechniques, prompts, showFavoritesOnly, isFavorite]);
+  }, [activeTab, activeCategory, searchQuery, activeTechniques, prompts, showFavoritesOnly, isFavorite, searchableTextById]);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { All: 0 };
