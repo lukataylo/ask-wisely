@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useRef, useTransition } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw, Mail } from 'lucide-react';
 import { OwlLogo } from './components/OwlLogo';
 import { Category, Prompt, MainTab, Technique } from './types';
@@ -11,6 +11,7 @@ import { parseURL, useUrlState } from './hooks/useUrlState';
 import { usePromptFilters } from './hooks/usePromptFilters';
 import { usePromptKeyboardNav } from './hooks/usePromptKeyboardNav';
 import { usePromptIndex } from './hooks/usePromptIndex';
+import { usePromptExplorerState } from './hooks/usePromptExplorerState';
 import { copyText } from './lib/copyText';
 import PromptGrid from './components/PromptGrid';
 import FilterControls from './components/FilterControls';
@@ -38,7 +39,7 @@ const DEFAULT_TITLE = 'Ask Wisely — Curated AI Prompt Library for Creative, Te
 const App: React.FC = () => {
   const { prompts: PROMPTS, loading, error, retry } = usePrompts();
   const { isDark, toggle: toggleDarkMode } = useDarkMode();
-  const { favorites, toggleFavorite, isFavorite, count: favCount } = useFavorites();
+  const { toggleFavorite, isFavorite, count: favCount } = useFavorites();
   const { counts: copyCounts, increment: incrementCopy } = useCopyCount();
   const searchRef = useRef<HTMLInputElement>(null);
   const { updateURL, usePopStateListener } = useUrlState();
@@ -46,15 +47,36 @@ const App: React.FC = () => {
 
   // Initialize state from URL
   const initial = parseURL(CATEGORY_MAP);
-  const [activeTab, setActiveTab] = useState<MainTab>(initial.tab);
-  const [activeCategory, setActiveCategory] = useState<Category>(initial.cat);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null);
-  const [activeTechniques, setActiveTechniques] = useState<Technique[]>([]);
-  const [pendingPromptId, setPendingPromptId] = useState<string | null>(initial.promptId);
-  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
-  const [focusedCardIndex, setFocusedCardIndex] = useState<number | null>(null);
-  const [isFilterPending, startFilterTransition] = useTransition();
+  const {
+    activeTab,
+    setActiveTab,
+    activeCategory,
+    setActiveCategory,
+    searchQuery,
+    setSearchQuery,
+    selectedPrompt,
+    setSelectedPrompt,
+    activeTechniques,
+    setActiveTechniques,
+    pendingPromptId,
+    setPendingPromptId,
+    showFavoritesOnly,
+    setShowFavoritesOnly,
+    focusedCardIndex,
+    setFocusedCardIndex,
+    isFilterPending,
+    startFilterTransition,
+    handleTabChange,
+    handleCategoryChange,
+    handleSelectPrompt,
+    handleCloseModal,
+    toggleTechnique,
+  } = usePromptExplorerState({
+    initialTab: initial.tab,
+    initialCategory: initial.cat,
+    initialPromptId: initial.promptId,
+    updateURL,
+  });
 
   // Once prompts load, resolve pending prompt ID from URL
   useEffect(() => {
@@ -87,16 +109,6 @@ const App: React.FC = () => {
     setSelectedPrompt(promptId ? (promptById.get(promptId) ?? null) : null);
   }, CATEGORY_MAP);
 
-  const toggleTechnique = (technique: Technique) => {
-    startFilterTransition(() => {
-      setActiveTechniques(prev =>
-        prev.includes(technique)
-          ? prev.filter(t => t !== technique)
-          : [...prev, technique]
-      );
-    });
-  };
-
   const { tabPrompts, filteredPrompts, categoryCounts, relatedPrompts } = usePromptFilters({
     prompts: PROMPTS,
     activeTab,
@@ -108,40 +120,6 @@ const App: React.FC = () => {
     selectedPrompt,
     categoryMap: CATEGORY_MAP,
   });
-
-  // Reset category and techniques when tab changes
-  const handleTabChange = (tab: MainTab) => {
-    setActiveTab(tab);
-    setActiveCategory('All');
-    setActiveTechniques([]);
-    setFocusedCardIndex(null);
-    updateURL(tab, 'All', null);
-  };
-
-  const handleCategoryChange = (cat: Category) => {
-    startFilterTransition(() => {
-      setActiveCategory(cat);
-      setFocusedCardIndex(null);
-      updateURL(activeTab, cat, null);
-    });
-  };
-
-  const handleSelectPrompt = useCallback((prompt: Prompt) => {
-    setSelectedPrompt(prompt);
-    setFocusedCardIndex(null);
-    updateURL(activeTab, activeCategory, prompt.id);
-  }, [activeTab, activeCategory, updateURL]);
-
-  const handleCloseModal = useCallback(() => {
-    setSelectedPrompt(null);
-    updateURL(activeTab, activeCategory, null);
-  }, [activeTab, activeCategory, updateURL]);
-
-  const handleSurpriseMe = () => {
-    if (tabPrompts.length === 0) return;
-    const random = tabPrompts[Math.floor(Math.random() * tabPrompts.length)];
-    handleSelectPrompt(random);
-  };
 
   const handleCopyPrompt = useCallback((prompt: Prompt) => {
     copyText(prompt.fullPrompt).then((ok) => {

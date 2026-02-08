@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, RotateCcw, X } from 'lucide-react';
 import { Category, MainTab, Technique } from '../types';
+import PillButton from './ui/PillButton';
 
 interface FilterControlsProps {
   activeTab: MainTab;
@@ -44,14 +45,11 @@ const FilterControls: React.FC<FilterControlsProps> = ({
       <div className="flex flex-col md:flex-row md:items-center gap-6 justify-between border-b border-stone-200/50 dark:border-stone-700/50 pb-8">
         <div className="flex gap-2 overflow-x-auto scrollbar-hide">
           {categoryMap[activeTab].map((cat) => (
-            <button
+            <PillButton
               key={cat}
               onClick={() => onCategoryChange(cat)}
-              className={`shrink-0 px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 border ${
-                activeCategory === cat
-                  ? 'bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 border-stone-900 dark:border-stone-100 shadow-sm'
-                  : 'bg-white dark:bg-stone-800 text-stone-400 border-stone-100 dark:border-stone-700 hover:border-stone-300 dark:hover:border-stone-500'
-              }`}
+              active={activeCategory === cat}
+              className={activeCategory === cat ? '' : 'border-stone-100 dark:border-stone-700 hover:border-stone-300 dark:hover:border-stone-500'}
             >
               {cat}
               {!loading && categoryCounts[cat] !== undefined && (
@@ -63,7 +61,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
                   {categoryCounts[cat]}
                 </span>
               )}
-            </button>
+            </PillButton>
           ))}
         </div>
 
@@ -82,17 +80,17 @@ const FilterControls: React.FC<FilterControlsProps> = ({
 
       <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pb-1">
         {allTechniques.map((technique) => (
-          <button
+          <PillButton
             key={technique}
             onClick={() => toggleTechnique(technique)}
-            className={`shrink-0 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] transition-all duration-300 border ${
-              activeTechniques.includes(technique)
-                ? 'bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-900 border-stone-800 dark:border-stone-200 shadow-sm'
-                : 'bg-white dark:bg-stone-800 text-stone-400 border-stone-200 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-500'
-            }`}
+            active={activeTechniques.includes(technique)}
+            compact
+            className={activeTechniques.includes(technique)
+              ? 'bg-stone-800 dark:bg-stone-200 border-stone-800 dark:border-stone-200'
+              : ''}
           >
             {technique}
-          </button>
+          </PillButton>
         ))}
         {activeTechniques.length > 0 && (
           <button
