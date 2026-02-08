@@ -10,6 +10,7 @@ import { useCopyCount } from './hooks/useCopyCount';
 import { parseURL, useUrlState } from './hooks/useUrlState';
 import { usePromptFilters } from './hooks/usePromptFilters';
 import { usePromptKeyboardNav } from './hooks/usePromptKeyboardNav';
+import { usePromptIndex } from './hooks/usePromptIndex';
 import { copyText } from './lib/copyText';
 import PromptGrid from './components/PromptGrid';
 import FilterControls from './components/FilterControls';
@@ -40,7 +41,8 @@ const App: React.FC = () => {
   const { favorites, toggleFavorite, isFavorite, count: favCount } = useFavorites();
   const { counts: copyCounts, increment: incrementCopy } = useCopyCount();
   const searchRef = useRef<HTMLInputElement>(null);
-  const { updateURL, usePopStateListener, resolvePromptFromId } = useUrlState();
+  const { updateURL, usePopStateListener } = useUrlState();
+  const { byId: promptById } = usePromptIndex(PROMPTS);
 
   // Initialize state from URL
   const initial = parseURL(CATEGORY_MAP);
@@ -57,14 +59,14 @@ const App: React.FC = () => {
   // Once prompts load, resolve pending prompt ID from URL
   useEffect(() => {
     if (!loading && PROMPTS.length > 0 && pendingPromptId) {
-      const found = resolvePromptFromId(PROMPTS, pendingPromptId);
+      const found = pendingPromptId ? (promptById.get(pendingPromptId) ?? null) : null;
       if (found) {
         setSelectedPrompt(found);
         setActiveTab(found.type);
       }
       setPendingPromptId(null);
     }
-  }, [loading, PROMPTS, pendingPromptId, resolvePromptFromId]);
+  }, [loading, PROMPTS, pendingPromptId, promptById]);
 
 
   // Update document title
@@ -82,7 +84,7 @@ const App: React.FC = () => {
     setActiveTab(tab);
     setActiveCategory(cat);
     setActiveTechniques([]);
-    setSelectedPrompt(resolvePromptFromId(PROMPTS, promptId));
+    setSelectedPrompt(promptId ? (promptById.get(promptId) ?? null) : null);
   }, CATEGORY_MAP);
 
   const toggleTechnique = (technique: Technique) => {

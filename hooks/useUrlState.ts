@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { Category, MainTab, Prompt } from '../types';
+import { Category, MainTab } from '../types';
 
 const TAB_SLUGS: Record<string, MainTab> = {
   'prompts': 'Prompts',
@@ -66,10 +66,5 @@ export function useUrlState() {
     }, [handler, categoryMap]);
   };
 
-  const resolvePromptFromId = (prompts: Prompt[], promptId: string | null) => {
-    if (!promptId) return null;
-    return prompts.find(p => p.id === promptId) || null;
-  };
-
-  return { updateURL, usePopStateListener, resolvePromptFromId };
+  return { updateURL, usePopStateListener };
 }
