@@ -235,7 +235,7 @@ const App: React.FC = () => {
                 : "Foundational blueprints and methodologies for becoming a power user of digital intelligence."
             )}
           </p>
-          {!loading && PROMPTS.length > 0 && (
+          {!loading && tabPrompts.length > 0 && (
             <div className="flex items-center gap-3 flex-wrap">
               <button
                 onClick={handleSurpriseMe}

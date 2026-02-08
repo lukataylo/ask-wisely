@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { Prompt, LLMProvider, TEXT_LLM_TABS, IMAGE_LLM_TABS } from '../types';
 import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
+import { copyText } from '../lib/copyText';
 import ModalHeader from './prompt-modal/ModalHeader';
 import ModalFooterActions from './prompt-modal/ModalFooterActions';
 import SectionHeading from './ui/SectionHeading';
@@ -183,17 +184,13 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
     setShareDropdown(false);
   };
 
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-    } catch { /* clipboard unavailable */ }
+  const handleCopyLink = () => {
+    void copyText(shareUrl);
     setShareDropdown(false);
   };
 
-  const handleOpenIn = async (llm: typeof LLM_OPTIONS[number]) => {
-    try {
-      await navigator.clipboard.writeText(substitutedPrompt);
-    } catch { /* clipboard unavailable */ }
+  const handleOpenIn = (llm: typeof LLM_OPTIONS[number]) => {
+    void copyText(substitutedPrompt);
     window.open(llm.url, '_blank', 'noopener,noreferrer');
     setOpenInDropdown(false);
     setOpenInToast(llm.name);
@@ -232,6 +229,7 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
                   onClick={() => setActiveLLM(tab.key)}
                   active={activeLLM === tab.key}
                   compact
+                  className="relative"
                 >
                   {tab.label}
                   {hasVariant(tab.key) && (
