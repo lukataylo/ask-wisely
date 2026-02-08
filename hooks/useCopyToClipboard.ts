@@ -1,22 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-
-async function fallbackCopy(text: string): Promise<boolean> {
-  try {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.setAttribute('readonly', '');
-    textArea.style.position = 'fixed';
-    textArea.style.opacity = '0';
-    textArea.style.pointerEvents = 'none';
-    document.body.appendChild(textArea);
-    textArea.select();
-    const ok = document.execCommand('copy');
-    document.body.removeChild(textArea);
-    return ok;
-  } catch {
-    return false;
-  }
-}
+import { copyText } from '../lib/copyText';
 
 export function useCopyToClipboard(
   text: string,
@@ -32,18 +15,7 @@ export function useCopyToClipboard(
   }, []);
 
   const copy = useCallback(async () => {
-    let success = false;
-
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(text);
-        success = true;
-      } else {
-        success = await fallbackCopy(text);
-      }
-    } catch {
-      success = await fallbackCopy(text);
-    }
+    const success = await copyText(text);
 
     if (success) {
       setCopied(true);

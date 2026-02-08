@@ -10,6 +10,7 @@ import { useCopyCount } from './hooks/useCopyCount';
 import { parseURL, useUrlState } from './hooks/useUrlState';
 import { usePromptFilters } from './hooks/usePromptFilters';
 import { usePromptKeyboardNav } from './hooks/usePromptKeyboardNav';
+import { copyText } from './lib/copyText';
 import PromptGrid from './components/PromptGrid';
 import PromptModal from './components/PromptModal';
 
@@ -135,30 +136,9 @@ const App: React.FC = () => {
   };
 
   const handleCopyPrompt = useCallback((prompt: Prompt) => {
-    const textArea = document.createElement('textarea');
-    textArea.value = prompt.fullPrompt;
-    textArea.setAttribute('readonly', '');
-    textArea.style.position = 'fixed';
-    textArea.style.opacity = '0';
-    document.body.appendChild(textArea);
-
-    const cleanup = () => {
-      if (document.body.contains(textArea)) document.body.removeChild(textArea);
-    };
-
-    if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(prompt.fullPrompt)
-        .then(() => incrementCopy(prompt.id))
-        .catch(() => {
-          textArea.select();
-          if (document.execCommand('copy')) incrementCopy(prompt.id);
-        })
-        .finally(cleanup);
-    } else {
-      textArea.select();
-      if (document.execCommand('copy')) incrementCopy(prompt.id);
-      cleanup();
-    }
+    copyText(prompt.fullPrompt).then((ok) => {
+      if (ok) incrementCopy(prompt.id);
+    });
   }, [incrementCopy]);
 
   usePromptKeyboardNav({
