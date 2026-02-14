@@ -1,5 +1,5 @@
 
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw, Mail } from 'lucide-react';
 import { OwlLogo } from './components/OwlLogo';
 import { Category, Prompt, MainTab, Technique } from './types';
@@ -17,13 +17,17 @@ import PromptGrid from './components/PromptGrid';
 import FilterControls from './components/FilterControls';
 import PromptModal from './components/PromptModal';
 import IconButton from './components/ui/IconButton';
+import BlogList from './components/BlogList';
+import BlogPost from './components/BlogPost';
+import { getBlogPostBySlug, type BlogPost as BlogPostType } from './lib/blog-data';
 
-const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills'];
+const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills', 'Blog'];
 
 const CATEGORY_MAP: Record<MainTab, Category[]> = {
   'Prompts': ['All', 'Creative', 'Technical', 'Business', 'Academic', 'Persona', 'Product', 'Data', 'Marketing', 'Personal', 'Legal', 'Education', 'Healthcare'],
   'Image Prompts': ['All', 'Cinematic', 'Portrait', 'Stylized', 'Architecture', 'Commercial', 'Interface'],
-  'Skills': ['All', 'Engineering', 'Writing', 'Strategy', 'Design', 'Communication', 'AI Literacy']
+  'Skills': ['All', 'Engineering', 'Writing', 'Strategy', 'Design', 'Communication', 'AI Literacy'],
+  'Blog': ['All'],
 };
 
 const ALL_TECHNIQUES: Technique[] = [
@@ -47,6 +51,9 @@ const App: React.FC = () => {
 
   // Initialize state from URL
   const initial = parseURL(CATEGORY_MAP);
+  const [selectedBlogPost, setSelectedBlogPost] = useState<BlogPostType | null>(
+    initial.blogSlug ? getBlogPostBySlug(initial.blogSlug) ?? null : null
+  );
   const {
     activeTab,
     setActiveTab,
@@ -93,20 +100,28 @@ const App: React.FC = () => {
 
   // Update document title
   useEffect(() => {
-    if (selectedPrompt) {
+    if (selectedBlogPost) {
+      document.title = `${selectedBlogPost.title} — Ask Wisely`;
+    } else if (selectedPrompt) {
       document.title = `${selectedPrompt.title} — Ask Wisely`;
     } else if (activeTab !== 'Prompts') {
       document.title = `${activeTab} — Ask Wisely`;
     } else {
       document.title = DEFAULT_TITLE;
     }
-  }, [selectedPrompt, activeTab]);
+  }, [selectedPrompt, selectedBlogPost, activeTab]);
 
-  usePopStateListener(({ tab, cat, promptId }) => {
+  usePopStateListener(({ tab, cat, promptId, blogSlug }) => {
     setActiveTab(tab);
     setActiveCategory(cat);
     setActiveTechniques([]);
-    setSelectedPrompt(promptId ? (promptById.get(promptId) ?? null) : null);
+    if (blogSlug) {
+      setSelectedBlogPost(getBlogPostBySlug(blogSlug) ?? null);
+      setSelectedPrompt(null);
+    } else {
+      setSelectedPrompt(promptId ? (promptById.get(promptId) ?? null) : null);
+      setSelectedBlogPost(null);
+    }
   }, CATEGORY_MAP);
 
   const { tabPrompts, filteredPrompts, categoryCounts, relatedPrompts } = usePromptFilters({
@@ -168,7 +183,7 @@ const App: React.FC = () => {
               setShowFavoritesOnly(false);
             }}
           >
-            <OwlLogo size={24} className="text-stone-400" />
+            <OwlLogo size={36} className="text-stone-400" />
             <span className="hidden sm:inline">Ask Wisely</span><span className="text-stone-400 font-light hidden sm:inline">.</span>
           </button>
 
@@ -214,166 +229,207 @@ const App: React.FC = () => {
       </nav>
 
       <main className="max-w-7xl mx-auto px-6 pt-16 pb-32">
-        {/* Hero Section */}
-        <header className="max-w-3xl mb-16">
-          <h1
-            key={activeTab}
-            className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6 animate-fade-in-up"
-          >
-            {activeTab === 'Prompts' && <>The Art of <span className="italic text-stone-500 dark:text-stone-400">Inquiry</span></>}
-            {activeTab === 'Image Prompts' && <>The Art of <span className="italic text-stone-500 dark:text-stone-400">Vision</span></>}
-            {activeTab === 'Skills' && <>The Art of <span className="italic text-stone-500 dark:text-stone-400">Mastery</span></>}
-          </h1>
-          <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow mb-6">
-            {activeTab === 'Prompts' && (
-              !loading && tabPromptCount > 0
-                ? `A collection of ${tabPromptCount} sophisticated text prompts for complex reasoning and creative storytelling.`
-                : "A collection of sophisticated text prompts for complex reasoning and creative storytelling."
-            )}
-            {activeTab === 'Image Prompts' && (
-              !loading && tabPromptCount > 0
-                ? `Browse ${tabPromptCount} precision visual parameters for high-end generative art and cinematic world-building.`
-                : "Precision visual parameters for high-end generative art and cinematic world-building."
-            )}
-            {activeTab === 'Skills' && (
-              !loading && tabPromptCount > 0
-                ? `Explore ${tabPromptCount} foundational blueprints and methodologies for becoming a power user of digital intelligence.`
-                : "Foundational blueprints and methodologies for becoming a power user of digital intelligence."
-            )}
-          </p>
-          {!loading && tabPrompts.length > 0 && (
-            <div className="flex items-center gap-3 flex-wrap">
-              <button
-                onClick={handleSurpriseMe}
-                className={BTN_OUTLINE}
-              >
-                <Shuffle size={14} />
-                Surprise Me
-              </button>
-              <button
-                onClick={() => {
-                  searchRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  setTimeout(() => searchRef.current?.focus(), 400);
-                }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
-              >
-                Browse Collection
-                <ArrowDown size={14} />
-              </button>
-            </div>
-          )}
-        </header>
 
-        {/* Search and Filters */}
-        <FilterControls
-          activeTab={activeTab}
-          activeCategory={activeCategory}
-          categoryMap={CATEGORY_MAP}
-          categoryCounts={categoryCounts}
-          loading={loading}
-          searchQuery={searchQuery}
-          setSearchQuery={(q) => startFilterTransition(() => setSearchQuery(q))}
-          searchRef={searchRef}
-          allTechniques={ALL_TECHNIQUES}
-          activeTechniques={activeTechniques}
-          toggleTechnique={toggleTechnique}
-          setActiveTechniques={setActiveTechniques}
-          showFavoritesOnly={showFavoritesOnly}
-          setShowFavoritesOnly={setShowFavoritesOnly}
-          onCategoryChange={handleCategoryChange}
-        />
-
-        {isFilterPending && !loading && (
-          <div className="text-[11px] uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
-            Updating results...
+        {/* ── Skills: cleared ── */}
+        {activeTab === 'Skills' && (
+          <div className="py-32 text-center animate-fade-in">
+            <h1 className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6">
+              The Art of <span className="italic text-stone-500 dark:text-stone-400">Mastery</span>
+            </h1>
+            <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light max-w-xl mx-auto">
+              Skills content is being reimagined. Check back soon.
+            </p>
           </div>
         )}
 
-        {/* Loading State */}
-        {loading && (
-          <div className="py-12 animate-fade-in-fast" aria-busy="true" aria-live="polite">
-            <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-8 text-center">Loading prompts...</div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="rounded-[24px] border border-stone-200 dark:border-stone-800 bg-white/60 dark:bg-stone-900/60 p-8 shadow-sm"
-                  aria-hidden="true"
-                >
-                  <div className="h-5 w-20 rounded-full bg-stone-200/70 dark:bg-stone-700/70 mb-6 animate-pulse" />
-                  <div className="h-7 w-3/4 rounded bg-stone-200/70 dark:bg-stone-700/70 mb-3 animate-pulse" />
-                  <div className="h-4 w-full rounded bg-stone-200/60 dark:bg-stone-700/60 mb-2 animate-pulse" />
-                  <div className="h-4 w-5/6 rounded bg-stone-200/60 dark:bg-stone-700/60 mb-6 animate-pulse" />
-                  <div className="flex gap-2 mb-6">
-                    <div className="h-5 w-16 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
-                    <div className="h-5 w-20 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
-                  </div>
-                  <div className="h-px w-full bg-stone-200/70 dark:bg-stone-700/70 mb-4" />
-                  <div className="h-4 w-24 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* ── Blog ── */}
+        {activeTab === 'Blog' && !selectedBlogPost && (
+          <>
+            <header className="max-w-3xl mb-16">
+              <h1 className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6 animate-fade-in-up">
+                The Art of <span className="italic text-stone-500 dark:text-stone-400">Thinking</span>
+              </h1>
+              <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow">
+                Essays on prompt craft, AI literacy, and the evolving art of human-machine collaboration.
+              </p>
+            </header>
+            <BlogList onSelectPost={(post) => {
+              setSelectedBlogPost(post);
+              updateURL('Blog', 'All', null, false, post.slug);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }} />
+          </>
         )}
 
-        {/* Error State */}
-        {error && (
-          <div className="py-32 text-center animate-fade-in-fast">
-            <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-2">Failed to load prompts</div>
-            <p className="text-stone-400 dark:text-stone-500 mb-6">{error}</p>
-            <button
-              onClick={retry}
-              className={BTN_OUTLINE}
-            >
-              <RotateCcw size={14} />
-              Try Again
-            </button>
-          </div>
-        )}
-
-        {/* Screen reader announcement for filter results */}
-        <div className="sr-only" aria-live="polite" aria-atomic="true">
-          {!loading && !error && `${filteredPrompts.length} ${activeTab.toLowerCase()} found`}
-        </div>
-
-        {/* Grid */}
-        {!loading && !error && (
-          <PromptGrid
-            prompts={filteredPrompts}
-            focusedCardIndex={focusedCardIndex}
-            isFavorite={isFavorite}
-            onToggleFavorite={toggleFavorite}
-            onPreview={handleSelectPrompt}
-            copyCounts={copyCounts}
-            onIncrementCopy={incrementCopy}
+        {activeTab === 'Blog' && selectedBlogPost && (
+          <BlogPost
+            post={selectedBlogPost}
+            onBack={() => {
+              setSelectedBlogPost(null);
+              updateURL('Blog', 'All', null);
+            }}
           />
         )}
 
-        {/* Empty State */}
-        {!loading && !error && filteredPrompts.length === 0 && (
-          <div className="py-32 text-center animate-fade-in-fast">
-            <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-2">
-              {showFavoritesOnly ? 'No favorites yet' : `No ${activeTab.toLowerCase()} found`}
-            </div>
-            <p className="text-stone-400 dark:text-stone-500 mb-6">
-              {showFavoritesOnly
-                ? 'Save prompts you love by clicking the heart icon.'
-                : 'Try adjusting your filters or search terms.'}
-            </p>
-            {!showFavoritesOnly && (
-              <button
-                onClick={() => {
-                  setSearchQuery('');
-                  setActiveCategory('All');
-                  setActiveTechniques([]);
-                }}
-                className={BTN_OUTLINE}
+        {/* ── Prompts / Image Prompts ── */}
+        {(activeTab === 'Prompts' || activeTab === 'Image Prompts') && (
+          <>
+            {/* Hero Section */}
+            <header className="max-w-3xl mb-16">
+              <h1
+                key={activeTab}
+                className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6 animate-fade-in-up"
               >
-                <RotateCcw size={14} />
-                Reset Filters
-              </button>
+                {activeTab === 'Prompts' && <>The Art of <span className="italic text-stone-500 dark:text-stone-400">Inquiry</span></>}
+                {activeTab === 'Image Prompts' && <>The Art of <span className="italic text-stone-500 dark:text-stone-400">Vision</span></>}
+              </h1>
+              <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow mb-6">
+                {activeTab === 'Prompts' && (
+                  !loading && tabPromptCount > 0
+                    ? `A collection of ${tabPromptCount} sophisticated text prompts for complex reasoning and creative storytelling.`
+                    : "A collection of sophisticated text prompts for complex reasoning and creative storytelling."
+                )}
+                {activeTab === 'Image Prompts' && (
+                  !loading && tabPromptCount > 0
+                    ? `Browse ${tabPromptCount} precision visual parameters for high-end generative art and cinematic world-building.`
+                    : "Precision visual parameters for high-end generative art and cinematic world-building."
+                )}
+              </p>
+              {!loading && tabPrompts.length > 0 && (
+                <div className="flex items-center gap-3 flex-wrap">
+                  <button
+                    onClick={handleSurpriseMe}
+                    className={BTN_OUTLINE}
+                  >
+                    <Shuffle size={14} />
+                    Surprise Me
+                  </button>
+                  <button
+                    onClick={() => {
+                      searchRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      setTimeout(() => searchRef.current?.focus(), 400);
+                    }}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-200 transition-all"
+                  >
+                    Browse Collection
+                    <ArrowDown size={14} />
+                  </button>
+                </div>
+              )}
+            </header>
+
+            {/* Search and Filters */}
+            <FilterControls
+              activeTab={activeTab}
+              activeCategory={activeCategory}
+              categoryMap={CATEGORY_MAP}
+              categoryCounts={categoryCounts}
+              loading={loading}
+              searchQuery={searchQuery}
+              setSearchQuery={(q) => startFilterTransition(() => setSearchQuery(q))}
+              searchRef={searchRef}
+              allTechniques={ALL_TECHNIQUES}
+              activeTechniques={activeTechniques}
+              toggleTechnique={toggleTechnique}
+              setActiveTechniques={setActiveTechniques}
+              showFavoritesOnly={showFavoritesOnly}
+              setShowFavoritesOnly={setShowFavoritesOnly}
+              onCategoryChange={handleCategoryChange}
+            />
+
+            {isFilterPending && !loading && (
+              <div className="text-[11px] uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-4">
+                Updating results...
+              </div>
             )}
-          </div>
+
+            {/* Loading State */}
+            {loading && (
+              <div className="py-12 animate-fade-in-fast" aria-busy="true" aria-live="polite">
+                <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-8 text-center">Loading prompts...</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="rounded-[24px] border border-stone-200 dark:border-stone-800 bg-white/60 dark:bg-stone-900/60 p-8 shadow-sm"
+                      aria-hidden="true"
+                    >
+                      <div className="h-5 w-20 rounded-full bg-stone-200/70 dark:bg-stone-700/70 mb-6 animate-pulse" />
+                      <div className="h-7 w-3/4 rounded bg-stone-200/70 dark:bg-stone-700/70 mb-3 animate-pulse" />
+                      <div className="h-4 w-full rounded bg-stone-200/60 dark:bg-stone-700/60 mb-2 animate-pulse" />
+                      <div className="h-4 w-5/6 rounded bg-stone-200/60 dark:bg-stone-700/60 mb-6 animate-pulse" />
+                      <div className="flex gap-2 mb-6">
+                        <div className="h-5 w-16 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
+                        <div className="h-5 w-20 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
+                      </div>
+                      <div className="h-px w-full bg-stone-200/70 dark:bg-stone-700/70 mb-4" />
+                      <div className="h-4 w-24 rounded bg-stone-200/60 dark:bg-stone-700/60 animate-pulse" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Error State */}
+            {error && (
+              <div className="py-32 text-center animate-fade-in-fast">
+                <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-2">Failed to load prompts</div>
+                <p className="text-stone-400 dark:text-stone-500 mb-6">{error}</p>
+                <button
+                  onClick={retry}
+                  className={BTN_OUTLINE}
+                >
+                  <RotateCcw size={14} />
+                  Try Again
+                </button>
+              </div>
+            )}
+
+            {/* Screen reader announcement for filter results */}
+            <div className="sr-only" aria-live="polite" aria-atomic="true">
+              {!loading && !error && `${filteredPrompts.length} ${activeTab.toLowerCase()} found`}
+            </div>
+
+            {/* Grid */}
+            {!loading && !error && (
+              <PromptGrid
+                prompts={filteredPrompts}
+                focusedCardIndex={focusedCardIndex}
+                isFavorite={isFavorite}
+                onToggleFavorite={toggleFavorite}
+                onPreview={handleSelectPrompt}
+                copyCounts={copyCounts}
+                onIncrementCopy={incrementCopy}
+              />
+            )}
+
+            {/* Empty State */}
+            {!loading && !error && filteredPrompts.length === 0 && (
+              <div className="py-32 text-center animate-fade-in-fast">
+                <div className="serif text-3xl text-stone-300 dark:text-stone-600 mb-2">
+                  {showFavoritesOnly ? 'No favorites yet' : `No ${activeTab.toLowerCase()} found`}
+                </div>
+                <p className="text-stone-400 dark:text-stone-500 mb-6">
+                  {showFavoritesOnly
+                    ? 'Save prompts you love by clicking the heart icon.'
+                    : 'Try adjusting your filters or search terms.'}
+                </p>
+                {!showFavoritesOnly && (
+                  <button
+                    onClick={() => {
+                      setSearchQuery('');
+                      setActiveCategory('All');
+                      setActiveTechniques([]);
+                    }}
+                    className={BTN_OUTLINE}
+                  >
+                    <RotateCcw size={14} />
+                    Reset Filters
+                  </button>
+                )}
+              </div>
+            )}
+          </>
         )}
       </main>
 
@@ -422,7 +478,7 @@ const App: React.FC = () => {
       <footer className="border-t border-stone-200 dark:border-stone-800 py-16 px-6 bg-stone-50/50 dark:bg-stone-950/50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="serif text-xl font-bold text-stone-400 flex items-center gap-2">
-            <OwlLogo size={20} />
+            <OwlLogo size={30} />
             Ask Wisely.
           </div>
           <div className="flex gap-8 text-[10px] font-bold text-stone-400 uppercase tracking-widest">
