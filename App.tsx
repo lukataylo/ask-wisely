@@ -47,6 +47,7 @@ const App: React.FC = () => {
   const { toggleFavorite, isFavorite, count: favCount } = useFavorites();
   const { counts: copyCounts, increment: incrementCopy } = useCopyCount();
   const searchRef = useRef<HTMLInputElement>(null);
+  const [showNotFound, setShowNotFound] = useState(false);
   const { updateURL, usePopStateListener } = useUrlState();
   const { byId: promptById } = usePromptIndex(PROMPTS);
 
@@ -93,6 +94,8 @@ const App: React.FC = () => {
       if (found) {
         setSelectedPrompt(found);
         setActiveTab(found.type);
+      } else {
+        setShowNotFound(true);
       }
       setPendingPromptId(null);
     }
@@ -229,6 +232,23 @@ const App: React.FC = () => {
         </div>
       </nav>
 
+      {showNotFound ? (
+        <main className="max-w-7xl mx-auto px-6 pt-16 pb-32 flex flex-col items-center text-center">
+          <img src="/images/404.svg" alt="Page not found" className="w-72 md:w-96 mb-10" />
+          <h1 className="serif text-5xl md:text-6xl font-medium text-stone-900 dark:text-stone-100 mb-4">
+            Page Not <span className="italic text-[#FA7506]">Found</span>
+          </h1>
+          <p className="text-stone-500 dark:text-stone-400 text-lg font-light max-w-md mb-10 leading-relaxed">
+            The page you're looking for doesn't exist or has been moved.
+          </p>
+          <button
+            onClick={() => { setShowNotFound(false); updateURL('Prompts', 'All', null, true); }}
+            className={BTN_OUTLINE}
+          >
+            Back to Home
+          </button>
+        </main>
+      ) : (
       <main className="max-w-7xl mx-auto px-6 pt-16 pb-32">
 
         {/* ── Skills ── */}
@@ -274,7 +294,6 @@ const App: React.FC = () => {
               >
                 {activeTab === 'Prompts' && <>The Art of <span className="italic text-[#FA7506]">Inquiry</span></>}
                 {activeTab === 'Image Prompts' && <>The Art of <span className="italic text-[#FA7506]">Vision</span></>}
-                {activeTab === 'Skills' && <>The Art of <span className="italic text-[#FA7506]">Skills</span></>}
               </h1>
               <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow mb-6">
                 {activeTab === 'Prompts' && (
@@ -425,6 +444,7 @@ const App: React.FC = () => {
           </>
         )}
       </main>
+      )}
 
       <PromptModal
         prompt={selectedPrompt}

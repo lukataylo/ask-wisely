@@ -24,10 +24,9 @@ export function useDarkMode() {
     // Update theme-color meta tag
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', isDark ? '#0c0a09' : '#fdfbf7');
-    // Swap favicon for dark/light mode
-    const faviconHref = isDark ? '/owl_logo_dark.svg' : '/owl_logo.svg';
-    document.getElementById('favicon')?.setAttribute('href', faviconHref);
-    document.getElementById('apple-touch-icon')?.setAttribute('href', faviconHref);
+    // Set favicon
+    document.getElementById('favicon')?.setAttribute('href', '/images/favion.svg');
+    document.getElementById('apple-touch-icon')?.setAttribute('href', '/images/favion.svg');
   }, [isDark]);
 
   const toggle = () => setIsDark(prev => !prev);

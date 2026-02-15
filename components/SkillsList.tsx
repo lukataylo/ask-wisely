@@ -25,7 +25,7 @@ export default function SkillsList() {
     <div className="animate-fade-in">
       <header className="max-w-3xl mb-16">
         <h1 className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6 animate-fade-in-up">
-          Claude Code <span className="italic text-stone-500 dark:text-stone-400">Skills</span>
+          Claude Code <span className="italic text-[#FA7506]">Skills</span>
         </h1>
         <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow">
           A curated collection of open-source skills that extend Claude Code with new capabilities — from document processing and test automation to app integrations and security tools.
