@@ -239,7 +239,7 @@ const App: React.FC = () => {
           <>
             <header className="max-w-3xl mb-16">
               <h1 className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6 animate-fade-in-up">
-                The Art of <span className="italic text-stone-500 dark:text-stone-400">Thinking</span>
+                The Art of <span className="italic text-[#FA7506]">Thinking</span>
               </h1>
               <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow">
                 Essays on prompt craft, AI literacy, and the evolving art of human-machine collaboration.
@@ -272,8 +272,9 @@ const App: React.FC = () => {
                 key={activeTab}
                 className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6 animate-fade-in-up"
               >
-                {activeTab === 'Prompts' && <>The Art of <span className="italic text-stone-500 dark:text-stone-400">Inquiry</span></>}
-                {activeTab === 'Image Prompts' && <>The Art of <span className="italic text-stone-500 dark:text-stone-400">Vision</span></>}
+                {activeTab === 'Prompts' && <>The Art of <span className="italic text-[#FA7506]">Inquiry</span></>}
+                {activeTab === 'Image Prompts' && <>The Art of <span className="italic text-[#FA7506]">Vision</span></>}
+                {activeTab === 'Skills' && <>The Art of <span className="italic text-[#FA7506]">Skills</span></>}
               </h1>
               <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow mb-6">
                 {activeTab === 'Prompts' && (
@@ -441,28 +442,31 @@ const App: React.FC = () => {
       {/* Subscribe Section */}
       <section className="relative overflow-hidden border-t border-stone-200 dark:border-stone-800">
         <div className="subscribe-glow absolute inset-0 pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center">
-          <div className="subscribe-icon-ring w-16 h-16 rounded-full flex items-center justify-center mb-8">
-            <Mail size={24} className="text-stone-600 dark:text-stone-300" />
+        <div className="relative max-w-7xl mx-auto px-6 py-24 md:py-32 grid grid-cols-1 md:grid-cols-8 items-center gap-12">
+          <div className="text-center md:text-left md:col-span-5 order-2 md:order-1">
+            <h2 className="serif text-4xl md:text-5xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-4">
+              Stay <span className="italic text-[#FA7506]">Curious</span>
+            </h2>
+            <p className="text-stone-500 dark:text-stone-400 text-lg font-light max-w-md mb-10 leading-relaxed">
+              New prompts, techniques, and ideas delivered to your inbox. No noise, just signal.
+            </p>
+            <a
+              href="https://askwisely.substack.com/subscribe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group subscribe-btn relative inline-flex items-center gap-3 px-10 py-4 rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all duration-500"
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                <Mail size={16} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
+                Subscribe
+              </span>
+            </a>
+            <p className="mt-6 text-[11px] text-stone-400 dark:text-stone-600 tracking-wide">Free forever. Unsubscribe anytime.</p>
           </div>
-          <h2 className="serif text-4xl md:text-5xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-4">
-            Stay <span className="italic text-stone-500 dark:text-stone-400">Curious</span>
-          </h2>
-          <p className="text-stone-500 dark:text-stone-400 text-lg font-light max-w-md mb-10 leading-relaxed">
-            New prompts, techniques, and ideas delivered to your inbox. No noise, just signal.
-          </p>
-          <a
-            href="https://askwisely.substack.com/subscribe"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group subscribe-btn relative inline-flex items-center gap-3 px-10 py-4 rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all duration-500"
-          >
-            <span className="relative z-10 flex items-center gap-3">
-              <Mail size={16} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
-              Subscribe
-            </span>
-          </a>
-          <p className="mt-6 text-[11px] text-stone-400 dark:text-stone-600 tracking-wide">Free forever. Unsubscribe anytime.</p>
+          <div className="md:col-span-3 md:col-start-6 order-1 md:order-2 flex justify-center">
+            <img src="/images/newsletter.svg" alt="" className="w-[442px] max-w-none dark:hidden" />
+            <img src="/images/newsletter-dark.svg" alt="" className="w-[442px] max-w-none hidden dark:block" />
+          </div>
         </div>
       </section>
 
