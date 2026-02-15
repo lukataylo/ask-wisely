@@ -19,6 +19,7 @@ import PromptModal from './components/PromptModal';
 import IconButton from './components/ui/IconButton';
 import BlogList from './components/BlogList';
 import BlogPost from './components/BlogPost';
+import SkillsList from './components/SkillsList';
 import { getBlogPostBySlug, type BlogPost as BlogPostType } from './lib/blog-data';
 
 const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills', 'Blog'];
@@ -26,7 +27,7 @@ const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills', 'Blog'];
 const CATEGORY_MAP: Record<MainTab, Category[]> = {
   'Prompts': ['All', 'Creative', 'Technical', 'Business', 'Academic', 'Persona', 'Product', 'Data', 'Marketing', 'Personal', 'Legal', 'Education', 'Healthcare'],
   'Image Prompts': ['All', 'Cinematic', 'Portrait', 'Stylized', 'Architecture', 'Commercial', 'Interface'],
-  'Skills': ['All', 'Engineering', 'Writing', 'Strategy', 'Design', 'Communication', 'AI Literacy'],
+  'Skills': ['All', 'Development', 'Automation', 'Documents', 'Data & Research', 'Writing & Content', 'Creative & Media', 'Productivity', 'Security'],
   'Blog': ['All'],
 };
 
@@ -230,17 +231,8 @@ const App: React.FC = () => {
 
       <main className="max-w-7xl mx-auto px-6 pt-16 pb-32">
 
-        {/* ── Skills: cleared ── */}
-        {activeTab === 'Skills' && (
-          <div className="py-32 text-center animate-fade-in">
-            <h1 className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6">
-              The Art of <span className="italic text-stone-500 dark:text-stone-400">Mastery</span>
-            </h1>
-            <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light max-w-xl mx-auto">
-              Skills content is being reimagined. Check back soon.
-            </p>
-          </div>
-        )}
+        {/* ── Skills ── */}
+        {activeTab === 'Skills' && <SkillsList />}
 
         {/* ── Blog ── */}
         {activeTab === 'Blog' && !selectedBlogPost && (
