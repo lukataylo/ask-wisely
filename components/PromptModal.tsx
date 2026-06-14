@@ -159,7 +159,10 @@ const PromptModal: React.FC<PromptModalProps> = ({ prompt, onClose, relatedPromp
     return text;
   }, [activePromptText, variableValues]);
 
-  const [copied, copy] = useCopyToClipboard(substitutedPrompt, () => onIncrementCopy(prompt.id));
+  const promptId = prompt?.id;
+  const [copied, copy] = useCopyToClipboard(substitutedPrompt, () => {
+    if (promptId) onIncrementCopy(promptId);
+  });
 
   if (!prompt) return null;
 

@@ -2,12 +2,12 @@
 
 # Ask Wisely
 
-**A curated library of 200+ expertly crafted AI prompts for creative writing, coding, image generation, and technical tasks.**
+**A curated library of 215 expertly crafted AI prompts for creative writing, coding, image generation, agentic workflows, and technical tasks.**
 
 [askwisely.com](https://askwisely.com) &nbsp;|&nbsp; [Browse the API](https://askwisely.com/prompts.json) &nbsp;|&nbsp; [Contribute](CONTRIBUTING.md)
 
 ![Build](https://img.shields.io/github/actions/workflow/status/lukataylo/ask-wisely/deploy.yml?branch=main&label=deploy)
-![Prompts](https://img.shields.io/badge/prompts-201-blue)
+![Prompts](https://img.shields.io/badge/prompts-215-blue)
 ![License](https://img.shields.io/badge/license-open--source-green)
 
 </div>
@@ -16,12 +16,13 @@
 
 ## Features
 
-- **201 curated prompts** across text prompts, image prompts, and skills
+- **215 curated prompts** across text prompts, image prompts, and skills
 - **Search and filter** by category, technique, or free text
 - **Dark mode** with automatic system detection
 - **Favorites** — save prompts to a personal collection (localStorage)
 - **Copy to clipboard** with one click
 - **Open in LLM** — launch prompts directly in Claude, ChatGPT, Gemini, Perplexity, Copilot, or Mistral
+- **Agentic workflow templates** — plan tool use, MCP servers, eval harnesses, and approval gates
 - **Share** via direct URL, X/Twitter, or LinkedIn
 - **Keyboard shortcuts** — `/` to search, `j`/`k` to navigate, `Enter` to open, `c` to copy
 - **LLM-specific variants** — some prompts have versions optimized for Claude, ChatGPT, or Gemini
@@ -104,6 +105,7 @@ Each prompt has this shape:
   "techniques": ["Role Assignment", "Constraint-Based"],
   "variables": [{ "name": "your theme", "placeholder": "[your theme]" }],
   "llmVariants": { "claude": "...", "chatgpt": "..." },
+  "lastReviewed": "2026-06-14",
   "workflow": ["Step 1...", "Step 2..."],
   "exampleInput": "A poem about...",
   "exampleOutput": "Here is the generated poem...",

@@ -9,7 +9,10 @@ export type Category =
   | 'Cinematic' | 'Portrait' | 'Stylized' | 'Architecture'
   | 'Commercial' | 'Interface'
   | 'Engineering' | 'Writing' | 'Strategy' | 'Design'
-  | 'Communication' | 'AI Literacy';
+  | 'Communication' | 'AI Literacy'
+  | 'Development' | 'Automation' | 'Documents' | 'Data & Research'
+  | 'Writing & Content' | 'Creative & Media' | 'Productivity'
+  | 'Security';
 
 export type LLMProvider = 'claude' | 'chatgpt' | 'gemini';
 
@@ -43,6 +46,7 @@ export interface Prompt {
   variables: TemplateVariable[];
   llmVariants: LLMVariants;
   isNew?: boolean;
+  lastReviewed?: string;
   difficulty?: Difficulty;
   workflow?: string[];
   exampleInput?: string;

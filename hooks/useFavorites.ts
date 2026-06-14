@@ -5,14 +5,22 @@ const STORAGE_KEY = 'askwisely-favorites';
 function load(): Set<string> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? new Set(JSON.parse(raw)) : new Set();
+    if (!raw) return new Set();
+    const parsed: unknown = JSON.parse(raw);
+    return Array.isArray(parsed)
+      ? new Set(parsed.filter((item): item is string => typeof item === 'string'))
+      : new Set();
   } catch {
     return new Set();
   }
 }
 
 function save(favs: Set<string>) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([...favs]));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...favs]));
+  } catch {
+    // Favorites are an enhancement; storage failures should not break browsing.
+  }
 }
 
 export function useFavorites() {

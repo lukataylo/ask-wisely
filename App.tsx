@@ -25,9 +25,9 @@ import { getBlogPostBySlug, type BlogPost as BlogPostType } from './lib/blog-dat
 const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills', 'Blog'];
 
 const CATEGORY_MAP: Record<MainTab, Category[]> = {
-  'Prompts': ['All', 'Creative', 'Technical', 'Business', 'Academic', 'Persona', 'Product', 'Data', 'Marketing', 'Personal', 'Legal', 'Education', 'Healthcare'],
+  'Prompts': ['All', 'Creative', 'Technical', 'Business', 'Academic', 'Persona', 'Product', 'Data', 'Marketing', 'Personal', 'Legal', 'Education', 'Healthcare', 'Security'],
   'Image Prompts': ['All', 'Cinematic', 'Portrait', 'Stylized', 'Architecture', 'Commercial', 'Interface'],
-  'Skills': ['All', 'Development', 'Automation', 'Documents', 'Data & Research', 'Writing & Content', 'Creative & Media', 'Productivity', 'Security'],
+  'Skills': ['All', 'Engineering', 'Writing', 'Strategy', 'Design', 'Communication', 'AI Literacy', 'Development', 'Automation', 'Documents', 'Data & Research', 'Writing & Content', 'Creative & Media', 'Productivity', 'Security'],
   'Blog': ['All'],
 };
 
