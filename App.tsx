@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw, Mail } from 'lucide-react';
+import { Moon, Sun, Heart, Shuffle, ArrowDown, RotateCcw, Mail, Bot, ShieldCheck, BriefcaseBusiness, Clapperboard, ArrowRight } from 'lucide-react';
 import { OwlLogo } from './components/OwlLogo';
 import { Category, Prompt, MainTab, Technique } from './types';
 import { usePrompts } from './hooks/usePrompts';
@@ -40,6 +40,33 @@ const ALL_TECHNIQUES: Technique[] = [
 const BTN_OUTLINE = 'inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:border-stone-900 dark:hover:border-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-all';
 
 const DEFAULT_TITLE = 'Ask Wisely — Curated AI Prompt Library for Creative, Technical & Visual Prompts';
+
+const WORKFLOW_LANES = [
+  {
+    title: 'Agentic Workflows',
+    description: 'Plan tools, approvals, MCP servers, and multi-step agent work.',
+    query: 'agent workflow tool mcp approval',
+    icon: Bot,
+  },
+  {
+    title: 'Safety & Evals',
+    description: 'Stress-test prompts, sources, claims, and prompt-injection risks.',
+    query: 'eval verification prompt injection source grounded audit',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Work & Business',
+    description: 'Turn messy product, data, marketing, and strategy inputs into action.',
+    query: 'product data marketing roadmap metric business',
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: 'Creative Systems',
+    description: 'Storyboard, direct, and iterate visual/video ideas with more control.',
+    query: 'video storyboard multimodal creative director campaign',
+    icon: Clapperboard,
+  },
+];
 
 const App: React.FC = () => {
   const { prompts: PROMPTS, loading, error, retry } = usePrompts();
@@ -151,6 +178,17 @@ const App: React.FC = () => {
       if (ok) incrementCopy(prompt.id);
     });
   }, [incrementCopy]);
+
+  const handleWorkflowLane = useCallback((query: string) => {
+    startFilterTransition(() => {
+      setActiveTab('Prompts');
+      setActiveCategory('All');
+      setActiveTechniques([]);
+      setShowFavoritesOnly(false);
+      setSearchQuery(query);
+    });
+    searchRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [setActiveTab, setActiveCategory, setActiveTechniques, setShowFavoritesOnly, setSearchQuery, startFilterTransition]);
 
   usePromptKeyboardNav({
     selectedPrompt,
@@ -287,24 +325,27 @@ const App: React.FC = () => {
         {(activeTab === 'Prompts' || activeTab === 'Image Prompts') && (
           <>
             {/* Hero Section */}
-            <header className="max-w-3xl mb-16">
+            <header className="max-w-5xl mb-14">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-stone-200 dark:border-stone-700 bg-white/60 dark:bg-stone-900/50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
+                {!loading && tabPromptCount > 0 ? `${tabPromptCount} reviewed prompts` : 'Reviewed prompt systems'}
+              </div>
               <h1
                 key={activeTab}
-                className="serif text-6xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-tight mb-6 animate-fade-in-up"
+                className="serif text-5xl md:text-7xl font-medium text-stone-900 dark:text-stone-100 leading-[0.98] mb-6 animate-fade-in-up max-w-4xl"
               >
-                {activeTab === 'Prompts' && <>The Art of <span className="italic text-[#FA7506]">Inquiry</span></>}
-                {activeTab === 'Image Prompts' && <>The Art of <span className="italic text-[#FA7506]">Vision</span></>}
+                {activeTab === 'Prompts' && <>Prompt systems for work that needs <span className="italic text-[#FA7506]">judgment</span>.</>}
+                {activeTab === 'Image Prompts' && <>Visual prompts for ideas that need <span className="italic text-[#FA7506]">direction</span>.</>}
               </h1>
-              <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow mb-6">
+              <p className="text-stone-500 dark:text-stone-400 text-lg md:text-xl leading-relaxed font-light animate-fade-in-slow mb-8 max-w-3xl">
                 {activeTab === 'Prompts' && (
                   !loading && tabPromptCount > 0
-                    ? `A collection of ${tabPromptCount} sophisticated text prompts for complex reasoning and creative storytelling.`
-                    : "A collection of sophisticated text prompts for complex reasoning and creative storytelling."
+                    ? `A curated library of ${tabPromptCount} practical prompts for agents, research, product work, data debugging, writing, and safer AI use.`
+                    : "A curated library of practical prompts for agents, research, product work, data debugging, writing, and safer AI use."
                 )}
                 {activeTab === 'Image Prompts' && (
                   !loading && tabPromptCount > 0
-                    ? `Browse ${tabPromptCount} precision visual parameters for high-end generative art and cinematic world-building.`
-                    : "Precision visual parameters for high-end generative art and cinematic world-building."
+                    ? `Browse ${tabPromptCount} precision visual prompts for product imagery, cinematic boards, interfaces, and brand systems.`
+                    : "Precision visual prompts for product imagery, cinematic boards, interfaces, and brand systems."
                 )}
               </p>
               {!loading && tabPrompts.length > 0 && (
@@ -329,6 +370,58 @@ const App: React.FC = () => {
                 </div>
               )}
             </header>
+
+            {activeTab === 'Prompts' && (
+              <section className="mb-12" aria-labelledby="workflow-lanes-heading">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-5">
+                  <div>
+                    <h2 id="workflow-lanes-heading" className="serif text-3xl font-medium text-stone-900 dark:text-stone-100">
+                      Start with a workflow
+                    </h2>
+                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+                      Four fast paths into the highest-value parts of the library.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setSearchQuery('');
+                      setActiveCategory('All');
+                      setActiveTechniques([]);
+                    }}
+                    className="self-start md:self-auto inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+                  >
+                    Show all prompts
+                    <ArrowRight size={14} />
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+                  {WORKFLOW_LANES.map((lane) => {
+                    const Icon = lane.icon;
+                    return (
+                      <button
+                        key={lane.title}
+                        onClick={() => handleWorkflowLane(lane.query)}
+                        className="group text-left rounded-xl border border-stone-200 dark:border-stone-800 bg-white/65 dark:bg-stone-900/45 p-5 shadow-sm hover:border-stone-300 dark:hover:border-stone-600 hover:bg-white dark:hover:bg-stone-900 transition-all"
+                      >
+                        <div className="mb-4 flex items-center justify-between">
+                          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-200">
+                            <Icon size={18} />
+                          </span>
+                          <ArrowRight size={15} className="text-stone-300 dark:text-stone-600 transition-transform group-hover:translate-x-1 group-hover:text-[#FA7506]" />
+                        </div>
+                        <div className="text-sm font-bold text-stone-900 dark:text-stone-100 mb-1">
+                          {lane.title}
+                        </div>
+                        <p className="text-sm leading-relaxed text-stone-500 dark:text-stone-400">
+                          {lane.description}
+                        </p>
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
 
             {/* Search and Filters */}
             <FilterControls
