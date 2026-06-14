@@ -45,9 +45,16 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, 
       <div className="relative z-10 p-8 h-full flex flex-col justify-between">
         <div>
           <div className="flex justify-between items-start mb-6">
-            <span className="text-[10px] uppercase tracking-widest text-stone-500 dark:text-stone-400 font-semibold px-2 py-1 bg-[var(--bg-badge)] rounded-full">
-              {prompt.category}
-            </span>
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="text-[10px] uppercase tracking-widest text-stone-500 dark:text-stone-400 font-semibold px-2 py-1 bg-[var(--bg-badge)] rounded-full">
+                {prompt.category}
+              </span>
+              {prompt.isNew && (
+                <span className="text-[10px] uppercase tracking-widest text-[#FA7506] font-semibold px-2 py-1 bg-orange-50 dark:bg-orange-950/30 rounded-full">
+                  New
+                </span>
+              )}
+            </div>
             <div className="flex items-center gap-1">
               <IconButton
                 onClick={(e) => { e.stopPropagation(); onToggleFavorite(prompt.id); }}
@@ -102,7 +109,12 @@ const PromptCard: React.FC<PromptCardProps> = ({ prompt, onPreview, isFavorite, 
         </div>
 
         <div className="flex justify-between items-center mt-auto pt-4 border-t border-stone-200/50 dark:border-stone-700/50">
-          <div className="flex -space-x-1">
+          <div className="flex flex-wrap gap-1">
+            {prompt.difficulty && (
+              <span className="text-[10px] text-stone-500 dark:text-stone-400 bg-white dark:bg-stone-800 border border-stone-100 dark:border-stone-700 px-2 py-0.5 rounded shadow-sm">
+                {prompt.difficulty}
+              </span>
+            )}
             {prompt.skills.slice(0, 3).map((skill, i) => (
               <span key={i} className="text-[10px] text-stone-400 bg-white dark:bg-stone-800 border border-stone-100 dark:border-stone-700 px-2 py-0.5 rounded shadow-sm">
                 {skill}
