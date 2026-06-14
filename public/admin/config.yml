@@ -17,7 +17,10 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Type", name: "type", widget: "select", required: true, options: ["Prompts", "Image Prompts", "Skills"] }
-      - { label: "Category", name: "category", widget: "select", required: true, options: ["Creative", "Technical", "Business", "Academic", "Persona", "Cinematic", "Portrait", "Stylized", "Architecture", "Engineering", "Writing", "Strategy", "Design"] }
+      - { label: "Category", name: "category", widget: "select", required: true, options: ["Creative", "Technical", "Business", "Academic", "Persona", "Product", "Data", "Marketing", "Personal", "Legal", "Education", "Healthcare", "Cinematic", "Portrait", "Stylized", "Architecture", "Commercial", "Interface", "Engineering", "Writing", "Strategy", "Design", "Communication", "AI Literacy", "Development", "Automation", "Documents", "Data & Research", "Writing & Content", "Creative & Media", "Productivity", "Security"] }
+      - { label: "Difficulty", name: "difficulty", widget: "select", required: false, options: ["Beginner", "Intermediate", "Advanced"] }
+      - { label: "Last Reviewed", name: "lastReviewed", widget: "datetime", required: false, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "New", name: "isNew", widget: "boolean", required: false, default: true }
       - { label: "Short Description", name: "shortDescription", widget: "text", required: true }
       - { label: "Skills", name: "skills", widget: "list", required: false, field: { label: "Skill", name: "skill", widget: "string" } }
       - { label: "Full Prompt", name: "body", widget: "markdown" }

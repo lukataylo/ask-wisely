@@ -5,14 +5,25 @@ const STORAGE_KEY = 'askwisely-copy-counts';
 function load(): Record<string, number> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
+    if (!raw) return {};
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    return Object.fromEntries(
+      Object.entries(parsed).filter((entry): entry is [string, number] => (
+        typeof entry[0] === 'string' && typeof entry[1] === 'number' && Number.isFinite(entry[1])
+      ))
+    );
   } catch {
     return {};
   }
 }
 
 function save(counts: Record<string, number>) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(counts));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(counts));
+  } catch {
+    // Copy counts are non-critical analytics; ignore quota/private-mode failures.
+  }
 }
 
 export function useCopyCount() {

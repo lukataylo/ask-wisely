@@ -7,6 +7,7 @@ const OUTPUT_FILE = path.resolve('public/prompts.json');
 const SEO_HTML_FILE = path.resolve('public/seo-content.html');
 const LD_PROMPTS_FILE = path.resolve('public/ld-prompts.json');
 const SITEMAP_FILE = path.resolve('public/sitemap.xml');
+const DEFAULT_LASTMOD = '2026-02-15';
 
 const TECHNIQUE_PATTERNS = {
   'Role Assignment':   /\b(Act as|You are|Assume the role|Imagine you're|Play the role)\b/i,
@@ -167,6 +168,7 @@ function parseMarkdown(filePath) {
 
   // Parse difficulty from frontmatter
   const difficulty = fields.difficulty || undefined;
+  const lastReviewed = fields.lastReviewed || undefined;
 
   const result = {
     id: filename,
@@ -183,6 +185,7 @@ function parseMarkdown(filePath) {
   };
 
   if (difficulty) result.difficulty = difficulty;
+  if (lastReviewed) result.lastReviewed = lastReviewed;
   if (workflow) result.workflow = workflow;
   if (exampleInput) result.exampleInput = exampleInput;
   if (exampleOutput) result.exampleOutput = exampleOutput;
@@ -192,8 +195,9 @@ function parseMarkdown(filePath) {
 
 function getGitAddedDates(contentDir) {
   try {
+    const relativeContentDir = path.relative(process.cwd(), contentDir);
     const output = execSync(
-      `git log --diff-filter=A --format="COMMIT %aI" --name-only -- "${contentDir}"`,
+      `git log --diff-filter=A --format="COMMIT %aI" --name-only -- "${relativeContentDir}"`,
       { encoding: 'utf-8', timeout: 15000, stdio: ['pipe', 'pipe', 'pipe'] }
     ).trim();
 
@@ -215,6 +219,20 @@ function getGitAddedDates(contentDir) {
     return map;
   } catch {
     return {};
+  }
+}
+
+function getGitLastModifiedDate(filePath) {
+  try {
+    const relativePath = path.relative(process.cwd(), filePath);
+    const output = execSync(
+      `git log -1 --format=%cs -- "${relativePath}"`,
+      { encoding: 'utf-8', timeout: 5000, stdio: ['pipe', 'pipe', 'pipe'] }
+    ).trim();
+
+    return output || null;
+  } catch {
+    return null;
   }
 }
 
@@ -279,10 +297,14 @@ function generateJsonLd(prompts) {
 }
 
 function generateSitemap(prompts) {
-  const today = new Date().toISOString().split('T')[0];
+  const homepageLastmod = prompts
+    .map(p => p.lastReviewed)
+    .filter(Boolean)
+    .sort()
+    .at(-1) || DEFAULT_LASTMOD;
 
   const urls = [
-    { loc: 'https://askwisely.com/', changefreq: 'weekly', priority: '1.0', lastmod: today },
+    { loc: 'https://askwisely.com/', changefreq: 'weekly', priority: '1.0', lastmod: homepageLastmod },
   ];
 
   // Individual prompt pages only — no query-string URLs
@@ -291,7 +313,7 @@ function generateSitemap(prompts) {
       loc: `https://askwisely.com/${p.id}`,
       changefreq: 'monthly',
       priority: '0.7',
-      lastmod: today,
+      lastmod: p.lastReviewed || homepageLastmod,
     });
   }
 
@@ -308,7 +330,7 @@ ${urls.map(u => `  <url>
 
 // ── Main ──
 
-const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
+const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md')).sort();
 const parsed = files.map(f => parseMarkdown(path.join(CONTENT_DIR, f)));
 
 for (let i = 0; i < files.length; i++) {
@@ -317,7 +339,6 @@ for (let i = 0; i < files.length; i++) {
   }
 }
 
-const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
 const gitDates = getGitAddedDates(CONTENT_DIR);
 
 const prompts = parsed
@@ -325,12 +346,17 @@ const prompts = parsed
   .filter(Boolean)
   .map(({ prompt, file }) => {
     const gitDate = gitDates[file] || null;
-    const isNewByDate = gitDate ? new Date(gitDate).getTime() > thirtyDaysAgo : false;
+    const lastReviewed = prompt.lastReviewed
+      || (gitDate ? gitDate.split('T')[0] : null)
+      || getGitLastModifiedDate(path.join(CONTENT_DIR, file))
+      || DEFAULT_LASTMOD;
+    const isNewByDate = false;
     const isNewByFlag = prompt._isNewFlag;
 
     const { _isNewFlag, ...rest } = prompt;
     return {
       ...rest,
+      lastReviewed,
       isNew: isNewByDate || isNewByFlag,
     };
   });

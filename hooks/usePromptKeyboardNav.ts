@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
+import type { Dispatch, RefObject, SetStateAction } from 'react';
 import { Prompt } from '../types';
 
 interface Params {
   selectedPrompt: Prompt | null;
   filteredPrompts: Prompt[];
   focusedCardIndex: number | null;
-  setFocusedCardIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  setFocusedCardIndex: Dispatch<SetStateAction<number | null>>;
   onSelectPrompt: (prompt: Prompt) => void;
   onCopyPrompt: (prompt: Prompt) => void;
-  searchRef: React.RefObject<HTMLInputElement | null>;
+  searchRef: RefObject<HTMLInputElement | null>;
 }
 
 function scrollCardIntoView(index: number) {

@@ -22,7 +22,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "active-listening-framework",
@@ -43,6 +44,37 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "agentic-workflow-architect",
+    "title": "Agentic Workflow Architect",
+    "type": "Prompts",
+    "category": "Technical",
+    "shortDescription": "Design reliable AI agent workflows with tools, handoffs, memory, and human approval gates.",
+    "fullPrompt": "Act as an AI systems architect. I will describe [your agent workflow goal]. Design a production-ready agentic workflow with: 1. Task boundary - what the agent should and should not do. 2. Agent roles - dispatcher, specialists, verifier, and escalation owner. 3. Tool map - which tools each role can use, when to use them, and what inputs are required. 4. Handoff contract - exact JSON or markdown structure passed between agents. 5. Memory policy - what gets stored, where, for how long, and what must never be stored. 6. Human approval gates - steps that require confirmation before external actions. 7. Failure modes - loops, stale context, tool errors, hallucinated tool outputs, and permission mistakes. 8. Evaluation plan - 10 test cases, success criteria, and regression checks. End with a minimal v1 workflow diagram in text and the first three implementation tasks.",
+    "skills": [
+      "Agent Design",
+      "Workflow Architecture",
+      "Reliability"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Structured Output",
+      "Constraint-Based"
+    ],
+    "variables": [
+      {
+        "name": "your agent workflow goal",
+        "placeholder": "[your agent workflow goal]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Advanced",
+    "lastReviewed": "2026-06-14",
+    "exampleInput": "Build an agent that researches competitors, drafts a positioning brief, and prepares a weekly Slack summary.",
+    "exampleOutput": "Workflow: dispatcher receives the brief, research agent gathers sources, synthesis agent creates positioning, verifier checks citations, human approves the Slack send. Tool access is read-only until the final approval gate.",
     "isNew": true
   },
   {
@@ -70,6 +102,34 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "ai-search-brief",
+    "title": "AI Search Brief",
+    "type": "Prompts",
+    "category": "Marketing",
+    "shortDescription": "Create content briefs that win classic SEO and answer-engine visibility.",
+    "fullPrompt": "Act as an AI search strategist. Build a content brief for [your topic, product, or query cluster] that can perform in search engines and AI answer engines. Include: 1. Search intent map - informational, commercial, navigational, and comparison intents. 2. Answer target - the concise answer an AI system should quote or summarize. 3. Entity coverage - people, products, standards, dates, metrics, and adjacent concepts that must be mentioned accurately. 4. Source plan - primary sources to cite and claims that need evidence. 5. Content structure - title, H2s, FAQ, comparison table, examples, and schema opportunities. 6. Differentiation - what original data, opinion, or tool makes this better than commodity content. 7. Refresh cadence - facts that will go stale and how often to update. 8. Conversion path - what the reader should do next without hurting trust.",
+    "skills": [
+      "SEO",
+      "Answer Engines",
+      "Content Strategy"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Structured Output"
+    ],
+    "variables": [
+      {
+        "name": "your topic, product, or query cluster",
+        "placeholder": "[your topic, product, or query cluster]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Intermediate",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -97,7 +157,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "api-design-architect",
@@ -123,7 +184,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "arctic-solitude",
@@ -156,7 +218,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "art-deco-metropolis",
@@ -183,7 +246,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "art-of-narrative-voice",
@@ -206,7 +270,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "async-communication-mastery",
@@ -255,7 +320,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "bio-organic-tower",
@@ -278,7 +344,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "blue-ocean-strategy",
@@ -304,7 +371,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "brutalist-oasis",
@@ -331,7 +399,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "celestial-observatory",
@@ -354,7 +423,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "chain-of-thought-mastery",
@@ -384,7 +454,8 @@
       "chatgpt": "# Chain-of-Thought (CoT) Prompting Mastery\n\nCoT prompting forces the model to show its work.\n\n## Core Technique\nAdd \"Let's think step by step\" to [your task/problem] or \"Walk through your reasoning\" to any complex prompt.\n\n## Advanced CoT Techniques\n1. **Decomposition:** Break the problem into numbered sub-problems\n2. **Sequential solving:** Require the model to solve each sub-problem before moving on\n3. **Verification:** Ask it to verify each step before proceeding\n4. **Self-correction:** Use \"Wait — let me reconsider step N\" to trigger revision\n\n## ChatGPT-Specific Tips\n- Use markdown headers (##) to structure complex prompts — ChatGPT follows headers as implicit instructions\n- For multi-step math: ask ChatGPT to use Code Interpreter to verify calculations\n- Use \"Show your work as numbered steps\" — ChatGPT responds well to explicit formatting requests\n- For complex reasoning: ask it to \"create a table comparing options before deciding\"\n- System messages work well for persistent CoT instructions across a conversation\n\n## Key Insight\nCoT increases accuracy on math, logic, and multi-step reasoning by 20-40%. Thinking tokens are compute tokens — the more the model \"thinks out loud,\" the better the output."
     },
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "claymation-explorer",
@@ -411,7 +482,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "clean-code-sage",
@@ -440,6 +512,35 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "clinical-literature-triage",
+    "title": "Clinical Literature Triage",
+    "type": "Prompts",
+    "category": "Healthcare",
+    "shortDescription": "Summarize medical literature cautiously with evidence levels, limitations, and non-advice guardrails.",
+    "fullPrompt": "Act as a medical literature synthesis assistant, not a clinician. Review the provided papers or abstracts about [your clinical question]. Produce: 1. Plain-language question - PICO if applicable. 2. Evidence map - study type, population, intervention/exposure, comparator, outcome, and sample size. 3. Findings - what the sources suggest, with strength of evidence and uncertainty. 4. Limitations - confounding, bias, small samples, surrogate endpoints, short follow-up, or poor generalizability. 5. Safety notes - adverse events and contraindication signals mentioned in the sources. 6. What this does not prove - clear boundaries against medical advice or diagnosis. 7. Questions for a qualified professional - practical follow-ups a patient or team could ask. Use cautious language and do not invent guidelines, dosages, or recommendations not present in the sources.",
+    "skills": [
+      "Medical Literature",
+      "Evidence Review",
+      "Risk Communication"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Constraint-Based",
+      "Few-Shot"
+    ],
+    "variables": [
+      {
+        "name": "your clinical question",
+        "placeholder": "[your clinical question]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Advanced",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -465,7 +566,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "context-window-strategy",
@@ -490,7 +592,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "contrastive-prompting",
@@ -528,7 +631,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "cosmetics-beauty-shot",
@@ -563,7 +667,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "dashboard-dark-mode",
@@ -594,7 +699,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "data-visualization-ui",
@@ -627,7 +733,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "database-schema-sage",
@@ -654,7 +761,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "decision-tree-analysis",
@@ -677,7 +785,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "desert-mirage-oasis",
@@ -700,7 +809,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "desert-monastery",
@@ -727,7 +837,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "design-system-showcase",
@@ -754,7 +865,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "design-systems-fundamentals",
@@ -779,7 +891,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "dialogue-dynamics",
@@ -797,7 +910,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "difficult-conversations-framework",
@@ -822,7 +936,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "double-exposure-spirit",
@@ -849,7 +964,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "editing-as-craft",
@@ -867,7 +983,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "error-recovery-patterns",
@@ -894,6 +1011,34 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "eval-harness-designer",
+    "title": "Eval Harness Designer",
+    "type": "Prompts",
+    "category": "AI Literacy",
+    "shortDescription": "Build practical evaluation suites for prompts, agents, and AI product workflows.",
+    "fullPrompt": "Act as an AI evaluation lead. I need to evaluate [your prompt, agent, or AI feature]. Design an eval harness with: 1. Capability targets - what the system must do well. 2. Failure taxonomy - factual errors, format errors, unsafe actions, poor reasoning, latency, refusals, and style misses. 3. Golden dataset - 20 test case ideas covering easy, realistic, adversarial, and edge cases. 4. Scoring rubric - pass/fail criteria plus 1-5 quality dimensions. 5. Automated checks - schema validation, citation presence, tool-call constraints, and regression thresholds. 6. Human review protocol - who reviews, how disagreements are resolved, and what examples get promoted to the test set. 7. Release gate - minimum scores required before shipping. 8. Monitoring - production signals that should trigger a rollback or prompt revision.",
+    "skills": [
+      "Evaluation",
+      "QA",
+      "Benchmarking"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Structured Output"
+    ],
+    "variables": [
+      {
+        "name": "your prompt, agent, or AI feature",
+        "placeholder": "[your prompt, agent, or AI feature]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Advanced",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -920,7 +1065,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "executive-summary-craft",
@@ -940,7 +1086,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "few-shot-learning-patterns",
@@ -966,7 +1113,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "film-noir-femme",
@@ -995,7 +1143,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "first-principles-thinking",
@@ -1021,7 +1170,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "flash-fiction-architect",
@@ -1054,7 +1204,8 @@
     "difficulty": "Beginner",
     "exampleInput": "Premise: A time traveler keeps going back to fix one small mistake, but each fix creates a slightly worse present.",
     "exampleOutput": "**The Paperclip**\n\nThe first time, Marcus went back to pick up the paperclip.\n\nIt had fallen from his desk at 2:47 PM on a Tuesday. Sarah, his lab partner, had slipped on it, broken her wrist, and missed the conference where she would have met David, who would have become her husband, who would have convinced her not to take the job in Geneva.\n\nWithout Geneva, Sarah stayed. Without staying, the grant was approved. Without the grant—well. Marcus fixed it. He picked up the paperclip.\n\nHe returned to find Sarah married, happy, living in Geneva. But the grant had gone to Hoffman's team instead, and Hoffman had built the reactor wrong.\n\nSo Marcus went back and moved the paperclip two inches to the left.\n\nSarah still slipped — but only stumbled. She made the conference, met David, but late. They argued instead of falling in love. She took the Geneva job out of spite. The grant split between two teams. The reactor worked, mostly.\n\nMostly.\n\nThe seventeenth time, Marcus went back and simply stared at the paperclip on the floor. Chrome. Ordinary. The size of a small catastrophe.\n\nHe left it there. Walked past Sarah's desk. Walked past the lab. Walked outside into a present he no longer recognized, where the trees were a color he couldn't name, and decided — for the first time in thirty-seven Tuesdays — to just live in it.",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "flat-lay-essentials",
@@ -1085,7 +1236,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "floating-pavilion",
@@ -1118,7 +1270,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "fog-of-war",
@@ -1145,7 +1298,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "food-editorial-feast",
@@ -1182,7 +1336,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "glass-canyon-bridge",
@@ -1205,7 +1360,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "golden-hour-wasteland",
@@ -1228,7 +1384,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "grid-systems",
@@ -1251,7 +1408,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "hallucination-detection",
@@ -1277,7 +1435,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "ice-hotel-aurora",
@@ -1304,7 +1463,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "information-architecture",
@@ -1329,7 +1489,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "ink-wash-dragon",
@@ -1359,7 +1520,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "isometric-sanctuary",
@@ -1382,7 +1544,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "landing-page-hero",
@@ -1419,7 +1582,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "least-to-most-decomposition",
@@ -1444,7 +1608,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "low-poly-wilderness",
@@ -1475,7 +1640,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "luxury-product-hero",
@@ -1506,6 +1672,35 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "mcp-server-designer",
+    "title": "MCP Server Designer",
+    "type": "Prompts",
+    "category": "Technical",
+    "shortDescription": "Scope a Model Context Protocol server with resources, tools, permissions, and tests.",
+    "fullPrompt": "Act as an MCP product engineer. I want to expose [your app or data source] to AI agents through a Model Context Protocol server. Design the server specification: 1. User jobs - the real tasks agents should accomplish. 2. Resources - read-only context endpoints, URI patterns, cache rules, and pagination. 3. Tools - mutating or action-oriented functions with schemas, examples, and permission levels. 4. Prompts - reusable prompt templates the server should provide. 5. Auth model - user identity, scopes, secrets handling, and tenant isolation. 6. Safety boundaries - rate limits, audit logs, approval gates, and denial cases. 7. Error contract - structured errors agents can recover from. 8. Test matrix - happy paths, permission failures, malformed inputs, and stale data. Finish with a minimal manifest-style outline.",
+    "skills": [
+      "MCP",
+      "API Design",
+      "Tool Integration"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Structured Output",
+      "Constraint-Based"
+    ],
+    "variables": [
+      {
+        "name": "your app or data source",
+        "placeholder": "[your app or data source]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Advanced",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -1531,6 +1726,41 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "metric-tree-debugger",
+    "title": "Metric Tree Debugger",
+    "type": "Prompts",
+    "category": "Data",
+    "shortDescription": "Diagnose why a key metric moved by decomposing it into drivers, segments, and tests.",
+    "fullPrompt": "Act as a senior data analyst. Our metric [your metric] changed by [change amount] over [time period]. Build a metric tree and diagnosis plan: 1. Metric definition - numerator, denominator, filters, and known tracking changes. 2. Driver tree - acquisition, activation, retention, monetization, quality, seasonality, and external factors. 3. Segment cuts - user type, channel, geography, device, cohort, plan, and lifecycle stage. 4. Hypotheses - ranked by likelihood and business impact. 5. Queries to run - describe the exact tables, joins, and aggregations needed. 6. False positives - ways instrumentation or mix shift could mislead us. 7. Decision path - what action to take for each likely root cause. 8. Executive summary template - concise enough for a weekly business review.",
+    "skills": [
+      "Analytics",
+      "Metrics",
+      "Root Cause Analysis"
+    ],
+    "techniques": [
+      "Role Assignment"
+    ],
+    "variables": [
+      {
+        "name": "your metric",
+        "placeholder": "[your metric]"
+      },
+      {
+        "name": "change amount",
+        "placeholder": "[change amount]"
+      },
+      {
+        "name": "time period",
+        "placeholder": "[time period]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Advanced",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -1549,7 +1779,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "midnight-express-train",
@@ -1578,7 +1809,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "mobile-app-concept",
@@ -1609,7 +1841,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "model-selection-guide",
@@ -1632,7 +1865,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "motion-design-principles",
@@ -1653,7 +1887,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "multi-agent-orchestration",
@@ -1686,6 +1921,33 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "multimodal-creative-director",
+    "title": "Multimodal Creative Director",
+    "type": "Prompts",
+    "category": "Creative",
+    "shortDescription": "Turn text, images, references, and brand constraints into a coherent creative production plan.",
+    "fullPrompt": "Act as a senior creative director for multimodal AI production. I will provide [your brief], plus any reference images, brand rules, audience notes, or source material. Create: 1. Creative thesis - the one idea everything should reinforce. 2. Visual system - composition, color, lighting, texture, typography, and forbidden styles. 3. Asset plan - hero image, supporting images, short video, captions, thumbnails, and variants. 4. Prompt pack - separate prompts for image generation, image editing, video/storyboard, and copy. 5. Consistency rules - how to keep character, product, logo, and brand details stable. 6. Review checklist - what to inspect before publishing. 7. Iteration path - how to revise if the output is too generic, off-brand, or visually noisy.",
+    "skills": [
+      "Creative Direction",
+      "Multimodal",
+      "Brand Systems"
+    ],
+    "techniques": [
+      "Role Assignment"
+    ],
+    "variables": [
+      {
+        "name": "your brief",
+        "placeholder": "[your brief]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Intermediate",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -1713,7 +1975,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "neon-rain-chase",
@@ -1740,7 +2003,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "neon-youth",
@@ -1773,7 +2037,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "output-formatting-mastery",
@@ -1799,7 +2064,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "packaging-showcase",
@@ -1834,7 +2100,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "papercraft-cosmos",
@@ -1861,7 +2128,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "parametric-concert-hall",
@@ -1890,7 +2158,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "pixel-art-odyssey",
@@ -1913,7 +2182,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "poetry-forge",
@@ -1944,7 +2214,8 @@
     "difficulty": "Beginner",
     "exampleInput": "Write a sonnet on the theme of \"the last library on Earth.\"",
     "exampleOutput": "˘  /   ˘  /   ˘   /  ˘  /   ˘  /\nThe dust has claimed the avenues of steel,     (A)\n  ˘  /    ˘  /   ˘  /   ˘   /  ˘  /\nAnd silence fills the towers made of glass,     (B)\n  ˘  /   ˘  /    ˘  /  ˘  /    ˘  /\nWhere pigeons nest on every broken wheel,       (A)\n  ˘  /   ˘  /   ˘  /    ˘   /   ˘  /\nAnd ivy threads through corridors of brass.     (B)\n\nBut here one building holds its breath inside—   (C)\nIts oak doors shut against the creeping vine,    (D)\nWhere Plato sits with Darwin, side by side,      (C)\nAnd Shakespeare's ink has not begun to brine.    (D)\n\n*[volta]* A child slips through the gap the storm has made   (E)\nAnd touches spines like keys upon a grand,       (F)\nShe reads one line aloud — the walls persuade    (E)\nThe roof to hold a little longer, and—           (F)\n\nThe last shelf falls. She catches just one book.  (G)\nIt's blank. She finds a pen. She starts to look.  (G)",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "porcelain-mask",
@@ -1967,7 +2238,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "presentation-architecture",
@@ -1987,7 +2259,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "prompt-chaining-pipelines",
@@ -2022,7 +2295,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "prompt-debugging",
@@ -2044,7 +2318,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "prompt-engineering-101",
@@ -2070,6 +2345,34 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "prompt-injection-auditor",
+    "title": "Prompt Injection Auditor",
+    "type": "Prompts",
+    "category": "Security",
+    "shortDescription": "Stress-test agent workflows against malicious instructions hidden in external content.",
+    "fullPrompt": "Act as an AI security reviewer. Audit [your agent, chatbot, RAG app, or workflow] for prompt-injection risk. Evaluate: 1. External content surfaces - webpages, PDFs, emails, docs, user uploads, comments, tool outputs. 2. Trusted vs untrusted boundaries - which text can instruct the system and which text is data only. 3. Attack simulations - write 10 realistic malicious snippets tailored to the workflow. 4. Expected safe behavior - how the agent should respond to each attack. 5. Data exfiltration paths - secrets, private files, credentials, hidden system prompts, and personal data. 6. Tool misuse paths - sending messages, deleting data, making purchases, changing settings. 7. Mitigations - instruction hierarchy, allowlists, output validation, scoped tools, confirmation gates, and logging. 8. Residual risk - what remains dangerous even after mitigations. Return a prioritized remediation plan.",
+    "skills": [
+      "Security Review",
+      "Prompt Injection",
+      "Agent Safety"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Constraint-Based"
+    ],
+    "variables": [
+      {
+        "name": "your agent, chatbot, RAG app, or workflow",
+        "placeholder": "[your agent, chatbot, RAG app, or workflow]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Advanced",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -2109,7 +2412,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "renaissance-digital",
@@ -2136,7 +2440,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "responsive-design-patterns",
@@ -2159,7 +2464,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "scenario-planning",
@@ -2182,7 +2488,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "second-order-thinking",
@@ -2208,7 +2515,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "self-consistency-sampling",
@@ -2233,7 +2541,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "sensory-writing-craft",
@@ -2251,7 +2560,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "show-dont-tell",
@@ -2271,6 +2581,35 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Beginner",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "source-grounded-researcher",
+    "title": "Source-Grounded Researcher",
+    "type": "Prompts",
+    "category": "Academic",
+    "shortDescription": "Produce research syntheses where every substantive claim is tied to supplied sources.",
+    "fullPrompt": "Act as a rigorous research analyst. Use only the sources I provide about [your research question]. If a claim is not supported by the sources, say \"not established in the provided sources.\" Produce: 1. Executive answer - 5 bullets maximum. 2. Evidence table - claim, supporting source, quote or data point, confidence level. 3. Disagreements - where sources conflict or use different definitions. 4. Missing evidence - what would be needed to answer more confidently. 5. Risk of overclaiming - statements that are tempting but not justified. 6. Final synthesis - concise, source-grounded, with no invented citations. Before finalizing, audit each paragraph and remove any unsupported claim.",
+    "skills": [
+      "Research",
+      "Citations",
+      "Evidence"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Structured Output",
+      "Constraint-Based"
+    ],
+    "variables": [
+      {
+        "name": "your research question",
+        "placeholder": "[your research question]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Advanced",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -2298,7 +2637,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "step-back-prompting",
@@ -2323,7 +2663,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "subterranean-library",
@@ -2350,7 +2691,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "subtext-and-implication",
@@ -2370,6 +2712,35 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "support-log-product-miner",
+    "title": "Support Log Product Miner",
+    "type": "Prompts",
+    "category": "Product",
+    "shortDescription": "Extract product opportunities, friction patterns, and roadmap evidence from support logs.",
+    "fullPrompt": "Act as a product discovery analyst. Analyze these support tickets, sales notes, reviews, or user messages about [your product]. Produce: 1. Pain cluster map - repeated problems grouped by job-to-be-done. 2. Evidence table - representative quotes, frequency, affected segment, and severity. 3. Root cause hypotheses - product gap, education gap, pricing gap, reliability issue, or expectation mismatch. 4. Opportunity backlog - 10 candidate fixes or features with impact, confidence, effort, and risk. 5. Quick wins - changes that can ship in under one week. 6. Research gaps - what to ask customers before building. 7. Roadmap recommendation - what to build now, next, later, and what to ignore. Do not over-index on loud single anecdotes; separate frequency from emotional intensity.",
+    "skills": [
+      "Product Discovery",
+      "Customer Research",
+      "Prioritization"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Structured Output",
+      "Constraint-Based"
+    ],
+    "variables": [
+      {
+        "name": "your product",
+        "placeholder": "[your product]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Intermediate",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -2410,7 +2781,8 @@
     ],
     "exampleInput": "Design a real-time collaborative document editor like Google Docs that supports 100 concurrent editors per document.",
     "exampleOutput": "**Requirements Clarification:**\n- Scale: 100 concurrent editors/doc, 10M total documents, 50ms max latency for keystrokes\n- Consistency: eventual consistency acceptable with conflict resolution\n- Availability: 99.9% uptime target\n\n**High-Level Architecture:**\n- WebSocket Gateway → Operation Transform (OT) Server → Document Store\n- Components: Load Balancer, WebSocket Gateway, OT Engine, Document Service, Presence Service, Redis (cursor/presence), PostgreSQL (document metadata), S3 (document snapshots)\n\n**Conflict Resolution:** CRDT (Conflict-free Replicated Data Types) — specifically Yjs — chosen over OT because it's decentralizable and handles offline editing.\n\n**Capacity Estimate:** 100 editors × 2 keystrokes/sec × 50 bytes/op = 10KB/s per document. At 10K active docs = 100MB/s throughput.",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "system-prompt-architecture",
@@ -2436,7 +2808,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-80-20-principle",
@@ -2461,7 +2834,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-abstract-crafter",
@@ -2486,7 +2860,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-adaptive-quiz-master",
@@ -2511,7 +2886,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-alchemist-portrait",
@@ -2538,7 +2914,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-assumption-auditor",
@@ -2564,7 +2941,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-astronauts-gaze",
@@ -2591,7 +2969,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-behavioral-profiler",
@@ -2672,6 +3051,7 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
+    "lastReviewed": "2026-02-15",
     "isNew": false
   },
   {
@@ -2707,7 +3087,8 @@
     ],
     "exampleInput": "Brand: \"Mossy\" — a direct-to-consumer sustainable furniture company that makes modular sofas from recycled ocean plastic. Target: urban millennials who care about sustainability but don't want ugly eco-furniture.",
     "exampleOutput": "**Origin Story (Hero's Journey):**\n- *Departure:* Our founder watched a documentary about ocean plastic and couldn't sit comfortably on her own couch anymore.\n- *Initiation:* She spent 18 months in recycling facilities learning to transform ocean waste into beautiful, durable foam — failing 47 times before the material passed comfort testing.\n- *Return:* Mossy was born — proof that the most comfortable seat in your home can also be the most responsible.\n\n**Voice Profile:**\n- Personality: Warm, witty, quietly confident — never preachy\n- Register: Conversational but informed. \"Living room talk, not lecture hall.\"\n- Forbidden words: \"eco-warrior,\" \"guilt,\" \"sacrifice,\" \"should\"\n\n**Bar Test:** \"It's this sofa company that makes really comfortable modular couches out of ocean plastic — you literally cannot tell, it just looks like a nice sofa.\"\n\n**Brand Manifesto (98 words):**\nYour living room is the most honest room in your home. It's where you collapse, celebrate, and binge-watch without judgment. We believe that room deserves furniture that feels as good as your values. Mossy turns ocean plastic into sofas so comfortable you'll forget they're saving anything — until you remember, and smile. No guilt. No compromise. No beige. Just beautiful furniture with a backstory worth telling. We're not asking you to change your life. We're asking you to sit down.",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-clinical-reasoner",
@@ -2734,7 +3115,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-competitive-analyst",
@@ -2759,7 +3141,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-compliance-navigator",
@@ -2784,7 +3167,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-concept-mapper",
@@ -2809,7 +3193,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-content-strategist",
@@ -2834,7 +3219,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-contract-reviewer",
@@ -2859,7 +3245,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-copywriting-alchemist",
@@ -2886,7 +3273,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-cosmic-philosopher",
@@ -2907,7 +3295,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-critical-thinker",
@@ -2937,7 +3326,8 @@
       "chatgpt": "# Critical Thinking Analysis\n\nYou are a professor of logic and critical reasoning. I will present an argument or claim: [your argument/claim].\n\nAnalyze it systematically using the following framework. Complete each section before moving to the next.\n\n## 1. Argument Reconstruction\nRewrite the argument in standard logical form:\n- **Premise 1:** [statement]\n- **Premise 2:** [statement]\n- **...**\n- **∴ Conclusion:** [statement]\n\nIdentify any implicit/hidden premises that the argument assumes but doesn't state.\n\n## 2. Argument Classification\n- **Type:** Deductive / Inductive / Abductive\n- **Why this type:** [explanation]\n- **Evaluation standard:** What counts as \"good\" for this type of argument\n\n## 3. Validity Test\nDoes the conclusion follow from the premises?\n- If deductive: Check formal logical structure\n- If inductive: Assess strength of inference on a scale\n\n## 4. Soundness Test\nAre the premises actually true? For each premise:\n| Premise | Evidence For | Evidence Against | Hidden Assumptions |\n\n## 5. Fallacy Check\nIdentify 3 logical fallacies this argument either commits or nearly commits:\n1. **[Fallacy name]:** How it applies here\n2. **[Fallacy name]:** How it applies here\n3. **[Fallacy name]:** How it applies here\n\n## 6. Steelman Counter-Argument\nConstruct the *strongest possible* version of the opposing view. Make it genuinely compelling.\n\n## 7. Verdict\n**Rating:** Strong / Weak / Invalid\n**Reasoning:** [detailed explanation]"
     },
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-curriculum-designer",
@@ -2962,7 +3352,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-data-cleaner",
@@ -2987,7 +3378,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-data-interpreter",
@@ -3025,7 +3417,8 @@
     ],
     "exampleInput": "Study results: We surveyed 500 remote workers. Those who took regular breaks scored 23% higher on productivity metrics (p=0.03). Break-takers also reported 31% lower stress (p=0.001).",
     "exampleOutput": "**Headline Finding:**\nRemote workers who take regular breaks are more productive and less stressed — but the relationship may not be what it seems.\n\n**What This Data Does NOT Tell You:**\nThis is correlational, not causal. We cannot conclude that breaks *cause* productivity gains.\n\n**Confounders to Consider:**\n1. **Self-selection bias** — More productive workers may have better time management skills that also lead them to take structured breaks\n2. **Job type** — Break-takers may have roles with more autonomy, which independently predicts both break-taking and productivity\n3. **Measurement bias** — Self-reported \"productivity metrics\" may reflect perceived rather than actual output\n\n**Effect Size Assessment:**\nThe 23% productivity gain is practically significant if real, but with p=0.03, it's borderline — a replication study is warranted. The stress finding (p=0.001) is more robust.\n\n**Recommended Visualization:** Scatter plot with break frequency (x-axis) vs. productivity score (y-axis), with point color representing stress level. This reveals whether the relationship is linear or has a threshold.",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-debug-whisperer",
@@ -3064,7 +3457,8 @@
     ],
     "exampleInput": "Debug this: My React useEffect fires on every render even though I added a dependency array with [user]. The component re-renders infinitely and eventually the browser tab crashes.",
     "exampleOutput": "**Root Cause Analysis (ranked by probability):**\n\n1. **Object reference instability (85%)** — If `user` is an object fetched from an API or derived from state, React compares by reference, not value. Every render creates a new object reference, triggering the effect again.\n\n2. **Effect updates its own dependency (10%)** — The effect itself may be calling a setState that changes `user`, creating a circular update loop.\n\n3. **Parent re-rendering (3%)** — A parent component re-renders and passes a new `user` object as a prop each time.\n\n**Diagnostic:** Add `console.log(user === prevUser)` using a ref to compare references between renders.\n\n**Fix:** Memoize with `useMemo` or depend on a primitive like `user.id` instead of the full object:\n```js\nuseEffect(() => { /* ... */ }, [user.id]);\n```\n\n**Regression test:** Add a render counter in development mode to detect infinite re-render loops early.",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-decision-journal",
@@ -3089,7 +3483,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-devils-advocate",
@@ -3115,7 +3510,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-devops-navigator",
@@ -3141,7 +3537,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-dialogue-alchemist",
@@ -3167,7 +3564,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-differential-diagnosis-engine",
@@ -3192,7 +3590,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-diplomatic-envoy",
@@ -3218,7 +3617,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-eda-navigator",
@@ -3243,7 +3643,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-eisenhower-matrix",
@@ -3261,7 +3662,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-elder-sage",
@@ -3294,7 +3696,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-email-sequence-builder",
@@ -3320,7 +3723,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-emotional-cartographer",
@@ -3346,7 +3750,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-financial-modeler",
@@ -3383,7 +3788,8 @@
       "Identify your cash-out date and plan fundraising or cost cuts accordingly",
       "Set up weekly metric tracking using the recommended KPIs"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-flywheel-effect",
@@ -3406,7 +3812,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-genre-blender",
@@ -3435,7 +3842,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-goal-decomposer",
@@ -3460,7 +3868,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-growth-hacker",
@@ -3499,7 +3908,8 @@
     ],
     "exampleInput": "Product: A B2B SaaS project management tool. Current metrics: 2,000 MAU, 15% monthly churn, $49 ARPU, CAC $120.",
     "exampleOutput": "**Growth Model Analysis:**\nThe biggest lever is **retention** — at 15% monthly churn, you lose your entire user base every ~6 months. Fixing churn before scaling acquisition prevents pouring water into a leaky bucket.\n\n**Top 3 Experiments (ICE scored):**\n\n1. **Onboarding checklist with milestone emails** (ICE: 9/8/7 = 8.0)\n   - Hypothesis: Guided onboarding → 20% more users reach \"aha moment\" (3+ projects created)\n   - Metric: Day-7 retention rate\n   - Sample: 500 new signups, 2-week test\n\n2. **Weekly digest email with team activity summary** (ICE: 7/7/9 = 7.7)\n   - Hypothesis: Activity reminders → 10% reduction in dormant accounts\n   - Metric: WAU/MAU ratio\n   - Sample: 1,000 existing users, 4-week test\n\n3. **In-app NPS survey at day 14 with follow-up** (ICE: 6/8/8 = 7.3)\n   - Hypothesis: Early feedback loop → identify and save at-risk accounts\n   - Metric: 30-day churn rate for surveyed cohort",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-habit-architect",
@@ -3533,7 +3943,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-hook-formula",
@@ -3551,7 +3962,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-hypothesis-generator",
@@ -3579,7 +3991,8 @@
     "difficulty": "Intermediate",
     "exampleInput": "Observation: Our SaaS product has 3x higher engagement on Tuesdays compared to other weekdays. We have no idea why.",
     "exampleOutput": "**Hypothesis 1 (Behavioral):** Users do weekly planning on Monday and execute on Tuesday — your product supports execution-phase work. *Test:* Analyze which features are used on Tuesday vs. Monday. If task-completion features spike, this confirms the planning→execution cycle.\n\n**Hypothesis 2 (External trigger):** A major integration partner (Slack, email digest, calendar) sends weekly summaries or reminders on Monday evening/Tuesday morning that drive traffic. *Test:* Check referral sources by day. If a single source spikes on Tuesday, you've found the trigger.\n\n**Hypothesis 3 (Content/marketing):** Your marketing emails or blog posts publish on Tuesday, driving same-day engagement. *Test:* Correlate email send schedule with engagement spikes. Pause Tuesday sends for 2 weeks and observe.\n\n**Hypothesis 4 (Organizational):** Your largest customer cohort has team meetings on Tuesday where your tool is used collaboratively. *Test:* Segment the Tuesday spike by account size. If enterprise accounts drive the spike disproportionately, it's meeting-driven.\n\n**Recommended first test:** Hypothesis 2 — cheapest to validate and most actionable.",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-inquiry-architect",
@@ -3605,7 +4018,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-inversion-method",
@@ -3632,7 +4046,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-jazz-improviser",
@@ -3658,7 +4073,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-jtbd-discovery-coach",
@@ -3701,7 +4117,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-14",
+    "isNew": false
   },
   {
     "id": "the-last-light",
@@ -3728,7 +4145,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-learning-path-architect",
@@ -3753,7 +4171,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-legal-argument-builder",
@@ -3779,7 +4198,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-lesson-planner",
@@ -3808,7 +4228,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-life-auditor",
@@ -3834,7 +4255,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-literature-reviewer",
@@ -3860,7 +4282,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-market-analyst",
@@ -3887,7 +4310,8 @@
     "difficulty": "Intermediate",
     "exampleInput": "Analyze the market opportunity for an AI-powered legal document review tool targeting mid-size law firms (50-200 attorneys).",
     "exampleOutput": "**Market Size:**\n- TAM: $12.4B (global legal tech market, 2024)\n- SAM: $2.1B (document review & contract analysis segment)\n- SOM: $210M (mid-size US law firms, ~4,000 firms × $52K avg annual spend on review tools)\n\n**Competitive Landscape:**\n- Incumbents: Relativity, Luminance, Kira Systems — strong with large firms, weaker mid-market presence\n- Gap: Mid-size firms are underserved — too large for manual review, too small for enterprise contracts\n\n**Key Findings:**\n1. Mid-size firms spend 34% of associate time on document review — highest inefficiency ratio\n2. Only 18% of mid-size firms have adopted AI review tools (vs 67% of AmLaw 100)\n3. Primary barrier: cost and implementation complexity, not resistance to technology\n\n**Recommendation:** Price at $3K-5K/month per firm (not per-seat) to remove adoption friction. Land with contract review, expand to due diligence and compliance.",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-medical-literature-synthesizer",
@@ -3913,7 +4337,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-metaphor-engine",
@@ -3940,7 +4365,8 @@
     "difficulty": "Beginner",
     "exampleInput": "Generate metaphors for the concept of \"technical debt\" that would resonate with non-technical executives.",
     "exampleOutput": "**Metaphor 1: The Credit Card**\nTechnical debt is like putting development costs on a credit card. The feature ships faster (minimum payment), but you're accruing interest. Eventually, the interest payments (bugs, slow deploys, developer frustration) exceed what you'd spend just paying it off.\n\n**Metaphor 2: The Kitchen**\nImagine cooking dinner every night but never washing dishes. Night one is fine. Night two, you work around the mess. By night ten, you can't find a clean pot and you're ordering takeout. Technical debt is the stack of dishes — and \"ordering takeout\" is rewriting from scratch.\n\n**Metaphor 3: The Foundation**\nYou built a one-story house fast and cheap. Now you want to add a second floor, but the foundation wasn't designed for it. You can try — and it might hold for a while — but eventually something cracks. The fix costs 10x what a proper foundation would have cost upfront.\n\n**Recommended for board presentations:** Metaphor 1 (financial frame = instant executive comprehension). Use Metaphor 2 for engineering all-hands (visceral, relatable).",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-ml-model-selector",
@@ -3966,7 +4392,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-narrative-architect",
@@ -4006,7 +4433,8 @@
       "Test internal consistency by asking \"what would happen if...\" scenarios",
       "Use the world bible as reference while drafting your story"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-negotiation-strategist",
@@ -4031,7 +4459,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-okr-architect",
@@ -4065,7 +4494,8 @@
       "Set up the weekly check-in cadence with your team",
       "At midpoint, use the red/yellow/green scoring to trigger course corrections"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-patient-communicator",
@@ -4091,7 +4521,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-peer-reviewer",
@@ -4124,7 +4555,8 @@
       "Amplify the identified strength — make it more prominent in the revision",
       "Use the recommendation and reasoning to prioritize your revision plan"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-performance-oracle",
@@ -4150,7 +4582,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-pitch-perfectionist",
@@ -4183,7 +4616,8 @@
       "Prepare rebuttals for the three predicted investor objections",
       "Rehearse the closing ask with specific numbers until it feels natural"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-policy-drafter",
@@ -4209,7 +4643,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-power-of-brevity",
@@ -4229,7 +4664,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-prd-architect",
@@ -4267,7 +4703,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-prioritization-engine",
@@ -4292,7 +4729,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-product-strategist",
@@ -4319,7 +4757,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-reflective-writer",
@@ -4345,7 +4784,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-regex-artisan",
@@ -4373,7 +4813,8 @@
     "difficulty": "Beginner",
     "exampleInput": "I need a regex that matches valid email addresses — should handle common formats including subdomains and plus addressing like user+tag@sub.domain.com.",
     "exampleOutput": "**Pattern:**\n```\n^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n```\n\n**Breakdown:**\n- `^[a-zA-Z0-9._%+-]+` — Local part: letters, digits, dots, underscores, percent, plus, hyphens (1 or more)\n- `@` — Literal @ separator\n- `[a-zA-Z0-9.-]+` — Domain: letters, digits, dots, hyphens (handles subdomains)\n- `\\.[a-zA-Z]{2,}$` — TLD: dot followed by 2+ letters\n\n**Matches:** user@domain.com, user+tag@sub.domain.co.uk, first.last@company.org\n**Rejects:** @domain.com, user@, user@.com, user@domain\n\n**Caveat:** This covers 99% of real-world emails but doesn't handle the full RFC 5322 spec (quoted strings, IP literals). For production, use your language's built-in email validator alongside this.",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-regulatory-analyst",
@@ -4398,7 +4839,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-renaissance-polymath",
@@ -4424,7 +4866,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-research-methodologist",
@@ -4458,7 +4901,8 @@
       "Address validity threats with specific mitigation strategies",
       "Write the methodology section using the provided outline and word targets"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-research-protocol-designer",
@@ -4485,7 +4929,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-risk-assessor",
@@ -4511,7 +4956,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-rubric-builder",
@@ -4537,7 +4983,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-scene-painter",
@@ -4563,7 +5010,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-security-sentinel",
@@ -4597,7 +5045,8 @@
       "Implement defense-in-depth measures beyond the immediate fixes",
       "Set up the recommended automated tools in your CI/CD pipeline"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-seo-strategist",
@@ -4624,7 +5073,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-silicon-valley-mentor",
@@ -4650,7 +5100,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-social-media-architect",
@@ -4676,7 +5127,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-socrates-tutor",
@@ -4709,7 +5161,8 @@
     "difficulty": "Beginner",
     "exampleInput": "Topic: I want to understand why neural networks can approximate any function (the Universal Approximation Theorem).",
     "exampleOutput": "**Let me begin with a question rather than an answer.**\n\nWhat do you think it means to \"approximate\" a function? If I gave you a function that converts temperature from Celsius to Fahrenheit, what would it mean for another function to \"approximate\" it?\n\n*[student responds: \"Get close enough to the right answer for any input?\"]*\n\nGood — \"close enough\" is doing a lot of work there. Close enough by what measure? If your approximation is off by 0.001 for most inputs but off by 1,000 for one specific input, is that a good approximation?\n\n*[This establishes the concept of uniform vs. pointwise convergence]*\n\nNow consider this: you can draw any shape using only straight lines — if you use enough of them. A circle is just a polygon with infinite sides. Does that feel related to what a neural network might be doing?\n\n*[Guides toward understanding that ReLU activations create piecewise linear functions]*\n\nWhat if I told you each neuron in a network draws one straight line, and the network combines them? What happens as you add more neurons?",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-socratic-debugger",
@@ -4736,7 +5189,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-stakeholder-whisperer",
@@ -4762,7 +5216,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-statistical-detective",
@@ -4788,7 +5243,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-stoic-philosopher",
@@ -4814,7 +5270,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-strategic-mind",
@@ -4851,7 +5308,8 @@
       "Stress-test the strategy with \"what if competitor does X\" scenarios",
       "Create a 90-day execution roadmap with clear owners and deadlines"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-test-strategist",
@@ -4888,7 +5346,8 @@
       "Apply boundary value analysis and equivalence partitioning for edge cases",
       "Set coverage targets per layer and add the property-based test for invariants"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-thesis-architect",
@@ -4924,7 +5383,8 @@
       "Draft the introductory paragraph and get feedback on logical flow",
       "Check for logical fallacies and strengthen weak links before full drafting"
     ],
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-three-act-structure",
@@ -4942,7 +5402,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-time-traveler-historian",
@@ -4967,7 +5428,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-tone-shapeshifter",
@@ -4992,7 +5454,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-unreliable-narrator",
@@ -5018,7 +5481,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-user-story-crafter",
@@ -5056,7 +5520,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-victorian-detective",
@@ -5081,7 +5546,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-visualization-storyteller",
@@ -5107,7 +5573,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-war-room-general",
@@ -5132,7 +5599,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-weekly-reviewer",
@@ -5157,7 +5625,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "the-zen-master",
@@ -5183,7 +5652,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "token-optimization",
@@ -5208,6 +5678,34 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "tool-call-planner",
+    "title": "Tool Call Planner",
+    "type": "Prompts",
+    "category": "Technical",
+    "shortDescription": "Convert messy goals into safe, minimal, auditable tool-use plans before execution.",
+    "fullPrompt": "Act as a tool-use planning specialist. Before taking action on [your task], create a tool plan that minimizes risk and wasted calls. Return: 1. Objective - one sentence. 2. Known inputs - facts already available. 3. Unknowns - information that must be discovered. 4. Tool inventory - each available tool, what it is useful for, and what it must not be used for. 5. Call sequence - ordered calls with purpose, expected output, and stop condition. 6. Parallelizable calls - independent calls that can run at the same time. 7. Safety review - external effects, privacy concerns, destructive actions, and approvals needed. 8. Fallback path - what to do if a call fails or returns ambiguous data. Do not execute the task. Only produce the plan.",
+    "skills": [
+      "Tool Use",
+      "Planning",
+      "Safety"
+    ],
+    "techniques": [
+      "Role Assignment",
+      "Constraint-Based"
+    ],
+    "variables": [
+      {
+        "name": "your task",
+        "placeholder": "[your task]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Advanced",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -5233,7 +5731,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Advanced",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "treehouse-metropolis",
@@ -5256,7 +5755,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "tribal-royalty",
@@ -5285,7 +5785,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "typography-fundamentals",
@@ -5305,7 +5806,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "underwater-cathedral",
@@ -5332,7 +5834,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "urban-decay-renaissance",
@@ -5357,7 +5860,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "vaporwave-temple",
@@ -5384,7 +5888,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "vertical-garden-city",
@@ -5407,6 +5912,33 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
+    "lastReviewed": "2026-02-01",
+    "isNew": false
+  },
+  {
+    "id": "video-storyboard-engine",
+    "title": "Video Storyboard Engine",
+    "type": "Prompts",
+    "category": "Creative",
+    "shortDescription": "Create short-form video storyboards optimized for retention, clarity, and generative video tools.",
+    "fullPrompt": "Act as a short-form video director. Turn [your idea or topic] into a 30-60 second video storyboard. Return: 1. Hook - first 2 seconds, visual and spoken line. 2. Beat sheet - 6-10 shots with duration, camera movement, subject action, on-screen text, and audio cue. 3. Retention devices - pattern interrupts, open loops, contrast, and payoff timing. 4. Generation prompts - one prompt per shot suitable for a video or image model. 5. Edit notes - pacing, transitions, captions, music mood, and thumbnail frame. 6. Variants - three alternate hooks for different audiences. 7. Quality bar - what would make the video feel premium rather than AI-generic.",
+    "skills": [
+      "Video",
+      "Storyboarding",
+      "Short-Form Content"
+    ],
+    "techniques": [
+      "Role Assignment"
+    ],
+    "variables": [
+      {
+        "name": "your idea or topic",
+        "placeholder": "[your idea or topic]"
+      }
+    ],
+    "llmVariants": {},
+    "difficulty": "Intermediate",
+    "lastReviewed": "2026-06-14",
     "isNew": true
   },
   {
@@ -5425,7 +5957,8 @@
     "variables": [],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "watercolor-dreamscape",
@@ -5454,7 +5987,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "weathered-storyteller",
@@ -5477,7 +6011,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "when-not-to-use-ai",
@@ -5503,7 +6038,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "woodblock-print-storm",
@@ -5526,7 +6062,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "world-building-foundations",
@@ -5551,7 +6088,8 @@
     ],
     "llmVariants": {},
     "difficulty": "Intermediate",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   },
   {
     "id": "zero-shot-mastery",
@@ -5578,6 +6116,7 @@
     ],
     "llmVariants": {},
     "difficulty": "Beginner",
-    "isNew": true
+    "lastReviewed": "2026-02-01",
+    "isNew": false
   }
 ]
