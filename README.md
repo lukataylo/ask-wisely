@@ -7,7 +7,7 @@
 [askwisely.com](https://askwisely.com) &nbsp;|&nbsp; [Browse the API](https://askwisely.com/prompts.json) &nbsp;|&nbsp; [Contribute](CONTRIBUTING.md)
 
 ![Build](https://img.shields.io/github/actions/workflow/status/lukataylo/ask-wisely/deploy.yml?branch=main&label=deploy)
-![Prompts](https://img.shields.io/badge/prompts-201-blue)
+![Prompts](https://img.shields.io/badge/prompts-215-blue)
 ![License](https://img.shields.io/badge/license-open--source-green)
 
 </div>
@@ -16,7 +16,7 @@
 
 ## Features
 
-- **201 curated prompts** across text prompts, image prompts, and skills
+- **215 curated prompts** across text prompts, image prompts, and skills
 - **Search and filter** by category, technique, or free text
 - **Dark mode** with automatic system detection
 - **Favorites** — save prompts to a personal collection (localStorage)
@@ -73,12 +73,12 @@ Foundational methodologies for becoming an AI power user.
 
 | Category | Examples |
 |----------|---------|
-| Engineering | Few-Shot Patterns, Chain-of-Thought, System Prompts |
+| Engineering | RAG, Model Context Protocol, Agent Skills, Context Engineering |
 | Writing | Editing Frameworks, Style Transfer, Tone Calibration |
 | Strategy | Decision Trees, SWOT Analysis, Scenario Planning |
 | Design | Design System Prompts, UX Audit, Accessibility First |
 | Communication | Meeting Facilitator, Feedback Frameworks, Stakeholder Mapping |
-| AI Literacy | Prompt Debugging, Model Selection, Hallucination Detection |
+| AI Literacy | Prompt Injection Defense, Hallucination Detection, Model Selection |
 
 ---
 
@@ -160,7 +160,7 @@ ask-wisely/
 │   └── useDarkMode.ts          # Dark mode toggle + persistence
 ├── lib/
 │   └── getPrompts.ts           # Fetch wrapper with AbortSignal
-├── content/prompts/            # 201 markdown source files
+├── content/prompts/            # 215 markdown source files
 ├── scripts/
 │   ├── generate-prompts.js     # Markdown → JSON, SEO HTML, JSON-LD, sitemap
 │   └── inject-seo.js           # Post-build SEO injection
