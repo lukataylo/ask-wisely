@@ -20,14 +20,16 @@ import IconButton from './components/ui/IconButton';
 import BlogList from './components/BlogList';
 import BlogPost from './components/BlogPost';
 import SkillsList from './components/SkillsList';
+import EvalLab from './components/eval-lab/EvalLab';
 import { getBlogPostBySlug, type BlogPost as BlogPostType } from './lib/blog-data';
 
-const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills', 'Blog'];
+const MAIN_TABS: MainTab[] = ['Prompts', 'Image Prompts', 'Skills', 'Eval Lab', 'Blog'];
 
 const CATEGORY_MAP: Record<MainTab, Category[]> = {
   'Prompts': ['All', 'Creative', 'Technical', 'Business', 'Academic', 'Persona', 'Product', 'Data', 'Marketing', 'Personal', 'Legal', 'Education', 'Healthcare'],
   'Image Prompts': ['All', 'Cinematic', 'Portrait', 'Stylized', 'Architecture', 'Commercial', 'Interface'],
   'Skills': ['All', 'Development', 'Automation', 'Documents', 'Data & Research', 'Writing & Content', 'Creative & Media', 'Productivity', 'Security'],
+  'Eval Lab': ['All'],
   'Blog': ['All'],
 };
 
@@ -253,6 +255,9 @@ const App: React.FC = () => {
 
         {/* ── Skills ── */}
         {activeTab === 'Skills' && <SkillsList />}
+
+        {/* ── Eval Lab ── */}
+        {activeTab === 'Eval Lab' && <EvalLab />}
 
         {/* ── Blog ── */}
         {activeTab === 'Blog' && !selectedBlogPost && (

@@ -17,6 +17,7 @@
 ## Features
 
 - **201 curated prompts** across text prompts, image prompts, and skills
+- **Eval Lab** — a fully client-side skill & prompt evaluator: lint SKILL.md files against the Agent Skills spec, auto-fix mechanical issues, run promptfoo-style test suites with assertions and an LLM judge, and improve skills/prompts with AI (bring your own Anthropic API key — it never leaves the browser)
 - **Search and filter** by category, technique, or free text
 - **Dark mode** with automatic system detection
 - **Favorites** — save prompts to a personal collection (localStorage)
@@ -152,6 +153,8 @@ ask-wisely/
 │   ├── PromptCard.tsx          # Card with copy, favorite, preview
 │   ├── PromptModal.tsx         # Full modal: LLM launcher, share, variables
 │   └── OwlLogo.tsx             # SVG mascot
+├── components/eval-lab/        # Eval Lab: evaluators, test runner, diff view
+├── lib/eval/                   # Client-side lint rules, fixer, improver, eval runner
 ├── hooks/
 │   ├── usePrompts.ts           # Loads prompts with abort controller
 │   ├── useFavorites.ts         # localStorage favorites

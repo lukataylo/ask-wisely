@@ -5,6 +5,7 @@ const TAB_SLUGS: Record<string, MainTab> = {
   'prompts': 'Prompts',
   'image-prompts': 'Image Prompts',
   'skills': 'Skills',
+  'eval-lab': 'Eval Lab',
   'blog': 'Blog',
 };
 
@@ -12,6 +13,7 @@ const TAB_TO_SLUG: Record<MainTab, string> = {
   'Prompts': 'prompts',
   'Image Prompts': 'image-prompts',
   'Skills': 'skills',
+  'Eval Lab': 'eval-lab',
   'Blog': 'blog',
 };
 

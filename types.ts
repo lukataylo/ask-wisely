@@ -1,5 +1,5 @@
 
-export type MainTab = 'Prompts' | 'Image Prompts' | 'Skills' | 'Blog';
+export type MainTab = 'Prompts' | 'Image Prompts' | 'Skills' | 'Eval Lab' | 'Blog';
 
 export type Category =
   | 'All'
